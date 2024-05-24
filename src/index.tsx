@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@/Theme';
-//import '@/assets/images/svg_sprite.svg';
+import '@/assets/images/svg_sprite.svg';
 //import { PersistGate } from 'redux-persist/integration/react';
 //import { persistor, store } from './redux/store';
 import { App } from '@/components/App';
