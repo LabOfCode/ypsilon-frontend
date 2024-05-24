@@ -8,19 +8,11 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export default function InputField({ label, id, ...rest }: InputFieldProps) {
   return (
-    <InputWrap className="flex flex-col">
-      {label && (
-        <Label
-          htmlFor={id}
-          className="mb-2 text-base color-gray-900"
-        >
-          {label}
-        </Label>
-      )}
+    <InputWrap>
+      {label && <Label htmlFor={id}>{label}</Label>}
       <FieldStyled
         {...rest}
         id={id}
-        className="p-3 h-11 text-sm rounded border border-gray-300 shadow"
       />
     </InputWrap>
   );

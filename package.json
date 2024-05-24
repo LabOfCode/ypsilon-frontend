@@ -59,37 +59,5 @@
     "react-router-dom": "^6.23.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.11"
-  },
-  "source-map-url": {
-    "version": "0.4.1",
-    "resolved": "https://registry.npmjs.org/source-map-url/-/source-map-url-0.4.1.tgz",
-    "integrity": "sha512-cPiFOTLUKvJFIg4SKVScy4ilPPW6rFgMgfuZJPNoDuMs3nC1HbMUycBoJw77xFIp6z1UJQJOfx6C9GMH80DiTw==",
-    "dev": true
-  },
-  "urix": {
-    "version": "0.1.0",
-    "resolved": "https://registry.npmjs.org/urix/-/urix-0.1.0.tgz",
-    "integrity": "sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg==",
-    "dev": true
-  },
-  "source-map-resolve": {
-    "version": "0.5.3",
-    "resolved": "https://registry.npmjs.org/source-map-resolve/-/source-map-resolve-0.5.3.tgz",
-    "integrity": "sha512-Htz+RnsXWk5+P2slx5Jh3Q66vhQj1Cllm0zvnaY98+NFx+Dv2CF/f5O/t8x+KaNdrdIAsruNzoh/KpialbqAnw==",
-    "dev": true,
-    "requires": {
-      "atob": "^2.1.2",
-      "decode-uri-component": "^0.2.0",
-      "resolve-url": "^0.2.1",
-      "source-map-url": "^0.4.0",
-      "urix": "^0.1.0"
-    }
-  },
-  "node_modules/resolve-url": {
-    "version": "0.2.1",
-    "resolved": "https://registry.npmjs.org/resolve-url/-/resolve-url-0.2.1.tgz",
-    "integrity": "sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==",
-    "deprecated": "https://github.com/lydell/resolve-url#deprecated",
-    "dev": true
   }
 }

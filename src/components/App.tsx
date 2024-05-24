@@ -19,6 +19,10 @@ export const App = () => {
             index
             element={<MainPage />}
           />
+          <Route
+            path="*"
+            element={<p>Not found</p>}
+          />
         </Route>
       </Routes>
       <GlobalStyle />

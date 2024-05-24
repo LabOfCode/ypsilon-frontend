@@ -20,6 +20,13 @@
 4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000). Эта страница будет
    автоматически перезагружаться после сохранения изменений в файлах проекта.
 
+## Scripts
+
+- `npm start` - запуск приложения в режиме разработки
+- `npm run dev` - билд проекта в режиме разработки
+- `npm run build` - билд проекта в продакшн
+- `npm tun typecheck` - проверка проекта на наличие ошибок typescript
+
 ## Деплой
 
 Продакшн версия проекта будет автоматически проходить линтинг, собираться и деплоиться на ...
@@ -144,4 +151,12 @@ import Button from '@/components/Button/Button';
 
 ```tsx
 import InputField from '@/components/InputField/InputField';
+
+<InputField
+  label="Country"
+  placeholder="Country"
+  name="country"
+/>;
 ```
+
+ПЕРЕД ИСПОЛЬЗОВАНИЕМ НУЖНО ДОСТИЛИЗИРОВАТЬ
