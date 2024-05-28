@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkypsilon=self.webpackChunkypsilon||[]).push([[652],{652:(e,n,l)=>{function t(){return React.createElement("div",null,React.createElement("p",null,"Main page"))}l.r(n),l.d(n,{default:()=>t})}}]);
+//# sourceMappingURL=652.189901e1c4c29ce064b1.js.map
