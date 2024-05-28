@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkypsilon=self.webpackChunkypsilon||[]).push([[652],{652:(e,n,l)=>{l.r(n),l.d(n,{default:()=>u});var t=l(540);function u(){return t.createElement("div",null,t.createElement("p",null,"Main page"))}}}]);
-//# sourceMappingURL=652.44b643a4225f42917f55.js.map
