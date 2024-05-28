@@ -12,7 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
-    //"no-unused-vars": "warn",
+    "no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }], //should add ".ts"
     "linebreak-style": ["error", "unix"],

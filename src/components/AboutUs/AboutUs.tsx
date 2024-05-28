@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Container from '../Container';
 
 import { AboutUsWrapper, FlexStyled, IconWrap, Text, TextWrap, Title } from './AboutUs.styled';
