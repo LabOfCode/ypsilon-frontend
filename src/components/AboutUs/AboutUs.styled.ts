@@ -8,12 +8,12 @@ export const AboutUsWrapper = styled.div`
   padding-bottom: 11px;
 
   @media ${({ theme }) => theme.media.tablet} {
-    margin-top: 24px;
+    padding-top: 24px;
     padding-bottom: 24px;
   }
 
   @media ${({ theme }) => theme.media.desctop} {
-    margin-top: 40px;
+    padding-top: 40px;
     padding-bottom: 40px;
   }
 `;
