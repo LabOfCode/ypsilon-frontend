@@ -1,9 +1,9 @@
-import { AboutUs } from '@/components/AboutUs/AboutUs';
+//import { AboutUs } from '@/components/AboutUs/AboutUs';
 
 export default function MainPage() {
   return (
     <div>
-      <AboutUs />
+      <p>Main page</p>
     </div>
   );
 }
