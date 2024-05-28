@@ -11,18 +11,31 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route
-          path={routes.HOME}
-          element={<Layout />}
-        >
-          <Route
-            index
-            element={<MainPage />}
-          />
-          <Route
-            path="*"
-            element={<p>Not found</p>}
-          />
+        {/* <Route
+          path="/signin"
+          element={
+            <PublicRoute
+              redirectTo="/home"
+              isLoggedIn={isLoggedIn}
+              component={<SignInPage />}
+            />
+          }
+        /> */}
+
+        {/* <Route
+          path="/signup"
+          element={
+            <PublicRoute
+              redirectTo="/home"
+              isLoggedIn={isLoggedIn}
+              component={<SignUpPage />}
+            />
+          }
+        /> */}
+
+        <Route path={routes.HOME} element={<Layout />} >
+          <Route index element={<MainPage />} />
+          <Route path="*" element={<p>Not found</p>} />
         </Route>
       </Routes>
       <GlobalStyle />
