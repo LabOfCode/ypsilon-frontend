@@ -14,10 +14,6 @@ export const MapSection = () => {
 
   return (
     <Container>
-      <MapImage
-        src={map_m}
-        alt="map"
-      />
       <MapWrap>
         {isMobile && (
           <MapImage
