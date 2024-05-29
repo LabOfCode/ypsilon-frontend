@@ -8,8 +8,8 @@
     />
     <title>Redirecting...</title>
     <script>
-      var path = window.location.pathname + window.location.search;
-      window.location.href = '/ypsilon-frontend' + (path !== '/' ? path : '');
+      var redirectUrl = window.location.href.replace(/\/404\.html.*$/, '/');
+      window.location.href = redirectUrl;
     </script>
   </head>
   <body>
