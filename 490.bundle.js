@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkypsilon=self.webpackChunkypsilon||[]).push([[490],{490:(s,n,e)=>{e.r(n),e.d(n,{default:()=>c});var i=e(420),u=e(848);const c=function(){return(0,u.jsx)("div",{children:(0,u.jsx)(i.i,{})})}}}]);
+//# sourceMappingURL=490.bundle.js.map
