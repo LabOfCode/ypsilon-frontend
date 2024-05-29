@@ -14,7 +14,48 @@ export const MapSection = () => {
 
   return (
     <Container>
-      <p>Map section</p>
+      <MapImage
+        src={map_m}
+        alt="map"
+      />
+      <MapWrap>
+        {isMobile && (
+          <MapImage
+            src={map_m}
+            alt="map"
+          />
+        )}
+        {isTablet && (
+          <MapImage
+            src={map_t}
+            alt="map"
+          />
+        )}
+        {isDesktop && (
+          <MapImage
+            src={map_d}
+            alt="map"
+          />
+        )}
+        {isMobile && (
+          <ParrotImage
+            src={parrot_m}
+            alt="parrot"
+          />
+        )}
+        {isTablet && (
+          <ParrotImage
+            src={parrot_t}
+            alt="parrot"
+          />
+        )}
+        {isDesktop && (
+          <ParrotImage
+            src={parrot_d}
+            alt="parrot"
+          />
+        )}
+      </MapWrap>
     </Container>
   );
 };
