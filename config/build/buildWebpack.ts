@@ -16,7 +16,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     output: {
       publicPath: isDev ? '' : '/ypsilon-frontend/',
       path: paths.output,
-      filename: '[name].[contenthash].js',
+      filename: 'bundle.js',
       clean: true,
     },
     plugins: buildPlugins(options),
