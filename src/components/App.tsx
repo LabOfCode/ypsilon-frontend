@@ -24,11 +24,11 @@ export const App = () => {
             path={routes.VACANCIES}
             element={<VacanciesPage />}
           />
+          <Route
+            path="*"
+            element={<p>Not found</p>}
+          />
         </Route>
-        <Route
-          path="*"
-          element={<p>Not found</p>}
-        />
       </Routes>
       <GlobalStyle />
     </>
