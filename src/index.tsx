@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 //import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@/Theme';
@@ -20,13 +20,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       loading={null}
       persistor={persistor}
     > */}
-    <BrowserRouter basename={isDev ? '/' : '/ypsilon-frontend'}>
+    <HashRouter basename={isDev ? '/' : '/ypsilon-frontend'}>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
       </HelmetProvider>
-    </BrowserRouter>
+    </HashRouter>
     {/* </PersistGate> */}
     {/* </Provider> */}
   </React.StrictMode>
