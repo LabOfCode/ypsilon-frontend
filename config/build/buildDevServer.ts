@@ -6,7 +6,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
   return {
     static: {
       directory: options.paths.output,
-      publicPath: '/ypsilon-frontend/',
+      publicPath: options.paths.publicpath,
     },
     port: options.port ?? 3000,
     open: true,
