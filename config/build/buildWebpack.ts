@@ -14,8 +14,8 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     mode: mode ?? 'development',
     entry: paths.entry,
     output: {
-      publicPath: isDev ? '' : '/ypsilon-frontend/*',
-      path: paths.output,
+      //publicPath: isDev ? '' : '/ypsilon-frontend/',
+      path: isDev ? paths.output : '/ypsilon-frontend/',
       filename: '[name].[contenthash].js',
       clean: true,
     },
