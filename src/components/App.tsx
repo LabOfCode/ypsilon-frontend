@@ -6,6 +6,7 @@ import { GlobalStyle } from '@/Globalstyle';
 import { routes } from '@/routes';
 
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
+const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
 
 export const App = () => {
   return (
@@ -18,6 +19,10 @@ export const App = () => {
           <Route
             index
             element={<MainPage />}
+          />
+          <Route
+            path={routes.VACANCIES}
+            element={<VacanciesPage />}
           />
           <Route
             path="*"

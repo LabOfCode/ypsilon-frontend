@@ -160,3 +160,16 @@ import InputField from '@/components/InputField/InputField';
 ```
 
 ПЕРЕД ИСПОЛЬЗОВАНИЕМ НУЖНО ДОСТИЛИЗИРОВАТЬ
+
+- `responsive` - в `helpers` добавил функцию для работы с адаптивными изображениями. Пример
+  использования:
+
+```tsx
+const { isMobile, isTablet, isDesktop } = responsive();
+
+return(
+	{isMobile && (<img src={map_m} alt="map"/>)}
+	{isTablet && (<img src={map_t} alt="map"/>)}
+	{isDesktop && (<img src={map_d} alt="map"/>)}
+)
+```
