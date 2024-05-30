@@ -1,6 +1,4 @@
-import Container from '../Container';
-
-import { MapImage, MapWrap, ParrotImage } from './MapSection.styled';
+import { ContainerStyled, MapImage, MapWrap, ParrotImage } from './MapSection.styled';
 import map_d from '@/assets/images/map_d.png';
 import map_m from '@/assets/images/map_m.png';
 import map_t from '@/assets/images/map_t.png';
@@ -13,7 +11,7 @@ export const MapSection = () => {
   const { isMobile, isTablet, isDesktop } = responsive();
 
   return (
-    <Container>
+    <ContainerStyled>
       <MapWrap>
         {isMobile && (
           <MapImage
@@ -52,6 +50,6 @@ export const MapSection = () => {
           />
         )}
       </MapWrap>
-    </Container>
+    </ContainerStyled>
   );
 };
