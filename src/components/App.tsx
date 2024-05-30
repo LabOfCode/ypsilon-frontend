@@ -7,6 +7,7 @@ import { routes } from '@/routes';
 
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
 const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   return (
@@ -26,7 +27,7 @@ export const App = () => {
           />
           <Route
             path="*"
-            element={<p>Not found</p>}
+            element={<NotFoundPage />}
           />
         </Route>
       </Routes>
