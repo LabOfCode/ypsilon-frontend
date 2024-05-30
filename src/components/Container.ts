@@ -14,7 +14,7 @@ const Container = styled.div`
     padding: 0 36px;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     width: 1440px;
     padding: 0 39px;
   }
