@@ -23,21 +23,23 @@ export const Footer = () => {
     <FooterWrapper>
       <Container>
         <FooterWrap>
-          <MenuFooterWrap>
-            <LinkFooter to={routes.HOME}>Головна</LinkFooter>
-            <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
-            <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
-            <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
-          </MenuFooterWrap>
-          <WrapLogo>
-            <Link to={routes.HOME}>
+            {/* <Link to={routes.HOME}>
               <img
                 src={logo}
                 alt="logo"
                 width="60px"
                 height="40px"
               />
-            </Link>
+            </Link> */}
+          <MenuFooterWrap>
+            <LinkFooter to={routes.HOME}>Головна</LinkFooter>
+            <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
+            <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
+            <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
+          </MenuFooterWrap>
+                  </FooterWrap>
+        <Line />
+        <WrapLogo>
             <Flex gap="24px">
               <a
                 target="_blank"
@@ -77,9 +79,7 @@ export const Footer = () => {
               </a>
             </Flex>
           </WrapLogo>
-        </FooterWrap>
       </Container>
-      <Line />
       <Container>
         <TextFlex>
           <a

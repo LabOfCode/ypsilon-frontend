@@ -63,8 +63,8 @@ export const WrapLogo = styled.div`
 
 export const Line = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.colorTeal};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.colorTeal};
-  height: 24px;
+  /* border-bottom: 1px solid ${({ theme }) => theme.colors.colorTeal}; */
+  height: 1px;
   margin-bottom: 24px;
 `;
 
