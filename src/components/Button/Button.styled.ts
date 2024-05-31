@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export interface ButtonStyledProps {
-  yellow?: boolean;
-  teal?: boolean;
-  ocean?: boolean;
-  disabled?: boolean;
+  to: string;
+  $yellow?: boolean;
+  $teal?: boolean;
+  $ocean?: boolean;
+  $disabled?: boolean;
   width?: string;
   fontSize?: string;
   margin?: string;
@@ -26,7 +27,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   }
 
   ${props =>
-    props.yellow &&
+    props.$yellow &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundYellow};
 
@@ -37,7 +38,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     `}
 
   ${props =>
-    props.teal &&
+    props.$teal &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundTeal};
       color: ${({ theme }) => theme.colors.colorWhite};
@@ -48,8 +49,8 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
       }
     `}
 
-		${props =>
-    props.ocean &&
+	${props =>
+    props.$ocean &&
     css`
       border: 1px solid ${({ theme }) => theme.colors.colorTeal};
       background: ${({ theme }) => theme.colors.backgroundOcean};
@@ -63,8 +64,8 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
       }
     `}
 
-		${props =>
-    props.disabled &&
+	${props =>
+    props.$disabled &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundGray};
       color: ${({ theme }) => theme.colors.colorGray};

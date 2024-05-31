@@ -4,8 +4,8 @@ import Container from '@/components/Container';
 
 export const ContainerStyled = styled(Container)`
   background-image: ${({ theme }) => theme.colors.backgroundOcean};
-  /* padding-top: 128px;
-  padding-bottom: 119px; */
+  padding-top: 92px;
+  padding-bottom: 41px;
 
   @media ${({ theme }) => theme.media.tablet} {
     padding-top: 128px;
@@ -42,8 +42,8 @@ export const Text = styled.p`
 `;
 
 export const NotFoundImg = styled.img`
-  /* width: 220px;
-  margin: 40px auto; */
+  width: 324px;
+  margin: 16px auto;
 
   @media ${({ theme }) => theme.media.tablet} {
     width: 500px;
