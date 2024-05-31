@@ -7,6 +7,7 @@ export interface ButtonStyledProps {
   disabled?: boolean;
   width?: string;
   fontSize?: string;
+  margin?: string;
 }
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`
@@ -17,8 +18,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   padding: 9px 21px;
   border: none;
   border-radius: 10px;
-
-  margin-bottom: 30px;
+  margin: ${({ margin }) => margin || '0'};
 
   &:hover,
   &:focus {
