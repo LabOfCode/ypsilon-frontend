@@ -12,7 +12,7 @@ export const AboutUsWrapper = styled.div`
     padding-bottom: 24px;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     padding-top: 40px;
     padding-bottom: 40px;
   }
@@ -26,7 +26,7 @@ export const TextWrap = styled.div`
     margin: 0 auto 24px auto;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     width: 905px;
     margin: 0 auto 48px auto;
   }
@@ -45,7 +45,7 @@ export const Title = styled.h2`
     font-weight: 700;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     font-size: 48px;
     margin-bottom: 64px;
   }
@@ -70,7 +70,7 @@ export const Text = styled.p`
       font-size: 24px;
     }
 
-    @media ${({ theme }) => theme.media.desctop} {
+    @media ${({ theme }) => theme.media.desktop} {
       font-size: 32px;
     }
   }
@@ -80,7 +80,7 @@ export const Text = styled.p`
     font-weight: 500;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     font-size: 24px;
   }
 `;
@@ -100,7 +100,7 @@ export const IconWrap = styled.div`
     font-weight: 600;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     width: 260px;
     font-size: 24px;
   }
@@ -110,7 +110,7 @@ export const IconWrap = styled.div`
     height: 45px;
     margin: 0 auto;
 
-    @media ${({ theme }) => theme.media.desctop} {
+    @media ${({ theme }) => theme.media.desktop} {
       width: 90px;
       height: 90px;
     }
@@ -126,7 +126,7 @@ export const FlexStyled = styled(Flex)`
     flex-wrap: nowrap;
   }
 
-  @media ${({ theme }) => theme.media.desctop} {
+  @media ${({ theme }) => theme.media.desktop} {
     gap: 40px;
   }
 `;
