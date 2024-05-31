@@ -139,15 +139,18 @@ import Flex from '@/components/Flex/Flex';
 - `Button` - настраиваемый компонент кнопки
 
 ```tsx
-import Button from '@/components/Button/Button';
+import {Button} from '@/components/Button/Button';
 
-<Button yellow>Підібрати вакансію</Button>
-<Button teal>Залишити заявку</Button>
-<Button ocean width="190px">Увійти</Button>
-<Button teal width="210px">Додати</Button>
-<Button	teal width="210px" fontSize="16px">Написати нам</Button>
-<Button disabled>Підібрати вакансію</Button>
+<Button $yellow>Підібрати вакансію</Button>
+<Button $teal>Залишити заявку</Button>
+<Button $ocean width="190px">Увійти</Button>
+<Button $teal width="210px">Додати</Button>
+<Button	$teal width="210px" fontSize="16px">Написати нам</Button>
+<Button $disabled>Підібрати вакансію</Button>
 ```
+
+- `LinkButton` - настраиваемый компонент кнопки-ссылки. Используется также, как и компонент
+  `Button`, имеет те же пропсы, плюс обязательный пропс `to`.
 
 - `InputField` - компонент поля ввода для использования в формах Formik
 
