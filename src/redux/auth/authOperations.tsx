@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '@/redux/store';
 
 axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api/';
 
@@ -9,7 +10,7 @@ interface User {
   verify: boolean;
 }
 
-interface AuthResponse {
+export interface AuthResponse {
   user: User;
   accessToken: string;
   refreshToken: string;
@@ -18,17 +19,6 @@ interface AuthResponse {
 interface Credentials {
   email: string;
   password: string;
-}
-
-interface AuthState {
-  user: User | null;
-  token: string | null;
-  isLoggedIn: boolean;
-  isFetchingCurrentUser: boolean;
-}
-
-interface RootState {
-  auth: AuthState;
 }
 
 const setAuthHeader = {
@@ -40,7 +30,7 @@ const setAuthHeader = {
   },
 };
 
-const signUp = createAsyncThunk(
+export const signUp = createAsyncThunk(
   'auth/signup',
   async (credentials: Credentials, thunkAPI) => {
     try {
@@ -53,7 +43,7 @@ const signUp = createAsyncThunk(
   }
 );
 
-const logIn = createAsyncThunk(
+export const signIn = createAsyncThunk(
   'auth/login',
   async (credentials: Credentials, thunkAPI) => {
     try {
@@ -66,7 +56,7 @@ const logIn = createAsyncThunk(
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const signOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
     setAuthHeader.unset();
@@ -75,7 +65,7 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-const currentUser = createAsyncThunk(
+export const currentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
@@ -96,7 +86,7 @@ const currentUser = createAsyncThunk(
   }
 );
 
-const refreshUser = createAsyncThunk(
+export const refreshUser = createAsyncThunk(
   'user/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
@@ -116,11 +106,3 @@ const refreshUser = createAsyncThunk(
     }
   }
 );
-
-export const authOperations = {
-  signUp,
-  logIn,
-  logOut,
-  currentUser,
-  refreshUser,
-};
