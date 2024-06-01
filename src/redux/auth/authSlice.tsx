@@ -18,7 +18,6 @@ interface AuthState {
   refreshToken: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
-  isSubscribed: boolean;
 }
 
 const initialState: AuthState = {
@@ -27,7 +26,6 @@ const initialState: AuthState = {
   refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isSubscribed: false,
 };
 
 const authSlice = createSlice({

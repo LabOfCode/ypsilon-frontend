@@ -7,6 +7,7 @@ export interface ButtonStyledProps {
   disabled?: boolean;
   width?: string;
   fontSize?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`

@@ -1,15 +1,9 @@
 import { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
-import { Form, Label, Input, Button } from './../AuthForm.styled';
+import { Form, Label, Input } from './../AuthForm.styled';
 import { AppDispatch } from '@/redux/store'; 
-
-interface Credentials {
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-}
+import Button from '@/components/Button/Button';
 
 interface RegisterPayload {
   firstname: string;
@@ -37,11 +31,11 @@ export const SignupForm = () => {
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
       <Label>
-        Имя
+        Ім'я
         <Input type="text" name="firstname" />
       </Label>
       <Label>
-        Фамилия
+        Прізвище
         <Input type="text" name="lastname" />
       </Label>
       <Label>
