@@ -10,7 +10,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '@/redux/auth/authSlice';
+import authReducer from '@/redux/auth/authSlice';
 
 
 const authPersistConfig = {

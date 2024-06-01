@@ -5,9 +5,14 @@ import { RootState } from '@/redux/store';
 axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api/';
 
 interface User {
-  id: string;
+  _id: string;
   email: string;
   verify: boolean;
+  firstname?: string;
+  lastname?: string;
+  phone?: string;
+  avatarURL?: string;
+  favorites?: string[];
 }
 
 export interface AuthResponse {

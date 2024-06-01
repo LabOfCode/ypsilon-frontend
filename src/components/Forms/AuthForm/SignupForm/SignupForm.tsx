@@ -4,8 +4,16 @@ import { signUp } from '@/redux/auth/authOperations';
 import { Form, Label, Input, Button } from './../AuthForm.styled';
 import { AppDispatch } from '@/redux/store'; 
 
+interface Credentials {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
+
 interface RegisterPayload {
-  name: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
 }
@@ -17,7 +25,8 @@ export const SignupForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const payload: RegisterPayload = {
-      name: (form.elements.namedItem('name') as HTMLInputElement)?.value || '',
+      firstname: (form.elements.namedItem('firstname') as HTMLInputElement)?.value || '',
+      lastname: (form.elements.namedItem('lastname') as HTMLInputElement)?.value || '',
       email: (form.elements.namedItem('email') as HTMLInputElement)?.value || '',
       password: (form.elements.namedItem('password') as HTMLInputElement)?.value || '',
     };
@@ -28,8 +37,12 @@ export const SignupForm = () => {
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
       <Label>
-        Ім'я користувача
-        <Input type="text" name="name" />
+        Имя
+        <Input type="text" name="firstname" />
+      </Label>
+      <Label>
+        Фамилия
+        <Input type="text" name="lastname" />
       </Label>
       <Label>
         Електронна адреса
@@ -38,10 +51,6 @@ export const SignupForm = () => {
       <Label>
         Пароль
         <Input type="password" name="password" />
-      </Label>
-      <Label>
-        Підтвердіть пароль
-        <Input type="password" name="confirmPassword" />
       </Label>
       <Button type="submit">Зареєструватися</Button>
     </Form>
