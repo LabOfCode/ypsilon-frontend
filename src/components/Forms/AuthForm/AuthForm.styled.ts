@@ -25,6 +25,9 @@ export const Input = styled.input`
   margin-top: 5px;
 `;
 
+export const Checkbox = styled.input`
+`;
+
 export const Button = styled.button`
   padding: 10px;
   border: none;

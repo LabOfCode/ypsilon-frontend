@@ -1,12 +1,16 @@
 // import { NavLink } from 'react-router-dom';
-// import { styled } from './AuthNav.styled;
+// // import { styled } from './AuthNav.styled;
 
 // const AuthNav = () => {
 //   return (
-//     <div>
-//       <NavLink className={styled.link} to="/signup">SignUp</NavLink>
-//       <NavLink className={styled.link} to="/login">LogIn</NavLink>
-//     </div>
+//     <SignInButton to="/signin">Увійти</SignInButton>
+//     <Container>
+//         <P>
+//           "Шукаєте роботу в Чехії? Не шукайте далі! 
+//           Ваша мрія про чеські багаті зарплати ось-ось здійсниться!"
+//         </P>
+//       <SignUnButton to="/signup">Зареєструватись</SignUnButton>
+//     </Container>
 //   );
 // }
 
