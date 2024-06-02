@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthResponse, signUp, signIn, signOut, currentUser, refreshUser } from './authOperations';
+import { AuthResponse, signUp, logIn, signOut, currentUser, refreshUser } from './authOperations';
 
 export interface User {
   _id: string;
@@ -40,7 +40,7 @@ const authSlice = createSlice({
          state.refreshToken = action.payload.refreshToken;
          state.isLoggedIn = true;
       })
-      .addCase(signIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
+      .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
          state.user = action.payload.user;
          state.token = action.payload.accessToken;
          state.refreshToken = action.payload.refreshToken;

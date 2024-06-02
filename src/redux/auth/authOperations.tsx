@@ -48,7 +48,7 @@ export const signUp = createAsyncThunk(
   }
 );
 
-export const signIn = createAsyncThunk(
+export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials: Credentials, thunkAPI) => {
     try {

@@ -25,7 +25,21 @@ export const Input = styled.input`
   margin-top: 5px;
 `;
 
-export const Checkbox = styled.input`
+export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+
+  border: 2px solid #000;
+  background: #fff;
+
+  &:checked {
+    background: #000;
+  }
 `;
 
 export const Button = styled.button`
@@ -36,8 +50,16 @@ export const Button = styled.button`
   color: ${theme.colors.colorWhite};
   cursor: pointer;
   transition: background-color 0.3s ${theme.cubicBezier};
+  font-size: 16px;
+  font-weight: bold;
 
   &:hover {
     background-color: ${theme.colors.backgroundDarkTeal};
+  }
+
+  &:disabled {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
   }
 `;

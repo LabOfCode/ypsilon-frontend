@@ -1,13 +1,7 @@
-// import { Helmet } from 'react-helmet';
-// import { SigninForm } from '@/components/Forms/AuthForm/SigninForm/SigninForm';
+import LogInForm from '@/components/Forms/LogInForm';
 
-// export default function Login() {
-//   return (
-//     <div>
-//       <Helmet>
-//         <title>Увійти</title>
-//       </Helmet>
-//       <SigninForm />
-//     </div>
-//   );
-// }
+const LogInPage = () => {
+  return <LogInForm />;
+};
+
+export default LogInPage;

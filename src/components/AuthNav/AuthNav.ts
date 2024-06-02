@@ -3,13 +3,13 @@
 
 // const AuthNav = () => {
 //   return (
-//     <SignInButton to="/signin">Увійти</SignInButton>
 //     <Container>
-//         <P>
-//           "Шукаєте роботу в Чехії? Не шукайте далі! 
-//           Ваша мрія про чеські багаті зарплати ось-ось здійсниться!"
-//         </P>
-//       <SignUnButton to="/signup">Зареєструватись</SignUnButton>
+//       <LogInButton to="/signin">Увійти</LogInButton>
+//       <P>
+//         "Шукаєте роботу в Чехії? Не шукайте далі! 
+//         Ваша мрія про чеські багаті зарплати ось-ось здійсниться!"
+//       </P>
+//       <SignUpButton to="/signup">Зареєструватись</SignUpButton>
 //     </Container>
 //   );
 // }
