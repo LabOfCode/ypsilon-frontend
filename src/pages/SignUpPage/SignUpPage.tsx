@@ -1,7 +1,19 @@
+import { Helmet } from 'react-helmet';
 import { SignupForm } from '@/components/Forms/SignupForm';
 
-const SignUpPage = () => {
-  return <SignupForm />;
-};
+export default function SignUpPage(){
+  return (
+    <div>
+      <Helmet>
+        <title>Зареєструватись</title>
+      </Helmet>
+      <SignupForm />
+    </div>
+  );
+}
 
-export default SignUpPage;
+// const SignUpPage = () => {
+//   return <SignupForm />;
+// };
+
+// export default SignUpPage;

@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import useAuth from '@/redux/hooks/useAuth';
+import { useAuth } from '@/redux/hooks/useAuth';
 import { Route } from 'react-router-dom';
 
 /**

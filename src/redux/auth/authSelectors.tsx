@@ -7,7 +7,12 @@ interface AuthState {
 }
 
 const selectIsLoggedIn = (state: AuthState) => state.isLoggedIn;
-const selectUserName = (state: AuthState) => `${state.user.firstname} ${state.user.lastname}`;
+const selectUserName = (state: AuthState) => {
+  if (state.user && state.user.firstname && state.user.lastname) {
+    return `${state.user.firstname} ${state.user.lastname}`;
+  }
+  return 'Unknown User';
+};
 const selectIsRefreshing = (state: AuthState) => state.isRefreshing;
 
 const authSelectors = {

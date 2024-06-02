@@ -21,7 +21,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: { _id: '', email: '', verify: false },
+  user: { _id: '', email: '', verify: false, firstname: null, lastname: null },
   token: null,
   refreshToken: null,
   isLoggedIn: false,
