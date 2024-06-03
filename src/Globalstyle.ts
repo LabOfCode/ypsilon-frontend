@@ -48,6 +48,9 @@ export const GlobalStyle = createGlobalStyle`
 
 	body {
 		font-family: 'Montserrat';
+		font-feature-settings:
+    'clig' off,
+    'liga' off;
 		font-size: 24px;
 		font-style: normal;
 		letter-spacing: normal;
@@ -81,8 +84,9 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	img {
-		display: block;
+		display: block;		
 		height: auto;
+		max-width:100%;
 	}
 
 	input,
