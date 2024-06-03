@@ -12,7 +12,7 @@ export interface ButtonStyledProps {
 }
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`
-  width: ${({ width }) => width || '135px'};
+  width: ${({ width }) => width || '164px'};
   font-size: ${({ fontSize }) => fontSize || '14px'};
   font-weight: 700;
   line-height: 1.4;
