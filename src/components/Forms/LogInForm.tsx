@@ -27,26 +27,38 @@ const LogInForm: React.FC = () => {
 
   return (
     <Container>
+      <p>"Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!"</p>
       <Form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Увійти</legend>
-          <p>Не зареєстровані? <a href="/signup">Зареєструватись</a></p>
-
+          <p>Ще не зареєстровані? <a href="/signup">Зареєструватись</a></p>
           <Label htmlFor="email">
             Електронна адреса *
-            <Input type="email" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} required />
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="email@gmail.com"
+              required />
           </Label>
 
           <Label htmlFor="password">
             Пароль *
-            <Input type="password" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required />
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="*********"
+              required />
           </Label>
-
           <div>
             <Checkbox id="rememberMe" name="rememberMe" checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />
             <label htmlFor="rememberMe">Запам'ятати мене</label>
           </div>
-
           <Button type="submit">Увійти</Button>
         </fieldset>
       </Form>

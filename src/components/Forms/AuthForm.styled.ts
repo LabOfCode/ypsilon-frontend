@@ -42,6 +42,11 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   }
 `;
 
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 12px;
+`;
+
 export const Button = styled.button`
   padding: 10px;
   border: none;
