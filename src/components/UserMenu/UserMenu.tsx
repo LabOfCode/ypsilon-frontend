@@ -13,7 +13,7 @@ export const UserMenu: React.FC = () => {
     <Wrapper>
       <Username>{user.firstname}</Username>
       <LogoutButton type="button" onClick={() => dispatch(signOut())}>
-        Logout
+        Вийти
       </LogoutButton>
     </Wrapper>
   );

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Route } from 'react-router-dom';
-import { RouteProps as ReactRouterRouteProps } from 'react-router-dom';
 import authSelectors from '@/redux/auth/authSelectors';
 
 type PathRouteProps = any; 
