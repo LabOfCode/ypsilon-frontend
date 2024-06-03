@@ -1,19 +1,20 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '@/redux/hooks/useAuth';
-import css from './Navigation.module.css';
+import { StyledNavLink } from './Navigation.styled';
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
   const { isLoggedIn } = useAuth();
 
   return (
     <nav>
-      <NavLink className={css.link} to="/">
+      <StyledNavLink to="/">
         Home
-      </NavLink>
+      </StyledNavLink>
       {isLoggedIn && (
-        <NavLink className={css.link} to="/tasks">
+        <StyledNavLink to="/tasks">
           Tasks
-        </NavLink>
+        </StyledNavLink>
       )}
     </nav>
   );
