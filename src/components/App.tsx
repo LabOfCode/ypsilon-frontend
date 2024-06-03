@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'; 
 import { refreshUser } from '@/redux/auth/authOperations'; 
 // import { PrivateRoute } from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+// import PublicRoute from './PublicRoute';
 import { Layout } from './Layout';
 import { GlobalStyle } from '@/Globalstyle';
 import { routes } from '@/routes';
@@ -27,8 +27,8 @@ export const App = () => {
   ) : (
     <>
       <Routes>
-        <PublicRoute path={routes.LOGIN} redirectTo="/home" element={<LogInPage />} />
-        <PublicRoute path={routes.SIGNUP} redirectTo="/home" element={<SignUpPage />} />
+        <Route path={routes.LOGIN} element={<LogInPage />} />
+        <Route path={routes.SIGNUP} element={<SignUpPage />} />
         <Route path={routes.HOME} element={<Layout />} >
           <Route index element={<MainPage />} />
           <Route path="*" element={<p>Not found</p>} />
