@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useAuth } from '@/redux/hooks/useAuth';
 import { StyledNavLink } from './Navigation.styled';
 
@@ -9,11 +8,11 @@ export const Navigation: React.FC = () => {
   return (
     <nav>
       <StyledNavLink to="/">
-        Home
+        Головна
       </StyledNavLink>
       {isLoggedIn && (
-        <StyledNavLink to="/tasks">
-          Tasks
+        <StyledNavLink to="/user">
+          Мій профіль
         </StyledNavLink>
       )}
     </nav>
