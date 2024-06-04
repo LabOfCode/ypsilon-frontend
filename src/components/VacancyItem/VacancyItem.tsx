@@ -20,7 +20,7 @@ interface VacancyItemProps {
 }
 
 export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
-  const { title, place, price, img, isActive } = vacancy;
+  const { title, place, price, img, idFavorite } = vacancy;
 
   return (
     <>
@@ -46,7 +46,7 @@ export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
           </ItemWrap>
           <ButtonWrap>
             <Button $teal>Залишити заявку</Button>
-            {isActive ? (
+            {idFavorite ? (
               <HeartActiveIcon>
                 <use href="#svg_sprite_heart"></use>
               </HeartActiveIcon>
@@ -80,7 +80,7 @@ export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
           </ItemWrap>
           <ButtonWrap>
             <Button $teal>Залишити заявку</Button>
-            {isActive ? (
+            {idFavorite ? (
               <HeartActiveIcon>
                 <use href="#svg_sprite_heart"></use>
               </HeartActiveIcon>

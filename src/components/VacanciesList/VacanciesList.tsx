@@ -8,7 +8,7 @@ export interface VacanciesProps {
   place: string;
   price: number;
   img: string;
-  isActive: boolean;
+  idFavorite: boolean;
 }
 
 const vacancies: VacanciesProps[] = [
@@ -18,7 +18,7 @@ const vacancies: VacanciesProps[] = [
     place: 'Місцезнаходженння',
     price: 120,
     img: '@/assets/images/forge_worker.jpg',
-    isActive: false,
+    idFavorite: false,
   },
 ];
 
