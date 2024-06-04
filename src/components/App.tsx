@@ -15,16 +15,15 @@ const SignUpPage = lazy(() => import('@/pages/SignUpPage/SignUpPage'));
 const LogInPage = lazy(() => import('@/pages/LogInPage/LogInPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  // const dispatch = useDispatch();
+  // const { isRefreshing } = useAuth();
 
-  useEffect(() => {
-    refreshUser();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   refreshUser();
+  // }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
+  // isRefreshing ? (<b>Refreshing user...</b>) : (
     <>
       <Routes>
         <Route path={routes.HOME} element={<Layout />} >
@@ -36,6 +35,6 @@ export const App = () => {
       </Routes>
       <GlobalStyle />
     </>
-  );
-};
+  // );
+)};
 

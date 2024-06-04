@@ -4,7 +4,7 @@ import { RootState } from '@/redux/store';
 import $api from '../http';
 import { User } from './authSlice';
 
-// axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api/';
+axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api';
 
 export interface AuthResponse {
   user: User;
@@ -25,7 +25,7 @@ export const signUp = createAsyncThunk(
   'auth/signup',
   async (credentials: CredentialsSignUp, thunkAPI) => {
     try {
-      const { data } = await $api.post<AuthResponse>('/auth/signup', credentials);
+      const {data} = await axios.post<AuthResponse>('/auth/signup', credentials);
       console.log('data :>> ', data);
       // setAuthHeader.set(data.accessToken);
       return data;
@@ -39,7 +39,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials: CredentialsLogIn, thunkAPI) => {
     try {
-      const { data } = await $api.post<AuthResponse>('/auth/login', credentials);
+      const { data } = await axios.post<AuthResponse>('/auth/login', credentials);
       localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error: any) {
