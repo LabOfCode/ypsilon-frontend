@@ -15,7 +15,7 @@ export interface User {
 interface AuthState {
   user: User;
   token: string | null;
-  refreshToken: string | null;
+  // refreshToken: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
 }
@@ -23,7 +23,7 @@ interface AuthState {
 const initialState: AuthState = {
   user: { _id: '', email: '', verify: false, firstname: null, lastname: null },
   token: null,
-  refreshToken: null,
+  // refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -37,19 +37,19 @@ const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
          state.user = action.payload.user;
          state.token = action.payload.accessToken;
-         state.refreshToken = action.payload.refreshToken;
+        //  state.refreshToken = action.payload.refreshToken;
          state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
          state.user = action.payload.user;
          state.token = action.payload.accessToken;
-         state.refreshToken = action.payload.refreshToken;
+        //  state.refreshToken = action.payload.refreshToken;
          state.isLoggedIn = true;
       })
       .addCase(signOut.fulfilled, state => {
          state.user = { _id: '', email: '', verify: false };
          state.token = null;
-         state.refreshToken = null;
+        //  state.refreshToken = null;
          state.isLoggedIn = false;
       })
       .addCase(currentUser.pending, state => {
@@ -66,10 +66,10 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
          state.user = action.payload.user;
          state.token = action.payload.accessToken;
-         state.refreshToken = action.payload.refreshToken;
+        //  state.refreshToken = action.payload.refreshToken;
          state.isLoggedIn = true;
       });
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

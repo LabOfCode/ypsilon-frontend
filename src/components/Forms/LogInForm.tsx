@@ -4,6 +4,7 @@ import { logIn } from '@/redux/auth/authOperations';
 import { Form, Label, Input, Checkbox, Button } from './AuthForm.styled';
 import { AppDispatch } from '@/redux/store'; 
 import Container from '@/components/Container'; 
+import { Link } from 'react-router-dom';
 
 interface LoginPayload {
   email: string;
@@ -31,7 +32,7 @@ const LogInForm: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Увійти</legend>
-          <p>Ще не зареєстровані? <a href="/signup">Зареєструватись</a></p>
+          <p>Ще не зареєстровані? <Link to="/signup">Зареєструватись</Link></p>
           <Label htmlFor="email">
             Електронна адреса *
             <Input

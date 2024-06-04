@@ -1,19 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
+import $api from '../http';
+import { User } from './authSlice';
 
-axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api/';
-
-interface User {
-  _id: string;
-  email: string;
-  verify: boolean;
-  firstname?: string;
-  lastname?: string;
-  phone?: string;
-  avatarURL?: string;
-  favorites?: string[];
-}
+// axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api/';
 
 export interface AuthResponse {
   user: User;
@@ -21,26 +12,22 @@ export interface AuthResponse {
   refreshToken: string;
 }
 
-interface Credentials {
+interface CredentialsLogIn {
   email: string;
   password: string;
 }
 
-const setAuthHeader = {
-  set(token: string) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+interface CredentialsSignUp extends CredentialsLogIn {
+  fullname: string;
+}
 
 export const signUp = createAsyncThunk(
   'auth/signup',
-  async (credentials: Credentials, thunkAPI) => {
+  async (credentials: CredentialsSignUp, thunkAPI) => {
     try {
-      const { data } = await axios.post<AuthResponse>('/auth/signup', credentials);
-      setAuthHeader.set(data.accessToken);
+      const { data } = await $api.post<AuthResponse>('/auth/signup', credentials);
+      console.log('data :>> ', data);
+      // setAuthHeader.set(data.accessToken);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -50,10 +37,10 @@ export const signUp = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/login',
-  async (credentials: Credentials, thunkAPI) => {
+  async (credentials: CredentialsLogIn, thunkAPI) => {
     try {
-      const { data } = await axios.post<AuthResponse>('/auth/login', credentials);
-      setAuthHeader.set(data.accessToken);
+      const { data } = await $api.post<AuthResponse>('/auth/login', credentials);
+      localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -64,7 +51,7 @@ export const logIn = createAsyncThunk(
 export const signOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
-    setAuthHeader.unset();
+    localStorage.removeItem('token');
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
@@ -80,10 +67,8 @@ export const currentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Not authorized');
     }
 
-    setAuthHeader.set(token);
-
     try {
-      const res = await axios.get<User>('/user/current');
+      const res = await $api.get<User>('/user/current');
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -101,10 +86,8 @@ export const refreshUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Not authorized');
     }
 
-    setAuthHeader.set(token);
-
     try {
-      const res = await axios.get<AuthResponse>('/user/refresh');
+      const res = await $api.get<AuthResponse>('/user/refresh');
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);

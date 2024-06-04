@@ -4,13 +4,14 @@ import { signUp } from '@/redux/auth/authOperations';
 import { Form, Label, Input, Checkbox, Button, ErrorMessage } from './AuthForm.styled';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
+import { Link } from 'react-router-dom';
 
 interface RegisterPayload {
-  name: string;
+  fullname: string;
   email: string;
   password: string;
-  confirmPassword: string;
-  purpose: string;
+  // confirmPassword: string;
+  // purpose: string;
 }
 
 export const SignupForm = () => {
@@ -21,18 +22,18 @@ export const SignupForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const payload: RegisterPayload = {
-      name: (form.elements.namedItem('name') as HTMLInputElement)?.value || '',
+      fullname: (form.elements.namedItem('fullname') as HTMLInputElement)?.value || '',
       email: (form.elements.namedItem('email') as HTMLInputElement)?.value || '',
       password: (form.elements.namedItem('password') as HTMLInputElement)?.value || '',
-      confirmPassword: (form.elements.namedItem('confirmPassword') as HTMLInputElement)?.value || '',
-      purpose: (form.elements.namedItem('purpose') as HTMLInputElement)?.value || '',
+      // confirmPassword: (form.elements.namedItem('confirmPassword') as HTMLInputElement)?.value || '',
+      // purpose: (form.elements.namedItem('purpose') as HTMLInputElement)?.value || '',
     };
 
     const newErrors: { [key: string]: string } = {};
 
-    if (payload.password !== payload.confirmPassword) {
-      newErrors.confirmPassword = 'Паролі не співпадають!';
-    }
+    // if (payload.password !== payload.confirmPassword) {
+    //   newErrors.confirmPassword = 'Паролі не співпадають!';
+    // }
 
     if (!payload.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
       newErrors.email = 'Неправильний формат email-адреси';
@@ -54,14 +55,14 @@ export const SignupForm = () => {
       <Form onSubmit={handleSubmit} autoComplete="off">
         <fieldset>
           <legend>Зареєструватись</legend>
-          <p>Вже зареєстровані? <a href="/login">Увійти</a></p>
+          <p>Вже зареєстровані? <Link to="/login">Увійти</Link></p>
 
-          <Label htmlFor="name">
+          <Label htmlFor="fullname">
             Ім'я та прізвище *
             <Input
               type="text"
-              id="name"
-              name="name"
+              id="fullname"
+              name="fullname"
               placeholder="Введіть своє ім’я та прізвище"
               required
             />
