@@ -39,6 +39,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
             from: path.resolve(options.paths.public, 'locales'),
             to: path.resolve(options.paths.output, 'locales'),
           },
+          {
+            from: path.resolve(options.paths.public, '404.html'),
+            to: path.resolve(options.paths.output),
+          },
         ],
       })
     );

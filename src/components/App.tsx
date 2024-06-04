@@ -13,6 +13,8 @@ import { routes } from '@/routes';
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
 const SignUpPage = lazy(() => import('@/pages/SignUpPage/SignUpPage'));
 const LogInPage = lazy(() => import('@/pages/LogInPage/LogInPage'));
+const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -30,7 +32,14 @@ export const App = () => {
           <Route index element={<MainPage />} />
           <Route path={routes.LOGIN} element={<LogInPage />} />
           <Route path={routes.SIGNUP} element={<SignUpPage />} />
-          <Route path="*" element={<p>Not found</p>} />
+          <Route
+            path={routes.VACANCIES}
+            element={<VacanciesPage />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
         </Route>  
       </Routes>
       <GlobalStyle />

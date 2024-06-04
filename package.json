@@ -2,13 +2,13 @@
   "name": "ypsilon",
   "version": "1.1.0",
   "description": "ypsilon frontend",
-  "homepage": "https://LabOfCode.github.io/ypsilon-frontend/",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --env mode=development",
     "dev": "webpack --env mode=development",
     "build": "webpack --env mode=production",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "keywords": [],
   "author": "Andrii Hutnyk <hutnyk2019@gmail.com>",
@@ -37,6 +37,7 @@
     "css-loader": "^6.8.1",
     "eslint": "^9.3.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",
     "prettier": "3.2.5",
@@ -62,6 +63,7 @@
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-redux": "^9.1.2",
+    "react-responsive": "^10.0.0",
     "react-router-dom": "^6.23.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.11"

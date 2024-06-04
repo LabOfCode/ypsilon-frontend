@@ -1,9 +1,14 @@
 import { FC, PropsWithChildren } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ButtonStyled, ButtonStyledProps } from './Button.styled';
 
-const Button: FC<PropsWithChildren<ButtonStyledProps>> = ({ children, type = 'button', ...props }) => {
-  return <ButtonStyled {...props} type={type}>{children}</ButtonStyled>;
+export const Button: FC<PropsWithChildren<ButtonStyledProps>> = props => {
+  return <ButtonStyled {...props} />;
 };
 
-export default Button;
+export const LinkButton: FC<PropsWithChildren<ButtonStyledProps>> = props => (
+  <ButtonStyled {...props}>
+    <Link to={props.to}>{props.children}</Link>
+  </ButtonStyled>
+);
