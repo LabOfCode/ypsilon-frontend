@@ -7,6 +7,7 @@ import {
   FooterWrapper,
   Line,
   LinkFooter,
+  LogoLink,
   MenuFooterWrap,
   TextFlex,
   WrapLogo,
@@ -23,14 +24,14 @@ export const Footer = () => {
     <FooterWrapper>
       <Container>
         <FooterWrap>
-            {/* <Link to={routes.HOME}>
+            <LogoLink to={routes.HOME}>
               <img
                 src={logo}
                 alt="logo"
                 width="60px"
                 height="40px"
               />
-            </Link> */}
+            </LogoLink>
           <MenuFooterWrap>
             <LinkFooter to={routes.HOME}>Головна</LinkFooter>
             <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
@@ -78,9 +79,7 @@ export const Footer = () => {
                 />
               </a>
             </Flex>
-          </WrapLogo>
-      </Container>
-      <Container>
+        </WrapLogo>
         <TextFlex>
           <a
             target="_blank"
@@ -105,6 +104,7 @@ export const Footer = () => {
           </a>
         </TextFlex>
       </Container>
+     
     </FooterWrapper>
   );
 };
