@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:5000';
-//export const API_URL = 'server url';
+//export const API_URL = 'http://localhost:5000';
+export const API_URL = 'https://ypsilon-backend.onrender.com/api';
 
 const $api = axios.create({
   withCredentials: true,
@@ -21,7 +21,7 @@ $api.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.atatus == 401) {
       try {
-        const response = await axios.get(`${API_URL}/api/user/refresh`, {
+        const response = await axios.get(`${API_URL}/user/refresh`, {
           withCredentials: true,
         });
         localStorage.setItem('token', response.data.accessToken);
