@@ -8,6 +8,7 @@ import {
   Line,
   LinkFooter,
   LogoLink,
+  LogoLinkWrap,
   MenuFooterWrap,
   TextFlex,
   WrapLogo,
@@ -23,62 +24,64 @@ export const Footer = () => {
   return (
     <FooterWrapper>
       <Container>
-        <FooterWrap>
-            <LogoLink to={routes.HOME}>
-              <img
-                src={logo}
-                alt="logo"
-                width="60px"
-                height="40px"
+        <LogoLinkWrap>
+          <LogoLink to={routes.HOME}>
+            <img
+              src={logo}
+              alt="logo"
+              width="50px"
+              height="28px"
               />
-            </LogoLink>
+          </LogoLink>
+              <FooterWrap>
           <MenuFooterWrap>
             <LinkFooter to={routes.HOME}>Головна</LinkFooter>
             <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
             <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
             <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
           </MenuFooterWrap>
-                  </FooterWrap>
         <Line />
+          </FooterWrap>
+          </LogoLinkWrap>
         <WrapLogo>
-            <Flex gap="24px">
-              <a
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                href="https://www.facebook.com/"
-              >
-                <img
-                  src={facebook}
-                  alt="facebook"
-                  width="32px"
-                  height="32px"
-                />
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                href="https://www.instagram.com/"
-              >
-                <img
-                  src={instagram}
-                  alt="instagram"
-                  width="32px"
-                  height="32px"
-                />
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                href="https://www.twitter.com/"
-              >
-                <img
-                  src={twiter}
-                  alt="twiter"
-                  width="32px"
-                  height="32px"
-                />
-              </a>
-            </Flex>
+          <Flex gap="24px">
+            <a
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              href="https://www.facebook.com/"
+            >
+              <img
+                src={facebook}
+                alt="facebook"
+                width="32px"
+                height="32px"
+              />
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              href="https://www.instagram.com/"
+            >
+              <img
+                src={instagram}
+                alt="instagram"
+                width="32px"
+                height="32px"
+              />
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              href="https://www.twitter.com/"
+            >
+              <img
+                src={twiter}
+                alt="twiter"
+                width="32px"
+                height="32px"
+              />
+            </a>
+          </Flex>
         </WrapLogo>
         <TextFlex>
           <a
@@ -104,7 +107,6 @@ export const Footer = () => {
           </a>
         </TextFlex>
       </Container>
-     
     </FooterWrapper>
   );
 };

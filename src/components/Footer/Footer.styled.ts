@@ -7,10 +7,10 @@ import Flex from '../Flex/Flex';
 
 
 export const FooterWrapper = styled.div`
-position:relative;
+  position: relative;
   background-color: ${({ theme }) => theme.colors.backgroundDarkTeal};
-  padding-top:10px;
-  padding-bottom: 19px;
+  padding-top: 24px;
+  padding-bottom: 26px;
 
   @media ${({ theme }) => theme.media.tablet} {
     padding-top: 22px;
@@ -25,17 +25,25 @@ position:relative;
 
 export const LogoLink = styled(Link)`
   position: absolute;
-  top: 10px;
+  top: 24px;
   left: 193px;
 
   @media ${({ theme }) => theme.media.tablet} {
     position: static;
     margin-left: 0px;
-    margin-top: 71px;
 
     & img {
       width: 98px;
       height: 58px;
+    }
+  }
+
+  @media ${({ theme }) => theme.media.desktop} {
+   
+
+    & img {
+      width: 63px;
+      height: 40px;
     }
   }
 `;
@@ -59,6 +67,9 @@ export const LinkFooter = styled(Link)`
   @media ${({ theme }) => theme.media.tablet} {
     font-size: 16px;
   }
+  @media ${({ theme }) => theme.media.desktop} {
+    font-size: 24px;
+  }
 `;
 
 export const MenuFooterWrap = styled.div`
@@ -69,17 +80,25 @@ export const MenuFooterWrap = styled.div`
   gap: 16px;
   width: 360px;
   margin: 0;
+  margin-bottom: 22px;
 
   @media ${({ theme }) => theme.media.tablet} {
-   flex-direction:row;
-   
+    flex-direction: row;
+    margin-left: 103px;
+  }
+  @media ${({ theme }) => theme.media.desktop} {
+    gap:40px;
+    margin-left: 205px;
   }
 `;
 
 export const FooterWrap = styled.div`
-  display: flex;
-  gap: 54px;
-  margin-bottom:42px;
+  /* display: flex;
+  gap: 54px; */
+  margin-bottom: 24px;
+  @media ${({ theme }) => theme.media.tablet} {
+    display: block;
+  }
 `;
 
 export const WrapLogo = styled.div`
@@ -87,31 +106,64 @@ export const WrapLogo = styled.div`
   flex-direction: column;
   gap: 39px;
   position: absolute;
-  top: 89px;
+  top: 92px;
   left: 193px;
 
   @media ${({ theme }) => theme.media.tablet} {
     top: 97px;
-    left: 400px;
+    left: 360px;
   }
+  @media ${({ theme }) => theme.media.desktop} {
+    top: 85px;
+    left: 1250px;
+  }
+  
 `;
 
 export const Line = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.colorTeal};
   height: 1px;
-  margin-bottom: 24px;
 
   @media ${({ theme }) => theme.media.tablet} {
-    border-top: 10px solid ${({ theme }) => theme.colors.colorTeal};
-    
+    width: 550px;
+    margin-bottom: 80px;
   }
-`;
+  @media ${({ theme }) => theme.media.desktop} {
+    width: 900px;
+    margin-bottom: 32px;
+  }
+  `;
 
 export const TextFlex = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 16px;
 
   color: ${({ theme }) => theme.colors.colorTeal};
   font-size: 12px;
   font-weight: 600;
+
+  @media ${({ theme }) => theme.media.tablet} {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-left:205px;
+    gap:64px;
+  }
+  @media ${({ theme }) => theme.media.desktop} {
+   
+    line-height: 1.4;
+    margin-left:400px;
+  }
+`;
+
+export const LogoLinkWrap = styled.div`
+  @media ${({ theme }) => theme.media.tablet} {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  @media ${({ theme }) => theme.media.desktop} {
+        gap: 101px;
+   
+  }
 `;
