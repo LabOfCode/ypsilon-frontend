@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
+import Container from '../Container';
 import Flex from '../Flex/Flex';
 
+export const ContainerFooter = styled(Container)`
+  position: relative;
+`;
 
 export const FooterWrapper = styled.div`
-  position: relative;
   background-color: ${({ theme }) => theme.colors.backgroundDarkTeal};
   padding-top: 24px;
   padding-bottom: 26px;
@@ -18,14 +19,14 @@ export const FooterWrapper = styled.div`
   }
 
   @media ${({ theme }) => theme.media.desktop} {
-    padding-top: 40px;
+    padding-top: 43px;
     padding-bottom: 40px;
   }
 `;
 
 export const LogoLink = styled(Link)`
   position: absolute;
-  top: 24px;
+  top: 0px;
   left: 193px;
 
   @media ${({ theme }) => theme.media.tablet} {
@@ -39,8 +40,6 @@ export const LogoLink = styled(Link)`
   }
 
   @media ${({ theme }) => theme.media.desktop} {
-   
-
     & img {
       width: 63px;
       height: 40px;
@@ -87,8 +86,9 @@ export const MenuFooterWrap = styled.div`
     margin-left: 103px;
   }
   @media ${({ theme }) => theme.media.desktop} {
-    gap:40px;
+    gap: 40px;
     margin-left: 205px;
+    margin-bottom: 32px;
   }
 `;
 
@@ -106,18 +106,25 @@ export const WrapLogo = styled.div`
   flex-direction: column;
   gap: 39px;
   position: absolute;
-  top: 92px;
+  top: 68px;
   left: 193px;
+  & Flex {
+    gap: 16px;
+  }
 
   @media ${({ theme }) => theme.media.tablet} {
-    top: 97px;
+    top: 77px;
     left: 360px;
   }
   @media ${({ theme }) => theme.media.desktop} {
-    top: 85px;
+    top: 42px;
     left: 1250px;
+
+    & img {
+      width: 40px;
+      height: 40px;
+    }
   }
-  
 `;
 
 export const Line = styled.div`
@@ -132,7 +139,7 @@ export const Line = styled.div`
     width: 900px;
     margin-bottom: 32px;
   }
-  `;
+`;
 
 export const TextFlex = styled.div`
   display: flex;
@@ -146,13 +153,12 @@ export const TextFlex = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
-    margin-left:205px;
-    gap:64px;
+    margin-left: 180px;
+    gap: 64px;
   }
   @media ${({ theme }) => theme.media.desktop} {
-   
     line-height: 1.4;
-    margin-left:400px;
+    margin-left: 400px;
   }
 `;
 
@@ -163,7 +169,6 @@ export const LogoLinkWrap = styled.div`
     align-items: center;
   }
   @media ${({ theme }) => theme.media.desktop} {
-        gap: 101px;
-   
+    gap: 101px;
   }
 `;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Flex from '../Flex/Flex';
 
 import {
+  ContainerFooter,
   FooterWrap,
   FooterWrapper,
   Line,
@@ -17,13 +18,14 @@ import facebook from '@/assets/images/devicon-plain_facebook.png';
 import logo from '@/assets/images/logo.png';
 import instagram from '@/assets/images/skill-icons_instagram.png';
 import twiter from '@/assets/images/skill-icons_twitter.png';
-import Container from '@/components/Container';
 import { routes } from '@/routes';
+import { responsive } from '@/helpers/responsive';
 
 export const Footer = () => {
+  const { isMobile } = responsive();
   return (
     <FooterWrapper>
-      <Container>
+      <ContainerFooter>
         <LogoLinkWrap>
           <LogoLink to={routes.HOME}>
             <img
@@ -31,20 +33,20 @@ export const Footer = () => {
               alt="logo"
               width="50px"
               height="28px"
-              />
+            />
           </LogoLink>
-              <FooterWrap>
-          <MenuFooterWrap>
-            <LinkFooter to={routes.HOME}>Головна</LinkFooter>
-            <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
-            <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
-            <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
-          </MenuFooterWrap>
-        <Line />
+          <FooterWrap>
+            <MenuFooterWrap>
+              <LinkFooter to={routes.HOME}>Головна</LinkFooter>
+              <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
+              <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
+              <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
+            </MenuFooterWrap>
+            <Line />
           </FooterWrap>
-          </LogoLinkWrap>
+        </LogoLinkWrap>
         <WrapLogo>
-          <Flex gap="24px">
+          <Flex gap={isMobile ? '16px' : '24px'}>
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"
@@ -106,7 +108,7 @@ export const Footer = () => {
             <p>Term of service</p>
           </a>
         </TextFlex>
-      </Container>
+      </ContainerFooter>
     </FooterWrapper>
   );
 };
