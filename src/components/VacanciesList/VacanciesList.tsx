@@ -1,6 +1,8 @@
 import { VacancyItem } from '../VacancyItem/VacancyItem';
 
 import { List } from './VacanciesList.styled';
+import { useGetVacanciesQuery } from '@/redux/services/vacancies';
+import { IVacancy } from '@/types';
 
 export interface VacanciesProps {
   id: string;
@@ -23,6 +25,10 @@ const vacancies: VacanciesProps[] = [
 ];
 
 export const VacanciesList = () => {
+  const data = useGetVacanciesQuery('');
+
+  console.log('data :=>', data);
+
   return (
     <List>
       {vacancies.map((item: VacanciesProps) => (

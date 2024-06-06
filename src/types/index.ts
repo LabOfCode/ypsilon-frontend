@@ -6,6 +6,14 @@ export interface IUser {
   lastname?: string;
 }
 
+export interface IVacancy {
+  _id: string;
+  title: string;
+  place: string;
+  price: number;
+  img: string;
+}
+
 //Auth
 
 export interface AuthState {
