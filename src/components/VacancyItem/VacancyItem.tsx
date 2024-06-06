@@ -1,5 +1,6 @@
+import { useState } from 'react';
+
 import { Button } from '../Button/Button';
-import { VacanciesProps } from '../VacanciesList/VacanciesList';
 
 import {
   ButtonWrap,
@@ -13,85 +14,51 @@ import {
   SvgIcon,
   Title,
 } from './VacancyItem.styled';
-import forge_worker from '@/assets/images/forge_worker.jpg';
+import { IVacancy } from '@/types';
 
 interface VacancyItemProps {
-  vacancy: VacanciesProps;
+  vacancy: IVacancy;
 }
 
 export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
-  const { title, place, price, img, idFavorite } = vacancy;
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
+  const { title, place, price, img } = vacancy;
 
   return (
-    <>
-      <CardWrap>
-        <img
-          src={forge_worker}
-          alt="forge worker"
-        />
-        <DescWrap>
-          <Title>{title}</Title>
+    <CardWrap>
+      <img
+        src={img}
+        alt={title}
+      />
+      <DescWrap>
+        <Title>{title}</Title>
 
-          <ItemWrap>
-            <SvgIcon>
-              <use href="#svg_sprite_map-pin"></use>
-            </SvgIcon>
-            <LocationText>{place}</LocationText>
-          </ItemWrap>
-          <ItemWrap>
-            <SvgIcon>
-              <use href="#svg_sprite_grommet-icons_money"></use>
-            </SvgIcon>
-            <PriceText>{`${price} крон/год`}</PriceText>
-          </ItemWrap>
-          <ButtonWrap>
-            <Button $teal>Залишити заявку</Button>
-            {idFavorite ? (
-              <HeartActiveIcon>
-                <use href="#svg_sprite_heart"></use>
-              </HeartActiveIcon>
-            ) : (
-              <HeartIcon>
-                <use href="#svg_sprite_heart"></use>
-              </HeartIcon>
-            )}
-          </ButtonWrap>
-        </DescWrap>
-      </CardWrap>
-      <CardWrap>
-        <img
-          src={forge_worker}
-          alt="forge worker"
-        />
-        <DescWrap>
-          <Title>{title}</Title>
-
-          <ItemWrap>
-            <SvgIcon>
-              <use href="#svg_sprite_map-pin"></use>
-            </SvgIcon>
-            <LocationText>{place}</LocationText>
-          </ItemWrap>
-          <ItemWrap>
-            <SvgIcon>
-              <use href="#svg_sprite_grommet-icons_money"></use>
-            </SvgIcon>
-            <PriceText>{`${price} крон/год`}</PriceText>
-          </ItemWrap>
-          <ButtonWrap>
-            <Button $teal>Залишити заявку</Button>
-            {idFavorite ? (
-              <HeartActiveIcon>
-                <use href="#svg_sprite_heart"></use>
-              </HeartActiveIcon>
-            ) : (
-              <HeartIcon>
-                <use href="#svg_sprite_heart"></use>
-              </HeartIcon>
-            )}
-          </ButtonWrap>
-        </DescWrap>
-      </CardWrap>
-    </>
+        <ItemWrap>
+          <SvgIcon>
+            <use href="#svg_sprite_map-pin"></use>
+          </SvgIcon>
+          <LocationText>{place}</LocationText>
+        </ItemWrap>
+        <ItemWrap>
+          <SvgIcon>
+            <use href="#svg_sprite_grommet-icons_money"></use>
+          </SvgIcon>
+          <PriceText>{`${price} крон/год`}</PriceText>
+        </ItemWrap>
+        <ButtonWrap>
+          <Button $teal>Залишити заявку</Button>
+          {isFavorite ? (
+            <HeartActiveIcon>
+              <use href="#svg_sprite_heart"></use>
+            </HeartActiveIcon>
+          ) : (
+            <HeartIcon>
+              <use href="#svg_sprite_heart"></use>
+            </HeartIcon>
+          )}
+        </ButtonWrap>
+      </DescWrap>
+    </CardWrap>
   );
 };

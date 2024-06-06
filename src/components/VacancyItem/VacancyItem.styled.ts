@@ -48,6 +48,13 @@ export const SvgIcon = styled.svg`
 export const HeartIcon = styled(SvgIcon)`
   fill: none;
   stroke: ${({ theme }) => theme.colors.colorTeal};
+  transition: stroke 250ms ${({ theme }) => theme.cubicBezier};
+
+  &:hover,
+  &:focus {
+    fill: none;
+    stroke: ${({ theme }) => theme.colors.colorYellow};
+  }
 `;
 
 export const HeartActiveIcon = styled(SvgIcon)`

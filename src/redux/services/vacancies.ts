@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { IVacancy } from '@/types';
+import type { IVacancy, VacanciesResponse } from '@/types';
 
 export const vacancyApi = createApi({
   reducerPath: 'vacancyApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://ypsilon-backend.onrender.com/api' }),
   tagTypes: ['vacancies'],
   endpoints: builder => ({
-    getVacancies: builder.query<IVacancy, string>({
+    getVacancies: builder.query<VacanciesResponse, string>({
       query: () => `/vacancies`,
       providesTags: ['vacancies'],
     }),

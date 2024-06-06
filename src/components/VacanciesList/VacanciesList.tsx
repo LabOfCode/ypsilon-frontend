@@ -1,42 +1,25 @@
+import { Spiner } from '../Spiner/Spiner';
 import { VacancyItem } from '../VacancyItem/VacancyItem';
 
 import { List } from './VacanciesList.styled';
 import { useGetVacanciesQuery } from '@/redux/services/vacancies';
 import { IVacancy } from '@/types';
 
-export interface VacanciesProps {
-  id: string;
-  title: string;
-  place: string;
-  price: number;
-  img: string;
-  idFavorite: boolean;
-}
-
-const vacancies: VacanciesProps[] = [
-  {
-    id: 'dfsvdvdvdv',
-    title: 'Ливарник, плавильник металу',
-    place: 'Місцезнаходженння',
-    price: 120,
-    img: '@/assets/images/forge_worker.jpg',
-    idFavorite: false,
-  },
-];
-
 export const VacanciesList = () => {
-  const data = useGetVacanciesQuery('');
-
-  console.log('data :=>', data);
+  const { data, isFetching } = useGetVacanciesQuery('');
 
   return (
     <List>
-      {vacancies.map((item: VacanciesProps) => (
+      {data?.vacancies.map((item: IVacancy) => (
         <VacancyItem
-          key={item.id}
+          key={item._id}
           vacancy={item}
         />
       ))}
+      <Spiner
+        loading={isFetching}
+        size={100}
+      />
     </List>
   );
 };

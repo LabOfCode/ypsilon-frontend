@@ -15,20 +15,20 @@ import { App } from '@/components/App';
 const isDev = process.env.NODE_ENV === 'development';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      {/* <PersistGate
+  // <React.StrictMode>
+  <Provider store={store}>
+    {/* <PersistGate
       loading={null}
       persistor={persistor}
     > */}
-      <BrowserRouter basename={isDev ? '/' : '/ypsilon-frontend/'}>
-        <HelmetProvider>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </HelmetProvider>
-      </BrowserRouter>
-      {/* </PersistGate> */}
-    </Provider>
-  </React.StrictMode>
+    <BrowserRouter basename={isDev ? '/' : '/ypsilon-frontend/'}>
+      <HelmetProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </HelmetProvider>
+    </BrowserRouter>
+    {/* </PersistGate> */}
+  </Provider>
+  // </React.StrictMode>
 );

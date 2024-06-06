@@ -29,15 +29,15 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
-  @media ${({ theme }) => theme.media.tablet} {
-    width: 322px;
-    font-size: 24px;
-  }
-
   ${props =>
     props.$yellow &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundYellow};
+
+      @media ${({ theme }) => theme.media.tablet} {
+        width: 322px;
+        font-size: 24px;
+      }
 
       &:hover,
       &:focus {

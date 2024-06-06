@@ -14,6 +14,11 @@ export interface IVacancy {
   img: string;
 }
 
+export interface VacanciesResponse {
+  vacancies: IVacancy[];
+  total: number;
+}
+
 //Auth
 
 export interface AuthState {
