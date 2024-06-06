@@ -1,10 +1,4 @@
-import { User } from './authSlice';
-
-interface AuthState {
-  isLoggedIn: boolean;
-  user: User;
-  isRefreshing: boolean;
-}
+import { AuthState } from '@/types';
 
 const selectIsLoggedIn = (state: AuthState) => state.isLoggedIn;
 const selectUser = (state: AuthState) => state.user;

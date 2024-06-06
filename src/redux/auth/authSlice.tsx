@@ -1,21 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthResponse, signUp, logIn, signOut, currentUser, refreshUser } from './authOperations';
-
-export interface User {
-  _id: string;
-  email: string;
-  verify: boolean;
-  firstname?: string;
-  lastname?: string;
-}
-
-interface AuthState {
-  user:{user: User};
-  token: string | null;
-  // refreshToken: string | null;
-  isLoggedIn: boolean;
-  isRefreshing: boolean;
-}
+import { signUp, logIn, signOut, currentUser, refreshUser } from './authOperations';
+import { AuthResponse, AuthState } from '@/types';
 
 const initialState: AuthState = {
   user:{user: { _id: '', email: '', verify: false, firstname: null, lastname: null }},

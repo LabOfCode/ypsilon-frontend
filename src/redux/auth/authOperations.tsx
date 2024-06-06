@@ -2,30 +2,15 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
 import $api from '../http';
-import { User } from './authSlice';
+import { AuthResponse, CredentialsLogIn, CredentialsSignUp, User } from '@/types';
 
-axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api';
-
-export interface AuthResponse {
-  user: User;
-  accessToken: string;
-  refreshToken: string;
-}
-
-interface CredentialsLogIn {
-  email: string;
-  password: string;
-}
-
-interface CredentialsSignUp extends CredentialsLogIn {
-  fullname: string;
-}
+// axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api';
 
 export const signUp = createAsyncThunk(
   'auth/signup',
   async (credentials: CredentialsSignUp, thunkAPI) => {
     try {
-      const {data} = await axios.post<AuthResponse>('/auth/signup', credentials);
+      const {data} = await $api.post<AuthResponse>('/auth/signup', credentials);
       console.log('data :>> ', data);
       // setAuthHeader.set(data.accessToken);
       return data;
@@ -39,7 +24,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials: CredentialsLogIn, thunkAPI) => {
     try {
-      const { data } = await axios.post<AuthResponse>('/auth/login', credentials);
+      const { data } = await $api.post<AuthResponse>('/auth/login', credentials);
       localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error: any) {
@@ -50,7 +35,7 @@ export const logIn = createAsyncThunk(
 
 export const signOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/auth/logout');
+    await $api.post('/auth/logout');
     localStorage.removeItem('token');
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.response.data.message);
