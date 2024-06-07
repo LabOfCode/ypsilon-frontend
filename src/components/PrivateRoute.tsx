@@ -1,21 +1,15 @@
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/redux/hooks/useAuth';
-import { Route } from 'react-router-dom';
-
-/**
- * - If the route is private and the user is logged in, render the component
- * - Otherwise render <Navigate> to redirectTo
- */
 
 interface PrivateRouteProps {
-  component: React.ComponentType;
+  element: React.ReactNode;
   redirectTo?: string;
-  path: string;
 }
 
-export const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, redirectTo = '/', path }) => {
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({ element, redirectTo = '/' }) => {
   const { isLoggedIn, isRefreshing } = useAuth();
   const shouldRedirect = !isLoggedIn && !isRefreshing;
 
-  return shouldRedirect ? <Navigate to={redirectTo} /> : <Route path={path} element={<Component />} />;
+  return shouldRedirect ? <Navigate to={redirectTo} /> : <>{element}</>;
 };

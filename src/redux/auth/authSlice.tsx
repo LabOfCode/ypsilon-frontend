@@ -5,7 +5,6 @@ import { AuthResponse, AuthState, IUser } from '@/types';
 const initialState: AuthState = {
   user: { _id: '', email: '', verify: false, firstname: null, lastname: null },
   token: null,
-  // refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -19,19 +18,16 @@ const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.user = action.payload.user;
         state.token = action.payload.accessToken;
-        //  state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.user = action.payload.user;
         state.token = action.payload.accessToken;
-        //  state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
         .addCase(signOut.fulfilled, state => {
            state.user = { _id: '', email: '', verify: false, firstname: null, lastname: null };
            state.token = null;
-          //  state.refreshToken = null;
            state.isLoggedIn = false;
         })
         .addCase(currentUser.pending, state => {
@@ -48,7 +44,6 @@ const authSlice = createSlice({
         .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
            state.user = action.payload.user;
            state.token = action.payload.accessToken;
-          //  state.refreshToken = action.payload.refreshToken;
            state.isLoggedIn = true;
         });
     },

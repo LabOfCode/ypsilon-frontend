@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'; 
 import { refreshUser } from '@/redux/auth/authOperations'; 
 // import { PrivateRoute } from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import { PublicRoute } from './PublicRoute';
 import { Layout } from './Layout';
 import { GlobalStyle } from '@/Globalstyle';
 import { routes } from '@/routes';
@@ -17,21 +17,32 @@ const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage'));
 
 export const App = () => {
-  // const dispatch = useDispatch();
-  // const { isRefreshing } = useAuth();
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-  // useEffect(() => {
-  //   refreshUser();
-  // }, [dispatch]);
+  useEffect(() => {
+    refreshUser();
+  }, [dispatch]);
 
-  return (
-  // isRefreshing ? (<b>Refreshing user...</b>) : (
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <>
       <Routes>
         <Route path={routes.HOME} element={<Layout />} >
           <Route index element={<MainPage />} />
-          <Route path={routes.LOGIN} element={<LogInPage />} />
-          <Route path={routes.SIGNUP} element={<SignUpPage />} />
+            <Route
+            path={routes.LOGIN}
+            element={<PublicRoute redirectTo='/home' element={<LogInPage />} />}
+          />
+          <Route
+            path={routes.SIGNUP}
+            element={<PublicRoute redirectTo='/home' element={<SignUpPage />} />}
+            />
+          {/* <Route
+            path={routes.VACANCIES}
+            element={<PrivateRoute redirectTo='/login' element={<VacanciesPage />} />}
+          /> */}
           <Route
             path={routes.VACANCIES}
             element={<VacanciesPage />}
@@ -44,6 +55,6 @@ export const App = () => {
       </Routes>
       <GlobalStyle />
     </>
-  // );
-)};
+  );
+};
 

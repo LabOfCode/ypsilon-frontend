@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
 import $api from '../http';
@@ -11,7 +11,6 @@ export const signUp = createAsyncThunk(
   async (credentials: CredentialsSignUp, thunkAPI) => {
     try {
       const {data} = await $api.post<AuthResponse>('/auth/signup', credentials);
-      console.log('data :>> ', data);
       // setAuthHeader.set(data.accessToken);
       return data;
     } catch (error: any) {
