@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/redux/store';
 import $api from '../http';
-import { AuthResponse, CredentialsLogIn, CredentialsSignUp, User } from '@/types';
+import { AuthResponse, CredentialsLogIn, CredentialsSignUp, IUser } from '@/types';
 
 // axios.defaults.baseURL = 'https://ypsilon-backend.onrender.com/api';
 
@@ -53,7 +53,7 @@ export const currentUser = createAsyncThunk(
     }
 
     try {
-      const res = await $api.get<User>('/user/current');
+      const res = await $api.get<IUser>('/user/current');
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);

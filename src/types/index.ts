@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   _id: string;
   email: string;
   verify: boolean;
@@ -9,14 +9,14 @@ export interface User {
 //Auth
 
 export interface AuthState {
-  user: { user: User };
+  user: IUser;
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
 }
 
 export interface AuthResponse {
-  user: User;
+  user: IUser;
   accessToken: string;
   refreshToken: string;
 }
