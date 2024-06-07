@@ -22,7 +22,7 @@ import { routes } from '@/routes';
 import { responsive } from '@/helpers/responsive';
 
 export const Footer = () => {
-  const { isMobile } = responsive();
+  const { isMobile, isDesktop } = responsive();
   return (
     <FooterWrapper>
       <ContainerFooter>
@@ -46,7 +46,7 @@ export const Footer = () => {
           </FooterWrap>
         </LogoLinkWrap>
         <WrapLogo>
-          <Flex gap={isMobile ? '16px' : '24px'}>
+          <Flex gap={isMobile ? '16px' : '24px'} justify={isDesktop?'flex-end':'center'}>
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"

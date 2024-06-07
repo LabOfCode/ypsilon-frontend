@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
 import Container from '../Container';
 import Flex from '../Flex/Flex';
+
 
 export const ContainerFooter = styled(Container)`
   position: relative;
@@ -41,8 +44,8 @@ export const LogoLink = styled(Link)`
 
   @media ${({ theme }) => theme.media.desktop} {
     & img {
-      width: 63px;
-      height: 40px;
+      width: 126px;
+      height: 74px;
     }
   }
 `;
@@ -98,6 +101,10 @@ export const FooterWrap = styled.div`
   margin-bottom: 24px;
   @media ${({ theme }) => theme.media.tablet} {
     display: block;
+    margin-bottom: 0px;
+  }
+  @media ${({ theme }) => theme.media.desktop} {
+    margin-bottom: 0px;
   }
 `;
 
@@ -113,12 +120,12 @@ export const WrapLogo = styled.div`
   }
 
   @media ${({ theme }) => theme.media.tablet} {
-    top: 77px;
+    top: 61px;
     left: 360px;
   }
   @media ${({ theme }) => theme.media.desktop} {
     top: 42px;
-    left: 1250px;
+    right: 82px;
 
     & img {
       width: 40px;
@@ -136,7 +143,7 @@ export const Line = styled.div`
     margin-bottom: 80px;
   }
   @media ${({ theme }) => theme.media.desktop} {
-    width: 900px;
+    width: 860px;
     margin-bottom: 32px;
   }
 `;
