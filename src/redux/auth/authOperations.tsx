@@ -32,7 +32,7 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const signOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await $api.post('/auth/logout');
     localStorage.removeItem('token');

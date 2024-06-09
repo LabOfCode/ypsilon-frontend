@@ -43,7 +43,7 @@ export const SignupForm = () => {
       setErrors(newErrors);
       return;
     }
-    console.log('payload :>> ', payload);
+
     setErrors({});
     dispatch(signUp(payload));
     form.reset();

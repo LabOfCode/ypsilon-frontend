@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { signUp, logIn, signOut, currentUser, refreshUser } from './authOperations';
+import { signUp, logIn, logOut, currentUser, refreshUser } from './authOperations';
 import { AuthResponse, AuthState, IUser } from '@/types';
 
 const initialState: AuthState = {
@@ -25,10 +25,10 @@ const authSlice = createSlice({
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
       })
-        .addCase(signOut.fulfilled, state => {
-           state.user = { _id: '', email: '', verify: false, firstname: null, lastname: null };
-           state.token = null;
-           state.isLoggedIn = false;
+        .addCase(logOut.fulfilled, state => {
+          state.user = { _id: '', email: '', verify: false, firstname: null, lastname: null };
+          state.token = null;
+          state.isLoggedIn = false;
         })
         .addCase(currentUser.pending, state => {
           state.isRefreshing = true;
@@ -42,9 +42,13 @@ const authSlice = createSlice({
           state.isRefreshing = false;
         })
         .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
-           state.user = action.payload.user;
-           state.token = action.payload.accessToken;
-           state.isLoggedIn = true;
+          state.user = action.payload.user;
+          state.token = action.payload.accessToken;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        })
+        .addCase(refreshUser.rejected, state => {
+          state.isRefreshing = false;
         });
     },
   }
