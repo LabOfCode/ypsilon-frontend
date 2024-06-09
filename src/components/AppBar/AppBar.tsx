@@ -6,7 +6,7 @@ import { useAuth } from '@/redux/hooks/useAuth';
 import { Header } from './AppBar.styled'; 
 
 export const AppBar: React.FC = () => {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <Header>
