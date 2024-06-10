@@ -1,20 +1,14 @@
 import { Helmet } from 'react-helmet';
 import LogInForm from '@/components/Forms/LogInForm';
+import { ContainerStyled } from './LogInPage.styled';
 
 export default function LogInPage(){
   return (
-    <div>
+    <ContainerStyled>
       <Helmet>
         <title>Увійти</title>
       </Helmet>
       <LogInForm />
-    </div>
+    </ContainerStyled>
   );
 }
-
-
-// const LogInPage = () => {
-//   return <LogInForm />;
-// };
-
-// export default LogInPage;

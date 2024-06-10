@@ -1,7 +1,23 @@
 import { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
-import { Form, Label, Input, Checkbox, Button, ErrorMessage } from './AuthForm.styled';
+import {
+  Form,
+  Label,
+  Input,
+  Checkbox,
+  Button,
+  ErrorMessage,
+  Title,
+  Legend,
+  Fieldset,
+  P,
+  PLink,
+  CheckboxContainer,
+  CheckboxLabel,
+  CheckboxText,
+  LinkText,
+} from './AuthForm.styled';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
@@ -10,8 +26,8 @@ interface RegisterPayload {
   fullname: string;
   email: string;
   password: string;
-  // confirmPassword: string;
-  // purpose: string;
+  confirmPassword: string;
+  purpose: string;
 }
 
 export const SignupForm = () => {
@@ -25,15 +41,15 @@ export const SignupForm = () => {
       fullname: (form.elements.namedItem('fullname') as HTMLInputElement)?.value || '',
       email: (form.elements.namedItem('email') as HTMLInputElement)?.value || '',
       password: (form.elements.namedItem('password') as HTMLInputElement)?.value || '',
-      // confirmPassword: (form.elements.namedItem('confirmPassword') as HTMLInputElement)?.value || '',
-      // purpose: (form.elements.namedItem('purpose') as HTMLInputElement)?.value || '',
+      confirmPassword: (form.elements.namedItem('confirmPassword') as HTMLInputElement)?.value || '',
+      purpose: (form.elements.namedItem('purpose') as HTMLInputElement)?.value || '',
     };
 
     const newErrors: { [key: string]: string } = {};
 
-    // if (payload.password !== payload.confirmPassword) {
-    //   newErrors.confirmPassword = 'Паролі не співпадають!';
-    // }
+    if (payload.password !== payload.confirmPassword) {
+      newErrors.confirmPassword = 'Паролі не співпадають!';
+    }
 
     if (!payload.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
       newErrors.email = 'Неправильний формат email-адреси';
@@ -51,11 +67,14 @@ export const SignupForm = () => {
 
   return (
     <Container>
-      <p>Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!</p>
+      <Title>
+        Готові розпочати свою пригоду в Чехії?
+        Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
+      </Title>
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <fieldset>
-          <legend>Зареєструватись</legend>
-          <p>Вже зареєстровані? <Link to="/login">Увійти</Link></p>
+        <Fieldset>
+          <Legend>Зареєструватись</Legend>
+          <P>Вже зареєстровані ?<PLink as={Link} to="/login">Увійти</PLink></P>
 
           <Label htmlFor="fullname">
             Ім'я та прізвище *
@@ -80,17 +99,19 @@ export const SignupForm = () => {
             {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
           </Label>
 
-          <div>
-            <span>Мета реєстрації</span>
-            <div>
+          <CheckboxContainer>
+            <CheckboxLabel htmlFor="apply">
               <Checkbox id="apply" name="purpose" value="apply" />
-              <label htmlFor="apply">Подача заявки на вакансію</label>
-            </div>
-            <div>
+              <CheckboxText>Подача заявки на вакансію</CheckboxText>
+            </CheckboxLabel>
+          </CheckboxContainer>
+
+          <CheckboxContainer>
+            <CheckboxLabel htmlFor="register">
               <Checkbox id="register" name="purpose" value="register" />
-              <label htmlFor="register">Реєстрація працівника</label>
-            </div>
-          </div>
+              <CheckboxText>Реєстрація працівника</CheckboxText>
+            </CheckboxLabel>
+          </CheckboxContainer>
 
           <Label htmlFor="password">
             Пароль *
@@ -114,23 +135,19 @@ export const SignupForm = () => {
             />
             {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword}</ErrorMessage>}
           </Label>
-
-          <div>
-            <Checkbox
-              id="terms"
-              name="terms"
-              required
-            />
-            <label htmlFor="terms">
-              Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
-              <a href="/privacy-policy"> політикою конфеденційності </a>
-              та
-              <a href="/terms-of-use"> правилами користування сайтом</a>
-            </label>
-          </div>
-
+          <CheckboxContainer>
+            <CheckboxLabel htmlFor="terms">
+              <Checkbox id="terms" name="terms" required />
+              <CheckboxText>
+                Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
+                <LinkText href="/privacy-policy"> політикою конфеденційності </LinkText>
+                та
+                <LinkText href="/terms-of-use"> правилами користування сайтом</LinkText>
+              </CheckboxText>
+            </CheckboxLabel>
+          </CheckboxContainer>
           <Button type="submit">На модерацію</Button>
-        </fieldset>
+        </Fieldset>
       </Form>
     </Container>
   );
