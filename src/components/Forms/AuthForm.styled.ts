@@ -151,7 +151,7 @@ export const Button = styled.button`
   margin-top: 20px;
 
   &:hover {
-    background-color: ${theme.colors.backgroundDarkTeal};
+    background-color: ${theme.colors.backgroundYellow};
   }
 
   &:disabled {

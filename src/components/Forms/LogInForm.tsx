@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from '@/redux/auth/authOperations'; 
-import { Form, Label, Input, Checkbox, Button } from './AuthForm.styled';
-import { AppDispatch } from '@/redux/store'; 
-import Container from '@/components/Container'; 
+import { logIn } from '@/redux/auth/authOperations';
+import { Form, Label, Input, Checkbox, Button, P, Legend, Fieldset, PLink, CheckboxContainer, CheckboxLabel, CheckboxText, LinkText, ErrorMessage, Title } from './AuthForm.styled'; 
+import { AppDispatch } from '@/redux/store';
+import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
 
 interface LoginPayload {
@@ -23,16 +23,19 @@ const LogInForm: React.FC = () => {
       email,
       password,
     };
-    dispatch(logIn(payload)); 
+    dispatch(logIn(payload));
   };
 
   return (
     <Container>
-      <p>"Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!"</p>
+      <Title>
+        Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!
+      </Title>
       <Form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Увійти</legend>
-          <p>Ще не зареєстровані? <Link to="/signup">Зареєструватись</Link></p>
+        <Fieldset>
+          <Legend>Увійти</Legend>
+          <P>Ще не зареєстровані ?<PLink as={Link} to="/signup">Зареєструватись</PLink></P>
+
           <Label htmlFor="email">
             Електронна адреса *
             <Input
@@ -40,9 +43,10 @@ const LogInForm: React.FC = () => {
               id="email"
               name="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="email@gmail.com"
-              required />
+              required
+            />
           </Label>
 
           <Label htmlFor="password">
@@ -52,16 +56,26 @@ const LogInForm: React.FC = () => {
               id="password"
               name="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="*********"
-              required />
+              required
+            />
           </Label>
-          <div>
-            <Checkbox id="rememberMe" name="rememberMe" checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />
-            <label htmlFor="rememberMe">Запам'ятати мене</label>
-          </div>
+          
+          <CheckboxContainer>
+            <CheckboxLabel htmlFor="rememberMe">
+              <Checkbox
+                id="rememberMe"
+                name="rememberMe"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <CheckboxText>Запам'ятати мене</CheckboxText>
+            </CheckboxLabel>
+          </CheckboxContainer>
+
           <Button type="submit">Увійти</Button>
-        </fieldset>
+        </Fieldset>
       </Form>
     </Container>
   );
