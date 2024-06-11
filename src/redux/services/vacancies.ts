@@ -15,8 +15,8 @@ export const vacancyApi = createApi({
       query: id => `/vacancies/${id}`,
       providesTags: ['vacancies'],
     }),
-    getTopVacancies: builder.query<IVacancy, string>({
-      query: () => `/vacancies/top`,
+    getTopVacancies: builder.query<VacanciesResponse, string>({
+      query: () => `/vacancies?isTop=true`,
       providesTags: ['vacancies'],
     }),
     addVacancy: builder.mutation({

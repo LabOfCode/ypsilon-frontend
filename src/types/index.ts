@@ -12,6 +12,7 @@ export interface IVacancy {
   place: string;
   price: number;
   img: string;
+  isTop: boolean;
 }
 
 export interface VacanciesResponse {

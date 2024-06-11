@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
 import { Button } from '../Button/Button';
+import { IVacancyLocal } from '../VacanciesList/VacanciesList';
 
 import {
   ButtonWrap,
@@ -13,17 +12,18 @@ import {
   PriceText,
   SvgIcon,
   Title,
+  TopImg,
 } from './VacancyItem.styled';
+import topVacancy from '@/assets/images/label_top.png';
 import { IVacancy } from '@/types';
 
 interface VacancyItemProps {
-  vacancy: IVacancy;
+  vacancy: IVacancyLocal;
+  onToggleFavorite: (id: string) => void;
 }
 
-export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-
-  const { title, place, price, img } = vacancy;
+export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => {
+  const { _id, title, place, price, img, isTop } = vacancy;
 
   return (
     <CardWrap>
@@ -31,6 +31,12 @@ export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
         src={img}
         alt={title}
       />
+      {isTop && (
+        <TopImg
+          src={topVacancy}
+          alt="top vacancy"
+        />
+      )}
       <DescWrap>
         <Title>{title}</Title>
 
@@ -48,15 +54,17 @@ export const VacancyItem = ({ vacancy }: VacancyItemProps) => {
         </ItemWrap>
         <ButtonWrap>
           <Button $teal>Залишити заявку</Button>
-          {isFavorite ? (
-            <HeartActiveIcon>
-              <use href="#svg_sprite_heart"></use>
-            </HeartActiveIcon>
-          ) : (
-            <HeartIcon>
-              <use href="#svg_sprite_heart"></use>
-            </HeartIcon>
-          )}
+          <button onClick={() => onToggleFavorite(_id)}>
+            {vacancy.isFavorite ? (
+              <HeartActiveIcon>
+                <use href="#svg_sprite_heart"></use>
+              </HeartActiveIcon>
+            ) : (
+              <HeartIcon>
+                <use href="#svg_sprite_heart"></use>
+              </HeartIcon>
+            )}
+          </button>
         </ButtonWrap>
       </DescWrap>
     </CardWrap>

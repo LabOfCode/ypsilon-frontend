@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CardWrap = styled.div`
+  position: relative;
   border-radius: 10px;
   border: 4px solid ${({ theme }) => theme.colors.backgroundDarkTeal};
 
@@ -23,6 +24,13 @@ export const Title = styled.h3`
   @media ${({ theme }) => theme.media.desktop} {
     font-size: 32px;
   }
+`;
+
+export const TopImg = styled.img`
+  position: absolute;
+  top: 8px;
+  left: 7px;
+  width: 80px;
 `;
 
 export const DescWrap = styled.div`
