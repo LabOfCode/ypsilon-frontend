@@ -17,6 +17,7 @@ import {
   CheckboxLabel,
   CheckboxText,
   LinkText,
+  NamedLabel,
 } from './AuthForm.styled';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
@@ -74,10 +75,10 @@ export const SignupForm = () => {
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Fieldset>
           <Legend>Зареєструватись</Legend>
-          <P>Вже зареєстровані ?<PLink as={Link} to="/login">Увійти</PLink></P>
+          <P>Вже зареєстровані?<PLink as={Link} to="/login">Увійти</PLink></P>
 
           <Label htmlFor="fullname">
-            Ім'я та прізвище *
+            <NamedLabel>Ім'я та прізвище</NamedLabel> 
             <Input
               type="text"
               id="fullname"
@@ -88,7 +89,7 @@ export const SignupForm = () => {
           </Label>
 
           <Label htmlFor="email">
-            Електронна адреса *
+            <NamedLabel>Електронна адреса</NamedLabel> 
             <Input
               type="email"
               id="email"
@@ -114,7 +115,7 @@ export const SignupForm = () => {
           </CheckboxContainer>
 
           <Label htmlFor="password">
-            Пароль *
+            <NamedLabel>Пароль</NamedLabel>
             <Input
               type="password"
               id="password"
@@ -125,7 +126,7 @@ export const SignupForm = () => {
           </Label>
 
           <Label htmlFor="confirmPassword">
-            Повторити пароль *
+            <NamedLabel>Повторити пароль</NamedLabel>
             <Input
               type="password"
               id="confirmPassword"

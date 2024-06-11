@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '@/redux/auth/authOperations';
-import { Form, Label, Input, Checkbox, Button, P, Legend, Fieldset, PLink, CheckboxContainer, CheckboxLabel, CheckboxText, LinkText, ErrorMessage, Title } from './AuthForm.styled'; 
+import { Form, Label, Input, Checkbox, Button, P, Legend, Fieldset, PLink, CheckboxContainer, CheckboxLabel, CheckboxText, LinkText, ErrorMessage, Title, NamedLabel } from './AuthForm.styled'; 
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
@@ -34,10 +34,15 @@ const LogInForm: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <Fieldset>
           <Legend>Увійти</Legend>
-          <P>Ще не зареєстровані ?<PLink as={Link} to="/signup">Зареєструватись</PLink></P>
+          <P>
+            Ще не зареєстровані?
+            <PLink as={Link} to="/signup">
+              Зареєструватись
+            </PLink>
+          </P>
 
           <Label htmlFor="email">
-            Електронна адреса *
+            <NamedLabel>Електронна адреса</NamedLabel>
             <Input
               type="email"
               id="email"
@@ -50,7 +55,7 @@ const LogInForm: React.FC = () => {
           </Label>
 
           <Label htmlFor="password">
-            Пароль *
+            <NamedLabel>Пароль</NamedLabel>
             <Input
               type="password"
               id="password"
