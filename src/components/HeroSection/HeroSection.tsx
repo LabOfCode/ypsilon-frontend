@@ -2,6 +2,17 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
+import { Button } from '../Button/Button';
+import { LinkButton } from '../Button/Button';
+
+import {
+  FlexStyled,
+  HeroContent,
+  HeroText,
+  HeroTitle,
+  HeroWrapper,
+  SlideImage,
+} from './HeroSection.styled';
 import slide1 from '@/assets/images/employment_0 2.jpg';
 import slide2 from '@/assets/images/employment_0-2 2.jpg';
 import slide3 from '@/assets/images/employment_1-2 2.jpg';
@@ -11,11 +22,6 @@ import slide6 from '@/assets/images/employment_2-2 2.jpg';
 import slide7 from '@/assets/images/employment_2-3 11.jpg';
 import slide8 from '@/assets/images/employment_2-4 1.jpg';
 import slide9 from '@/assets/images/employment_3-2 1.jpg';
-
-import { HeroContent, HeroTitle, HeroWrapper, SlideImage, HeroText, FlexStyled} from './HeroSection.styled';
-import { Button } from '../Button/Button';
-import { LinkButton } from '../Button/Button';
-
 
 export const HeroSection = () => {
   const settings = {
@@ -66,11 +72,22 @@ export const HeroSection = () => {
       </Slider>
       <HeroContent>
         <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
-        <HeroText>Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій</HeroText>
+        <HeroText>
+          Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
+        </HeroText>
         <FlexStyled>
-<Button $teal to=''>Залишити заявку</Button>
-          <LinkButton $yellow to=''>Підібрати вакансію</LinkButton>
-         
+          <Button
+            $teal
+            to=""
+          >
+            Залишити заявку
+          </Button>
+          <LinkButton
+            $yellow
+            to=""
+          >
+            Підібрати вакансію
+          </LinkButton>
         </FlexStyled>
       </HeroContent>
     </HeroWrapper>
