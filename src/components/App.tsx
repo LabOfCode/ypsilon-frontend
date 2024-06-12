@@ -26,6 +26,14 @@ export const App = () => {
             element={<VacanciesPage />}
           />
           <Route
+            path={routes.REVIEWS}
+            element={<p>Reviews page</p>}
+          />
+          <Route
+            path={routes.CONTACTS}
+            element={<p>Contacts page</p>}
+          />
+          <Route
             path="*"
             element={<NotFoundPage />}
           />
