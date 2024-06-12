@@ -22,21 +22,29 @@ export const VacanciesList = ({ top }: VacanciesListProps) => {
   const { data: allData, isFetching: isAllFetching } = useGetVacanciesQuery('');
 
   useEffect(() => {
-    let localVacancies: IVacancyLocal[] = [];
-    if (top && topData) {
-      localVacancies = topData?.vacancies.map(item => ({ ...item, isFavorite: false }));
-    } else if (!top && allData) {
-      localVacancies = allData?.vacancies.map(item => ({ ...item, isFavorite: false }));
-    }
-    if (localVacancies.length > 0) {
+    const storedFavorites = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    ) as IVacancyLocal[];
+    setVacancies(storedFavorites);
+  }, []);
+
+  useEffect(() => {
+    if ((top && topData) || (!top && allData)) {
+      const apiVacancies = top ? topData.vacancies : allData.vacancies;
+      const storedFavorites = JSON.parse(
+        localStorage.getItem('favorites') || '[]'
+      ) as IVacancyLocal[];
+
+      const localVacancies = apiVacancies.map(item => {
+        const favoriteItem = storedFavorites.find(fav => fav._id === item._id);
+        return { ...item, isFavorite: favoriteItem ? favoriteItem.isFavorite : false };
+      });
+
       setVacancies(localVacancies);
     }
   }, [top, topData, allData]);
 
   useEffect(() => {
-    if (!localStorage.getItem('favorites')) {
-      localStorage.setItem('favorites', JSON.stringify([]));
-    }
     const favoriteVacancies = vacancies.filter(vacancy => vacancy.isFavorite);
     localStorage.setItem('favorites', JSON.stringify(favoriteVacancies));
   }, [vacancies]);
