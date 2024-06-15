@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '@/redux/auth/authOperations';
-import { Form, Label, Input, Checkbox, Button, P, Legend, Fieldset, PLink, CheckboxContainer, CheckboxLabel, CheckboxText, LinkText, ErrorMessage, Title, NamedLabel } from './AuthForm.styled'; 
+import {
+  Form,
+  Label,
+  Input,
+  Checkbox,
+  Button,
+  P,
+  Legend,
+  Fieldset,
+  PLink,
+  CheckboxContainer,
+  CheckboxLabel,
+  CheckboxText,
+  Title,
+  NamedLabel
+} from './AuthForm.styled'; 
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
