@@ -33,12 +33,10 @@ import { Link } from 'react-router-dom';
 
 import CheckCircle from '@/assets/images/icons/check_circle.svg';
 import AlertCircle from '@/assets/images/icons/alert_circle.svg';
-
-import checkCircle from '@/assets/images/icons/check_circle.svg';
-import alertCircle from '@/assets/images/icons/alert_circle.svg';
+import EyeOff from '@/assets/images/icons/eye_off.svg';
+import EyeOn from '@/assets/images/icons/eye_on.svg';
 import eyeOffActive from '@/assets/images/icons/eye-off_active.svg';
-import eyeOff from '@/assets/images/icons/eye_off.svg';
-import eyeOn from '@/assets/images/icons/eye_on.svg';
+
 
 
 interface RegisterPayload {
@@ -211,9 +209,9 @@ export const SignupForm: React.FC = () => {
                   />
                   <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
                     {showPassword ? (
-                      <ValidationPasswordIcon as={eyeOff} />
+                      <ValidationPasswordIcon as={EyeOff} />
                     ) : (
-                      <ValidationPasswordIcon as={eyeOn} />
+                      <ValidationPasswordIcon as={EyeOn} />
                     )}
                   </TogglePasswordButton> 
                   {touched.password && errors.password && (
