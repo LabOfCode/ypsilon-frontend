@@ -13,21 +13,33 @@ import {
   CheckboxContainer,
   CheckboxLabel,
   CheckboxText,
-  LinkText,
   NamedLabel,
   ErrorText,
   EmailTooltip,
   PasswordTooltip,
   TooltipList,
   TooltipItem,
+  TogglePasswordButton,
+  ValidationEmailIcon,
+  ValidationPasswordIcon
 } from './AuthForm.styled';
-import { Formik, Field, ErrorMessage, FormikHelpers } from 'formik';
+import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
+
+import CheckCircle from '@/assets/images/icons/check_circle.svg';
+import AlertCircle from '@/assets/images/icons/alert_circle.svg';
+
+import checkCircle from '@/assets/images/icons/check_circle.svg';
+import alertCircle from '@/assets/images/icons/alert_circle.svg';
+import eyeOffActive from '@/assets/images/icons/eye-off_active.svg';
+import eyeOff from '@/assets/images/icons/eye_off.svg';
+import eyeOn from '@/assets/images/icons/eye_on.svg';
+
 
 interface RegisterPayload {
   fullname: string;
@@ -72,6 +84,8 @@ const schema = Yup.object().shape({
 export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
 
   const handleSubmit = (values: RegisterPayload, { resetForm }: FormikHelpers<RegisterPayload>) => {
     setIsSubmitting(true);
@@ -85,26 +99,31 @@ export const SignupForm: React.FC = () => {
       });
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleEmailValidation = async (value: string) => {
+  try {
+    await schema.validateAt('email', { email: value });
+    setEmailValid(true);
+  } catch (error) {
+    setEmailValid(false);
+  }
+};
+
+
   return (
     <Container>
-      <Title>
-        Готові розпочати свою пригоду в Чехії?
-        Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
-      </Title>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        {({ isValid, dirty, errors, touched }) => (
+      <Title>Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!</Title>
+      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={handleSubmit}>
+        {({ isValid, dirty, errors, touched, handleChange }) => (
           <Form autoComplete="off">
             <Fieldset>
               <Legend>Зареєструватись</Legend>
               <P>
-                Вже зареєстровані?
-                <PLink as={Link} to="/login">
-                  Увійти
-                </PLink>
+                Вже зареєструвані?
+                <PLink as={Link} to="/login">Увійти</PLink>
               </P>
 
               <div style={{ position: 'relative' }}>
@@ -120,7 +139,13 @@ export const SignupForm: React.FC = () => {
                   {touched.fullname && errors.fullname && (
                     <EmailTooltip show={true}>
                       <TooltipList show={true}>
-                        <TooltipItem>{errors.fullname}</TooltipItem>
+                        {typeof errors.fullname === 'string' ? (
+                          <TooltipItem>{errors.fullname}</TooltipItem>
+                        ) : (
+                          (errors.fullname as string[]).map((error, index) => (
+                            <TooltipItem key={index}>{error}</TooltipItem>
+                          ))
+                        )}
                       </TooltipList>
                     </EmailTooltip>
                   )}
@@ -136,16 +161,27 @@ export const SignupForm: React.FC = () => {
                     id="email"
                     name="email"
                     placeholder="email@gmail.com"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      handleChange(e);
+                      handleEmailValidation(e.target.value);
+                    }}
                   />
                   {touched.email && errors.email && (
                     <EmailTooltip show={true}>
                       <TooltipList show={true}>
-                        {Array.isArray(errors.email) ? errors.email.map((error: string, index: number) => (
-                          <TooltipItem key={index}>{error}</TooltipItem>
-                        )) : <TooltipItem>{errors.email}</TooltipItem>}
+                        {typeof errors.email === 'string' ? (
+                          <TooltipItem>{errors.email}</TooltipItem>
+                        ) : (
+                          (errors.email as string[]).map((error, index) => (
+                            <TooltipItem key={index}>{error}</TooltipItem>
+                          ))
+                        )}
                       </TooltipList>
                     </EmailTooltip>
                   )}
+                  <ValidationEmailIcon isValid={emailValid}>
+                    {emailValid ? <CheckCircle /> : <AlertCircle />}
+                  </ValidationEmailIcon>
                 </Label>
               </div>
 
@@ -168,17 +204,28 @@ export const SignupForm: React.FC = () => {
                   <NamedLabel>Пароль</NamedLabel>
                   <Field
                     as={Input}
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     placeholder="*********"
                   />
+                  <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
+                    {showPassword ? (
+                      <ValidationPasswordIcon as={eyeOff} />
+                    ) : (
+                      <ValidationPasswordIcon as={eyeOn} />
+                    )}
+                  </TogglePasswordButton> 
                   {touched.password && errors.password && (
                     <PasswordTooltip show={true}>
                       <TooltipList show={true}>
-                        {Array.isArray(errors.password) ? errors.password.map((error: string, index: number) => (
-                          <TooltipItem key={index}>{error}</TooltipItem>
-                        )) : <TooltipItem>{errors.password}</TooltipItem>}
+                        {typeof errors.password === 'string' ? (
+                          <TooltipItem>{errors.password}</TooltipItem>
+                        ) : (
+                          (errors.password as string[]).map((error, index) => (
+                            <TooltipItem key={index}>{error}</TooltipItem>
+                          ))
+                        )}
                       </TooltipList>
                     </PasswordTooltip>
                   )}
@@ -194,23 +241,35 @@ export const SignupForm: React.FC = () => {
                   name="confirmPassword"
                   placeholder="*********"
                 />
-                <ErrorMessage name="confirmPassword" render={message => <ErrorText>{message}</ErrorText>} />
+                {touched.confirmPassword && errors.confirmPassword && (
+                  <PasswordTooltip show={true}>
+                    <TooltipList show={true}>
+                      {typeof errors.confirmPassword === 'string' ? (
+                        <TooltipItem>{errors.confirmPassword}</TooltipItem>
+                      ) : (
+                        (errors.confirmPassword as string[]).map((error, index) => (
+                          <TooltipItem key={index}>{error}</TooltipItem>
+                        ))
+                      )}
+                    </TooltipList>
+                  </PasswordTooltip>
+                )}
               </Label>
 
               <CheckboxContainer>
                 <CheckboxLabel htmlFor="terms">
-                  <Field as={Checkbox} id="terms" name="terms" type="checkbox" />
+                  <Field as={Checkbox} id="terms" name="terms" />
                   <CheckboxText>
-                    Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
-                    <LinkText href="/privacy-policy"> політикою конфіденційності </LinkText> та
-                    <LinkText href="/terms-of-use"> правилами користування сайтом</LinkText>
+                    Згоден/на з правилами та умовами користування
                   </CheckboxText>
                 </CheckboxLabel>
-                <ErrorMessage name="terms" render={message => <ErrorText>{message}</ErrorText>} />
+                {touched.terms && errors.terms && (
+                  <ErrorText>{errors.terms}</ErrorText>
+                )}
               </CheckboxContainer>
 
               <Button type="submit" disabled={!isValid || !dirty || isSubmitting}>
-                На модерацію
+                Зареєструватись
               </Button>
             </Fieldset>
           </Form>

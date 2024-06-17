@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import { theme } from '@/Theme';
+import { ReactSVG } from 'react-svg';
+
 
 interface TooltipProps {
   show: boolean; 
+}
+
+interface ValidationEmailIconProps {
+  isValid: boolean;
 }
 
 export const Form = styled.form`
@@ -144,10 +150,19 @@ const commonTooltipStyles = `
 `;
 
 export const Tooltip = styled.div<TooltipProps>`
-  ${commonTooltipStyles}
-  opacity: ${(props) => (props.show ? '1' : '0')};
-  max-height: ${(props) => (props.show ? '100px' : '0')};
+  background-color: white;
+  color: red;
+  padding: 4px;
+  border-radius: 4px;
+  z-index: 1000;
+  font-size: 10px;
+  margin-top: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-height: ${(props) => (props.show ? '100px' : '0')}; /* Изменено для плавного перехода */
   overflow: hidden;
+  opacity: ${(props) => (props.show ? '1' : '0')};
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   bottom: -12px;
 `;
@@ -291,4 +306,44 @@ export const Button = styled.button`
 export const LinkText = styled.a`
   color: ${theme.colors.colorWhite};
   text-decoration: underline;
+`;
+
+export const TogglePasswordButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+`;
+
+
+export const ValidationPasswordIcon = styled.div`
+  width: 24px;
+  height: 16px;
+  position: absolute;
+  color: ${theme.colors.colorBlack};
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 `;
