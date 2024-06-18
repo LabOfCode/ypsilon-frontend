@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Form,
   Label,
-  Input,
   Checkbox,
   Button,
   Title,
@@ -13,6 +12,7 @@ import {
   CheckboxContainer,
   CheckboxLabel,
   CheckboxText,
+  CustomInput,
   NamedLabel,
   ErrorText,
   EmailTooltip,
@@ -21,7 +21,12 @@ import {
   TooltipItem,
   TogglePasswordButton,
   ValidationEmailIcon,
-  ValidationPasswordIcon
+  ValidationPasswordIcon,
+  EyeIcon,
+  StyledEyeOff,
+  StyledEyeOn,
+  StyledCheckCircle,
+  StyledAlertCircle,
 } from './AuthForm.styled';
 import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
@@ -30,14 +35,6 @@ import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import { Link } from 'react-router-dom';
-
-import CheckCircle from '@/assets/images/icons/check_circle.svg';
-import AlertCircle from '@/assets/images/icons/alert_circle.svg';
-import EyeOff from '@/assets/images/icons/eye_off.svg';
-import EyeOn from '@/assets/images/icons/eye_on.svg';
-import eyeOffActive from '@/assets/images/icons/eye-off_active.svg';
-
-
 
 interface RegisterPayload {
   fullname: string;
@@ -83,39 +80,55 @@ export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [emailValid, setEmailValid] = useState(false);
+  const [emailValid, setEmailValid] = useState<boolean | null>(null);
+  const [confirmPasswordValid, setConfirmPasswordValid] = useState<boolean | null>(null);
+  const [isEmailTouched, setIsEmailTouched] = useState(false);
+  const [isConfirmPasswordTouched, setIsConfirmPasswordTouched] = useState(false);
 
   const handleSubmit = (values: RegisterPayload, { resetForm }: FormikHelpers<RegisterPayload>) => {
     setIsSubmitting(true);
-    dispatch(signUp(values))
+    handleConfirmPasswordValidation(values.confirmPassword, values)
       .then(() => {
-        setIsSubmitting(false);
-        resetForm();
-      })
-      .catch(() => {
-        setIsSubmitting(false);
+        dispatch(signUp(values))
+          .then(() => {
+            setIsSubmitting(false);
+            resetForm();
+          })
+          .catch(() => {
+            setIsSubmitting(false);
+          });
       });
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleEmailValidation = async (value: string) => {
-  try {
-    await schema.validateAt('email', { email: value });
-    setEmailValid(true);
-  } catch (error) {
-    setEmailValid(false);
-  }
-};
-
+    setIsEmailTouched(true);
+    try {
+      await schema.validateAt('email', value);
+      setEmailValid(true);
+    } catch (error) {
+      setEmailValid(false);
+    }
+  };
+  
+  const handleConfirmPasswordValidation = async (value: string, values: RegisterPayload) => {
+    setIsConfirmPasswordTouched(true);
+    try {
+      await schema.validateAt('confirmPassword', { confirmPassword: value, password: values.password });
+      setConfirmPasswordValid(true);
+    } catch (error) {
+      setConfirmPasswordValid(false);
+    }
+  };
 
   return (
     <Container>
       <Title>Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!</Title>
       <Formik initialValues={initialValues} validationSchema={schema} onSubmit={handleSubmit}>
-        {({ isValid, dirty, errors, touched, handleChange }) => (
+        {({ isValid, dirty, errors, touched, handleChange, values }) => (
           <Form autoComplete="off">
             <Fieldset>
               <Legend>Зареєструватись</Legend>
@@ -128,11 +141,12 @@ export const SignupForm: React.FC = () => {
                 <Label htmlFor="fullname">
                   <NamedLabel>Ім'я та прізвище</NamedLabel>
                   <Field
-                    as={Input}
+                    as={CustomInput}
                     type="text"
                     id="fullname"
                     name="fullname"
                     placeholder="Введіть своє ім’я та прізвище"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                   />
                   {touched.fullname && errors.fullname && (
                     <EmailTooltip show={true}>
@@ -154,7 +168,7 @@ export const SignupForm: React.FC = () => {
                 <Label htmlFor="email">
                   <NamedLabel>Електронна адреса</NamedLabel>
                   <Field
-                    as={Input}
+                    as={CustomInput}
                     type="email"
                     id="email"
                     name="email"
@@ -164,7 +178,7 @@ export const SignupForm: React.FC = () => {
                       handleEmailValidation(e.target.value);
                     }}
                   />
-                  {touched.email && errors.email && (
+                  {isEmailTouched && touched.email && errors.email && (
                     <EmailTooltip show={true}>
                       <TooltipList show={true}>
                         {typeof errors.email === 'string' ? (
@@ -177,9 +191,12 @@ export const SignupForm: React.FC = () => {
                       </TooltipList>
                     </EmailTooltip>
                   )}
-                  <ValidationEmailIcon isValid={emailValid}>
-                    {emailValid ? <CheckCircle /> : <AlertCircle />}
-                  </ValidationEmailIcon>
+                  {isEmailTouched && (
+                    <ValidationEmailIcon isValid={emailValid}>
+                      {emailValid === true ? <StyledCheckCircle /> : emailValid === false ? <StyledAlertCircle /> : null}
+                      <EyeIcon />
+                    </ValidationEmailIcon>
+                  )}
                 </Label>
               </div>
 
@@ -201,19 +218,20 @@ export const SignupForm: React.FC = () => {
                 <Label htmlFor="password">
                   <NamedLabel>Пароль</NamedLabel>
                   <Field
-                    as={Input}
+                    as={CustomInput}
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     placeholder="*********"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                   />
                   <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
                     {showPassword ? (
-                      <ValidationPasswordIcon as={EyeOff} />
+                      <StyledEyeOn />
                     ) : (
-                      <ValidationPasswordIcon as={EyeOn} />
+                      <StyledEyeOff />
                     )}
-                  </TogglePasswordButton> 
+                  </TogglePasswordButton>
                   {touched.password && errors.password && (
                     <PasswordTooltip show={true}>
                       <TooltipList show={true}>
@@ -233,12 +251,26 @@ export const SignupForm: React.FC = () => {
               <Label htmlFor="confirmPassword">
                 <NamedLabel>Повторити пароль</NamedLabel>
                 <Field
-                  as={Input}
-                  type="password"
+                  as={CustomInput}
+                  type={showPassword ? 'text' : 'password'}
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="*********"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(e);
+                    handleConfirmPasswordValidation(e.target.value, values);
+                  }}
                 />
+                <ValidationPasswordIcon isValid={confirmPasswordValid}>
+                  {confirmPasswordValid === true ? <StyledCheckCircle /> : confirmPasswordValid === false ? <StyledAlertCircle /> : null}
+                </ValidationPasswordIcon>
+                <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <StyledEyeOn />
+                  ) : (
+                    <StyledEyeOff />
+                  )}
+                </TogglePasswordButton>
                 {touched.confirmPassword && errors.confirmPassword && (
                   <PasswordTooltip show={true}>
                     <TooltipList show={true}>

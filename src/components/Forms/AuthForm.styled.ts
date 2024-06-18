@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { theme } from '@/Theme';
-import { ReactSVG } from 'react-svg';
+import EyeOffActive from '@/assets/images/icons/eye_off_active.svg';
+import EyeOff from '@/assets/images/icons/eye_off.svg';
+import EyeOn from '@/assets/images/icons/eye_on.svg';
+import CheckCircleIcon from '@/assets/images/icons/check_circle.svg';
+import AlertCircleIcon from '@/assets/images/icons/alert_circle.svg';
 
 
 interface TooltipProps {
@@ -8,6 +12,10 @@ interface TooltipProps {
 }
 
 interface ValidationEmailIconProps {
+  isValid: boolean;
+}
+
+interface ValidationPasswordIconProps {
   isValid: boolean;
 }
 
@@ -136,19 +144,6 @@ export const ErrorText = styled.div`
   margin-bottom: 8px;
 `;
 
-const commonTooltipStyles = `
-  background-color: white;
-  color: red;
-  padding: 4px;
-  border-radius: 4px;
-  z-index: 1000;
-  font-size: 10px;
-  margin-top: 4px;
-  position: absolute;
-  left: 0;
-  right: 0;
-`;
-
 export const Tooltip = styled.div<TooltipProps>`
   background-color: white;
   color: red;
@@ -160,7 +155,7 @@ export const Tooltip = styled.div<TooltipProps>`
   position: absolute;
   left: 0;
   right: 0;
-  max-height: ${(props) => (props.show ? '100px' : '0')}; /* Изменено для плавного перехода */
+  max-height: ${(props) => (props.show ? '100px' : '0')}; 
   overflow: hidden;
   opacity: ${(props) => (props.show ? '1' : '0')};
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
@@ -320,11 +315,30 @@ export const TogglePasswordButton = styled.button`
 `;
 
 export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
-  width: 16px;
-  height: 16px;
+  display: flex;
+  align-items: center;
   position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
   right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  svg {
+    width: 1em;
+    height: 1em;
+    margin-right: 5px;
+  }
+`;
+
+export const ValidationPasswordIcon = styled.div<ValidationPasswordIconProps>`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transform: translateY(-50%);
+  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
+  right: 32px;
   top: 50%;
   transform: translateY(-50%);
   svg {
@@ -333,17 +347,53 @@ export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
   }
 `;
 
-
-export const ValidationPasswordIcon = styled.div`
+export const StyledEyeOff = styled(EyeOff)`
   width: 24px;
   height: 16px;
-  position: absolute;
+  margin-right: -5px;
+`;
+
+export const StyledEyeOn = styled(EyeOn)`
+  width: 24px;
+  height: 16px;
+  margin-right: -2px;
+`;
+
+export const EyeIcon = styled(EyeOffActive)`
   color: ${theme.colors.colorBlack};
-  right: -2px;
-  top: 50%;
-  transform: translateY(-50%);
-  svg {
-    width: 1em;
-    height: 1em;
+  width: 24px;
+  height: 16px;
+`;
+
+export const StyledCheckCircle = styled(CheckCircleIcon)`
+  width: 1em;
+  height: 1em;
+`;
+
+export const StyledAlertCircle = styled(AlertCircleIcon)`
+  width: 1em;
+  height: 1em;
+`;
+
+export const CustomInput = styled.input`
+  width: 314px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid ${theme.colors.colorWhite};
+  margin: 8px 0 16px;
+  background-color: ${theme.colors.backgroundWhite};
+  color: ${theme.colors.colorBlack};
+
+  &::placeholder {
+    color: ${theme.colors.colorGray};
+    font-size: 14px;
+  }
+
+  @media ${theme.media.tablet} {
+    margin-bottom: 24px;
+  }
+
+  @media ${theme.media.desktop} {
+    margin-bottom: 24px;
   }
 `;
