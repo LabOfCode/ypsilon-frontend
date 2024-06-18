@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Form,
   Label,
@@ -61,9 +61,11 @@ const schema = Yup.object().shape({
     .matches(/^[A-Za-z\s]+$/, "Ім'я повинно містити лише літери та пробіли"),
   email: Yup.string()
     .email('Неправильний формат email, приклад: example@mail.com')
+    .required('Email є обов\'язковим')
     .matches(/^[A-Za-z0-9@._]+$/, 'Використовуються недопустимі символи')
     .matches(/^[A-Za-z0-9@._]*[A-Za-z]+[A-Za-z0-9@._]*$/, 'Використовуйте лише літери англійського алфавіту'),
   password: Yup.string()
+    .required('Пароль є обов\'язковим')
     .min(6, 'Пароль має містити щонайменше 6 символів')
     .matches(/[a-z]/, 'Пароль повинен містити хоча б одну маленьку літеру')
     .matches(/[A-Z]/, 'Пароль повинен містити хоча б одну велику літеру')
@@ -78,6 +80,7 @@ const schema = Yup.object().shape({
 
 export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
+  const [values, setValues] = useState<RegisterPayload>(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [emailValid, setEmailValid] = useState<boolean | null>(null);
@@ -98,8 +101,8 @@ export const SignupForm: React.FC = () => {
             setIsSubmitting(false);
           });
       });
-  };
-  
+  }
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -107,17 +110,38 @@ export const SignupForm: React.FC = () => {
   const handleEmailValidation = async (value: string) => {
     setIsEmailTouched(true);
     try {
-      await schema.validateAt('email', value);
+      await schema.validateAt('email', { email: value });
       setEmailValid(true);
     } catch (error) {
       setEmailValid(false);
     }
   };
   
-  const handleConfirmPasswordValidation = async (value: string, values: RegisterPayload) => {
+  useEffect(() => {
+    const validateEmail = async () => {
+      if (isEmailTouched && values.email) {
+        try {
+          await schema.validateAt('email', { email: values.email });
+          setEmailValid(true);
+        } catch (error) {
+          setEmailValid(false);
+        }
+      }
+    };
+
+    validateEmail();
+  }, [isEmailTouched, values.email]);
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>, handleChange: any) => {
+    setIsEmailTouched(true);
+    handleChange(e);
+    handleEmailValidation(e.target.value);
+  };
+
+  const handleConfirmPasswordValidation = async (value: string, { password }: RegisterPayload) => {
     setIsConfirmPasswordTouched(true);
     try {
-      await schema.validateAt('confirmPassword', { confirmPassword: value, password: values.password });
+      await schema.validateAt('confirmPassword', { confirmPassword: value, password });
       setConfirmPasswordValid(true);
     } catch (error) {
       setConfirmPasswordValid(false);
@@ -127,7 +151,11 @@ export const SignupForm: React.FC = () => {
   return (
     <Container>
       <Title>Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!</Title>
-      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
         {({ isValid, dirty, errors, touched, handleChange, values }) => (
           <Form autoComplete="off">
             <Fieldset>
@@ -173,10 +201,7 @@ export const SignupForm: React.FC = () => {
                     id="email"
                     name="email"
                     placeholder="email@gmail.com"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      handleChange(e);
-                      handleEmailValidation(e.target.value);
-                    }}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleEmailChange(e, handleChange)}
                   />
                   {isEmailTouched && touched.email && errors.email && (
                     <EmailTooltip show={true}>
@@ -191,7 +216,7 @@ export const SignupForm: React.FC = () => {
                       </TooltipList>
                     </EmailTooltip>
                   )}
-                  {isEmailTouched && (
+                  {isEmailTouched && emailValid !== null && (
                     <ValidationEmailIcon isValid={emailValid}>
                       {emailValid === true ? <StyledCheckCircle /> : emailValid === false ? <StyledAlertCircle /> : null}
                       <EyeIcon />

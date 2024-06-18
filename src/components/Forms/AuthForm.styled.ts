@@ -13,6 +13,7 @@ interface TooltipProps {
 
 interface ValidationEmailIconProps {
   isValid: boolean;
+  theme: any;
 }
 
 interface ValidationPasswordIconProps {
@@ -321,16 +322,18 @@ export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  color: ${({ isValid, theme }) => {
+    if (isValid === true) return theme.colors.colorGreen;
+    if (isValid === false) return theme.colors.colorRed;
+    return theme.colors.colorRed; 
+  }};
   svg {
     width: 1em;
     height: 1em;
     margin-right: 5px;
   }
 `;
+
 
 export const ValidationPasswordIcon = styled.div<ValidationPasswordIconProps>`
   display: flex;
