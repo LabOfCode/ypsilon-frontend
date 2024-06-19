@@ -41,7 +41,7 @@ interface RegisterPayload {
   email: string;
   password: string;
   confirmPassword: string;
-  purpose: string;
+  purpose: string[];
   terms: boolean;
 }
 
@@ -50,7 +50,7 @@ const initialValues: RegisterPayload = {
   email: '',
   password: '',
   confirmPassword: '',
-  purpose: '',
+  purpose: [],
   terms: false,
 };
 
@@ -74,7 +74,7 @@ const schema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Паролі не співпадають')
     .required('Підтвердження паролю є обов\'язковим'),
-  purpose: Yup.string().required('Мета реєстрації є обов\'язковою'),
+  purpose: Yup.array().min(1, 'Ви повинні обрати принаймні одну мету реєстрації'),
   terms: Yup.bool().oneOf([true], 'Ви повинні погодитися з умовами використання'),
 });
 
@@ -227,14 +227,14 @@ export const SignupForm: React.FC = () => {
 
               <CheckboxContainer>
                 <CheckboxLabel htmlFor="apply">
-                  <Field as={Checkbox} id="apply" name="purpose" value="apply" />
+                  <Field as={Checkbox} id="apply" name="purpose" value="apply" type="checkbox" />
                   <CheckboxText>Подача заявки на вакансію</CheckboxText>
                 </CheckboxLabel>
               </CheckboxContainer>
 
               <CheckboxContainer>
                 <CheckboxLabel htmlFor="register">
-                  <Field as={Checkbox} id="register" name="purpose" value="register" />
+                  <Field as={Checkbox} id="register" name="purpose" value="register" type="checkbox" />
                   <CheckboxText>Реєстрація працівника</CheckboxText>
                 </CheckboxLabel>
               </CheckboxContainer>
@@ -323,7 +323,7 @@ export const SignupForm: React.FC = () => {
                 )}
               </CheckboxContainer>
 
-              <Button type="submit" disabled={!isValid || !dirty || isSubmitting}>
+              <Button type="submit" disabled={!isValid || !dirty || isSubmitting || !values.purpose.length}>
                 Зареєструватись
               </Button>
             </Fieldset>
