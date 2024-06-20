@@ -12,6 +12,7 @@ import {
   CheckboxContainer,
   CheckboxLabel,
   CheckboxText,
+  CheckboxPoliticText,
   CustomInput,
   NamedLabel,
   ErrorText,
@@ -27,6 +28,10 @@ import {
   StyledEyeOn,
   StyledCheckCircle,
   StyledAlertCircle,
+  StyledCheckBoxIcon,
+  StyledCheckboxCheckedIcon,
+  Underline,
+  PoliticLink
 } from './AuthForm.styled';
 import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
@@ -41,7 +46,8 @@ interface RegisterPayload {
   email: string;
   password: string;
   confirmPassword: string;
-  purpose: string[];
+  apply: boolean;
+  purpose: boolean;
   terms: boolean;
 }
 
@@ -50,7 +56,8 @@ const initialValues: RegisterPayload = {
   email: '',
   password: '',
   confirmPassword: '',
-  purpose: [],
+  apply: false,
+  purpose: false,
   terms: false,
 };
 
@@ -74,13 +81,21 @@ const schema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Паролі не співпадають')
     .required('Підтвердження паролю є обов\'язковим'),
-  purpose: Yup.array().min(1, 'Ви повинні обрати принаймні одну мету реєстрації'),
-  terms: Yup.bool().oneOf([true], 'Ви повинні погодитися з умовами використання'),
+  apply: Yup.bool(),
+  purpose: Yup.bool(),
+  terms: Yup.bool()
+  .required('Ви повинні погодитися з умовами використання')
+  .test('checkPurpose', 'Ви повинні обрати принаймні одну мету реєстрації (Подача заявки на вакансію або Реєстрація працівника)', function(value) {
+    const { apply, purpose } = this.parent;
+    if (!apply && !purpose) {
+      return value === true;
+    }
+    return true;
+  }),
 });
 
 export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const [values, setValues] = useState<RegisterPayload>(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [emailValid, setEmailValid] = useState<boolean | null>(null);
@@ -118,19 +133,19 @@ export const SignupForm: React.FC = () => {
   };
   
   useEffect(() => {
-    const validateEmail = async () => {
-      if (isEmailTouched && values.email) {
-        try {
-          await schema.validateAt('email', { email: values.email });
-          setEmailValid(true);
-        } catch (error) {
-          setEmailValid(false);
+      const validateEmail = async () => {
+        if (isEmailTouched && initialValues.email) {
+          try {
+            await schema.validateAt('email', { email: initialValues.email });
+            setEmailValid(true);
+          } catch (error) {
+            setEmailValid(false);
+          }
         }
-      }
-    };
+      };
 
-    validateEmail();
-  }, [isEmailTouched, values.email]);
+      validateEmail();
+    }, [isEmailTouched]);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>, handleChange: any) => {
     setIsEmailTouched(true);
@@ -156,7 +171,7 @@ export const SignupForm: React.FC = () => {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        {({ isValid, dirty, errors, touched, handleChange, values }) => (
+        {({ isValid, dirty, errors, touched, handleChange, values, setFieldValue }) => (
           <Form autoComplete="off">
             <Fieldset>
               <Legend>Зареєструватись</Legend>
@@ -226,15 +241,29 @@ export const SignupForm: React.FC = () => {
               </div>
 
               <CheckboxContainer>
-                <CheckboxLabel htmlFor="apply">
-                  <Field as={Checkbox} id="apply" name="purpose" value="apply" type="checkbox" />
+                <CheckboxLabel>
+                  <Checkbox
+                    id="apply"
+                    name="apply"
+                    type="checkbox"
+                    checked={values.apply}
+                    onChange={() => setFieldValue('apply', !values.apply)}
+                  />
+                  {values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Подача заявки на вакансію</CheckboxText>
                 </CheckboxLabel>
               </CheckboxContainer>
 
               <CheckboxContainer>
-                <CheckboxLabel htmlFor="register">
-                  <Field as={Checkbox} id="register" name="purpose" value="register" type="checkbox" />
+                <CheckboxLabel>
+                  <Checkbox
+                    id="purpose"
+                    name="purpose"
+                    type="checkbox"
+                    checked={values.purpose}
+                    onChange={() => setFieldValue('purpose', !values.purpose)}
+                  />
+                  {values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Реєстрація працівника</CheckboxText>
                 </CheckboxLabel>
               </CheckboxContainer>
@@ -311,21 +340,32 @@ export const SignupForm: React.FC = () => {
                 )}
               </Label>
 
+              <Underline />
+              
               <CheckboxContainer>
-                <CheckboxLabel htmlFor="terms">
-                  <Field as={Checkbox} id="terms" name="terms" />
-                  <CheckboxText>
-                    Згоден/на з правилами та умовами користування
-                  </CheckboxText>
-                </CheckboxLabel>
-                {touched.terms && errors.terms && (
-                  <ErrorText>{errors.terms}</ErrorText>
+                <CheckboxLabel>
+                  <Checkbox
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    checked={values.terms}
+                    onChange={() => setFieldValue('terms', !values.terms)}
+                    />
+                    {values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                    <CheckboxPoliticText>
+                      Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
+                      <PoliticLink href=""> політикою конфіденційності </PoliticLink> та <PoliticLink href=""> правилами користування сайтом.</PoliticLink>
+                    </CheckboxPoliticText>
+                  </CheckboxLabel>
+                  {touched.terms && errors.terms && (
+                    <ErrorText>{errors.terms}</ErrorText>
                 )}
               </CheckboxContainer>
 
-              <Button type="submit" disabled={!isValid || !dirty || isSubmitting || !values.purpose.length}>
+              <Button type="submit" disabled={!isValid || !dirty || isSubmitting || (!values.apply && !values.purpose) || !values.terms}>
                 Зареєструватись
               </Button>
+
             </Fieldset>
           </Form>
         )}

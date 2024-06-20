@@ -5,7 +5,8 @@ import EyeOff from '@/assets/images/icons/eye_off.svg';
 import EyeOn from '@/assets/images/icons/eye_on.svg';
 import CheckCircleIcon from '@/assets/images/icons/check_circle.svg';
 import AlertCircleIcon from '@/assets/images/icons/alert_circle.svg';
-
+import CheckBoxIcon from '@/assets/images/icons/checkbox.svg';
+import CheckBoxCheckedIcon from '@/assets/images/icons/checkbox-сhecked.svg';
 
 interface TooltipProps {
   show: boolean; 
@@ -25,7 +26,7 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid ${theme.colors.colorWhite};
+  border: 3px solid ${theme.colors.colorTeal};
   background-image: ${theme.colors.backgroundOcean};
   border-radius: 8px;
   box-shadow: ${theme.boxShadow};
@@ -63,16 +64,22 @@ export const Legend = styled.legend`
   }
 `;
 
-export const PLink = styled.p`
+export const PLink = styled.a`
   color: ${theme.colors.colorYellow};
   font-size: 16px;
   text-decoration: underline;
   margin-left: 8px;
   white-space: nowrap;
+  text-decoration: underline;
+`;
 
-  &:hover {
-    text-decoration: underline;
-  }
+export const PoliticLink = styled.a`
+  color: ${theme.colors.colorWhite};
+  font-size: 12px;
+  text-decoration: underline;
+  margin-left: 8px;
+  white-space: nowrap;
+  text-decoration: underline;
 `;
 
 export const P = styled.p`
@@ -82,7 +89,10 @@ export const P = styled.p`
   justify-content: center;
   align-items: center;
   margin-bottom: 16px;
+  margin-left: 24px;
   flex-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
 `;
 
 export const Fieldset = styled.fieldset`
@@ -229,26 +239,43 @@ export const CheckboxLabel = styled.label`
   color: ${theme.colors.colorWhite};
   display: flex;
   align-items: center;
-  font-size: 16px;
 `;
+
+export const CheckboxTermsLabel = styled.label`
+  color: ${theme.colors.colorWhite};
+  display: flex;
+  align-items: center;
+`;
+
+
 
 export const CheckboxText = styled.span`
   margin-left: 10px;
   font-size: 14px;
 `;
 
-export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  border: 2px solid ${theme.colors.colorWhite};
-  background: transparent;
-  appearance: none;
-  outline: none;
-  cursor: pointer;
-  padding: 12px;
-  border-radius: 4px;
+export const CheckboxPoliticText = styled.span`
+  margin-left: 24px;
+  font-size: 12px;
+  width: 265px;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
+`;
 
-  &:checked {
-    background: ${theme.colors.colorWhite};
-  }
+export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
+  appearance: none;
+  cursor: pointer;
+`;
+
+export const StyledCheckBoxIcon = styled(CheckBoxIcon)`
+  width: 24px;
+  height: 24px
+`;
+
+export const StyledCheckboxCheckedIcon = styled(CheckBoxCheckedIcon)`
+  width: 24px;
+  height: 24px
 `;
 
 export const Title = styled.p`
@@ -399,4 +426,13 @@ export const CustomInput = styled.input`
   @media ${theme.media.desktop} {
     margin-bottom: 24px;
   }
+`;
+
+export const Underline = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  height: 1px;
+  background-color: ${theme.colors.backgroundWhite};
+  margin-top: -8px;
+  margin-bottom: 16px;
 `;
