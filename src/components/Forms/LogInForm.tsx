@@ -58,12 +58,12 @@ const LogInForm: React.FC = () => {
 
           <Label htmlFor="email">
             <NamedLabel>Електронна адреса</NamedLabel>
-            <Input
+            <Input 
               type="email"
               id="email"
               name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              // onChange={(e) => setEmail(e.target.value)}
               placeholder="email@gmail.com"
               required
             />
@@ -76,7 +76,7 @@ const LogInForm: React.FC = () => {
               id="password"
               name="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
               placeholder="*********"
               required
             />

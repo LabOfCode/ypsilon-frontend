@@ -8,17 +8,17 @@ import AlertCircleIcon from '@/assets/images/icons/alert_circle.svg';
 import CheckBoxIcon from '@/assets/images/icons/checkbox.svg';
 import CheckBoxCheckedIcon from '@/assets/images/icons/checkbox-сhecked.svg';
 
-interface TooltipProps {
-  show: boolean; 
-}
+// interface ValidationEmailIconProps {
+//   isValid: boolean;
+// }
 
-interface ValidationEmailIconProps {
-  isValid: boolean;
-  theme: any;
-}
+// interface ValidationPasswordIconProps {
+//   isValid: boolean;
+// }
 
-interface ValidationPasswordIconProps {
+interface StyledCircleProps {
   isValid: boolean;
+  theme?: any;
 }
 
 export const Form = styled.form`
@@ -51,9 +51,8 @@ export const Legend = styled.legend`
   color: ${theme.colors.colorWhite};
   font-size: 24px;
   font-weight: bold;
-  margin-top: 24px;
-  margin-bottom: 16px;
   text-align: center;
+  margin-bottom: 16px;
 
   @media ${theme.media.tablet} {
     margin-bottom: 24px;
@@ -97,7 +96,9 @@ export const P = styled.p`
 
 export const Fieldset = styled.fieldset`
   border: none;
-  margin: 24px 55px 48px;
+  margin-top: 24px;
+  margin-bottom: 55px;
+
 
   @media ${theme.media.tablet} {
     margin-top: 48px;
@@ -112,11 +113,12 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-  color: ${theme.colors.colorWhite};
   font-size: 16px;
+  color: ${theme.colors.colorWhite};
 `;
 
 export const NamedLabel = styled.p`
+  margin-left: 12px;
   &::after {
     content: ' *';
     color: ${theme.colors.colorRed};
@@ -124,11 +126,9 @@ export const NamedLabel = styled.p`
 `;
 
 export const Input = styled.input`
-  width: 314px;
   height: 48px;
   border-radius: 4px;
   border: 1px solid ${theme.colors.colorWhite};
-  margin: 8px 0 16px;
   background-color: ${theme.colors.backgroundWhite};
   color: ${theme.colors.colorBlack};
   margin-left: auto;
@@ -155,90 +155,73 @@ export const ErrorText = styled.div`
   margin-bottom: 8px;
 `;
 
-export const Tooltip = styled.div<TooltipProps>`
-  background-color: white;
-  color: red;
-  padding: 4px;
+export const TooltipBlock = styled.div<{ show: boolean }>`
+  background-color: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: 4px;
+  color: ${({ theme }) => theme.colors.colorRed};
+  padding: 4px;
   z-index: 1000;
   font-size: 10px;
-  margin-top: 4px;
   position: absolute;
-  left: 0;
-  right: 0;
-  max-height: ${(props) => (props.show ? '100px' : '0')}; 
+  max-height: ${({ show }) => (show ? '100px' : '0')};
   overflow: hidden;
-  opacity: ${(props) => (props.show ? '1' : '0')};
+  opacity: ${({ show }) => (show ? '1' : '0')};
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   bottom: -12px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 1px solid ${({ theme }) => theme.colors.colorBlack};
+  display: ${({ show }) => (show ? 'block' : 'none')};
+
+  @media ${({ theme }) => theme.media.tablet} {
+    bottom: -74px;
+    display: ${({ show }) => (show ? 'block' : 'none')};
+  }
 `;
 
-export const TooltipList = styled.ul<TooltipProps>`
-  display: ${(props) => (props.show ? 'block' : 'none')};
-  background-color: ${theme.colors.backgroundWhite};
-  color: ${theme.colors.colorRed};
+export const TooltipList = styled.ul`
   border-radius: 4px;
-  padding: 10px;
+  color: ${({ theme }) => theme.colors.colorRed};
+  background-color: ${({ theme }) => theme.colors.backgroundWhite};
   list-style-type: none;
-  margin: 5px 0;
+  margin: 0;
+  padding: 0;
+
+  & li::before {
+    content: '•';
+    display: inline-block;
+    width: 1em;
+    vertical-align: middle;
+    color: ${({ theme }) => theme.colors.colorRed};
+  }
 `;
 
 export const TooltipItem = styled.li`
-  margin: 5px 0;
-`;
-
-export const EmailTooltip = styled(Tooltip)`
-  & ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  & li::before {
-    content: '•';
-    color: red;
-    display: inline-block;
-    width: 1em;
-    margin-left: 1em;
-    vertical-align: middle;
-    margin-right: 4px;
-  }
-
-  color: red;
-  width: 100%;
-`;
-
-export const PasswordTooltip = styled(Tooltip)`
-  & ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  & li::before {
-    content: '•';
-    color: red;
-    display: inline-block;
-    width: 1em;
-    margin-left: 1em;
-    vertical-align: middle;
-    margin-right: 2px;
-  }
-
-  color: red;
-  width: 100%;
+  margin: 5px 8px;
 `;
 
 export const CheckboxContainer = styled.div`
-  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-bottom: 16px;
+  margin-left: 19px;
+  color: ${theme.colors.colorWhite};
+`;
+
+export const PMeta = styled.div`
+  color: ${theme.colors.colorWhite};
+  margin-bottom: 16px;
+  font-size: 16px;
 `;
 
 export const CheckboxLabel = styled.label`
-  color: ${theme.colors.colorWhite};
   display: flex;
   align-items: center;
+  color: ${theme.colors.colorWhite};
+  margin-bottom: 16px;
 `;
 
 export const CheckboxTermsLabel = styled.label`
@@ -247,17 +230,15 @@ export const CheckboxTermsLabel = styled.label`
   align-items: center;
 `;
 
-
-
 export const CheckboxText = styled.span`
-  margin-left: 10px;
+  margin-left: 24px;
   font-size: 14px;
 `;
 
 export const CheckboxPoliticText = styled.span`
+  width: 265px;
   margin-left: 24px;
   font-size: 12px;
-  width: 265px;
   flex-wrap: wrap;
   word-wrap: break-word;
   white-space: normal;
@@ -307,13 +288,15 @@ export const Button = styled.button`
   height: 60px;
   border: none;
   border-radius: 10px;
-  background-color: ${theme.colors.backgroundTeal};
-  color: ${theme.colors.colorWhite};
   cursor: pointer;
-  transition: background-color 0.3s ${theme.cubicBezier};
   font-size: 24px;
   font-weight: bold;
   margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  color: ${theme.colors.colorWhite};
+  background-color: ${theme.colors.backgroundTeal};
+  transition: background-color 0.3s ${theme.cubicBezier};
 
   &:hover {
     background-color: ${theme.colors.backgroundYellow};
@@ -342,18 +325,14 @@ export const TogglePasswordButton = styled.button`
   transform: translateY(-50%);
 `;
 
-export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
+export const ValidationEmailIcon = styled.div<StyledCircleProps>`
   display: flex;
   align-items: center;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: ${({ isValid, theme }) => {
-    if (isValid === true) return theme.colors.colorGreen;
-    if (isValid === false) return theme.colors.colorRed;
-    return theme.colors.colorRed; 
-  }};
+  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
   svg {
     width: 1em;
     height: 1em;
@@ -361,8 +340,7 @@ export const ValidationEmailIcon = styled.div<ValidationEmailIconProps>`
   }
 `;
 
-
-export const ValidationPasswordIcon = styled.div<ValidationPasswordIconProps>`
+export const ValidationPasswordIcon = styled.div<StyledCircleProps>`
   display: flex;
   align-items: center;
   position: absolute;
@@ -409,8 +387,11 @@ export const CustomInput = styled.input`
   width: 314px;
   height: 48px;
   border-radius: 4px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid ${theme.colors.colorWhite};
-  margin: 8px 0 16px;
   background-color: ${theme.colors.backgroundWhite};
   color: ${theme.colors.colorBlack};
 
