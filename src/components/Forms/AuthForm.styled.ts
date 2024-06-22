@@ -415,6 +415,5 @@ export const Underline = styled.div`
   margin: 0 auto;
   height: 1px;
   background-color: ${theme.colors.backgroundWhite};
-  margin-top: -8px;
   margin-bottom: 16px;
 `;

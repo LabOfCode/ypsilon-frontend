@@ -13,6 +13,8 @@ import Tooltip, {
 } from './SchemaTooltip';
 import {
   Form,
+  PLink,
+  P,
   Label,
   Checkbox,
   Button,
@@ -125,6 +127,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
     <Form>
       <Fieldset>
         <Legend>Зареєструватись</Legend>
+        <P>Вже зареєстровані?<PLink href="/login">Увійти</PLink></P>
         <Label htmlFor="fullname">
           <NamedLabel>Ім'я та прізвище</NamedLabel>
           <Field
