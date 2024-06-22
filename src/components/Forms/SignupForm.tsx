@@ -83,7 +83,9 @@ export const SignupForm: React.FC = () => {
 
   return (
     <Container>
-      <Title>Реєстрація</Title>
+      <Title>
+        Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
+      </Title>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
@@ -122,7 +124,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
   return (
     <Form>
       <Fieldset>
-        <Legend>Введіть свої дані</Legend>
+        <Legend>Зареєструватись</Legend>
         <Label htmlFor="fullname" style={{ position: 'relative' }}>
           <NamedLabel>Ім'я та прізвище</NamedLabel>
           <Field
@@ -261,10 +263,8 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           </CheckboxLabel>
         </CheckboxContainer>
 
-        <Button
-          type="submit"
-          disabled={!formik.isValid || !formik.dirty || formik.isSubmitting || (!formik.values.apply && !formik.values.purpose) || !formik.values.terms}
-        >
+        <Button type="submit" disabled={
+          !formik.isValid || !formik.dirty || formik.isSubmitting || (!formik.values.apply && !formik.values.purpose) || !formik.values.terms}>
           На модерацію
         </Button>
       </Fieldset>
