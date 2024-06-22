@@ -66,16 +66,17 @@ interface TooltipProps {
   show: boolean;
   tips: string[];
   bottom: string;
+  color: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ show, tips, bottom }) => {
+const Tooltip: React.FC<TooltipProps> = ({ show, tips, bottom, color }) => {
   if (!show) {
     return null;
   }
 
   return (
     <TooltipBlock show={show} bottom={bottom}>
-      <TooltipList>
+      <TooltipList color={color}>
         {tips.map((tip, index) => (
           <TooltipItem key={index}>{tip}</TooltipItem>
         ))}

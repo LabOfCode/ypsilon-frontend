@@ -8,17 +8,13 @@ import AlertCircleIcon from '@/assets/images/icons/alert_circle.svg';
 import CheckBoxIcon from '@/assets/images/icons/checkbox.svg';
 import CheckBoxCheckedIcon from '@/assets/images/icons/checkbox-сhecked.svg';
 
-// interface ValidationEmailIconProps {
-//   isValid: boolean;
-// }
-
-// interface ValidationPasswordIconProps {
-//   isValid: boolean;
-// }
-
 interface StyledCircleProps {
   isValid: boolean;
   theme?: any;
+}
+
+interface CustomInputProps {
+  isValid: boolean | null;
 }
 
 export const Form = styled.form`
@@ -156,34 +152,28 @@ export const ErrorText = styled.div`
 `;
 
 export const TooltipBlock = styled.div<{ show: boolean, bottom: string  }>`
-  background-color: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: 4px;
-  color: ${({ theme }) => theme.colors.colorRed};
-  padding: 4px;
-  z-index: 1000;
-  font-size: 10px;
-  position: absolute;
-  max-height: ${({ show }) => (show ? '100px' : '0')};
-  overflow: hidden;
-  opacity: ${({ show }) => (show ? '1' : '0')};
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-  bottom: ${({ bottom }) => bottom};
-  width: 94%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border: 1px solid ${({ theme }) => theme.colors.colorBlack};
-  display: ${({ show }) => (show ? 'block' : 'none')};
-
-  @media ${({ theme }) => theme.media.tablet} {
-    bottom: ${({ bottom }) => bottom};
-    display: ${({ show }) => (show ? 'block' : 'none')};
-  }
+border-radius: 4px;
+padding: 4px;
+z-index: 1000;
+font-size: 10px;
+position: absolute;
+overflow: hidden;
+transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+width: 94%;
+left: 0;
+right: 0;
+margin: auto;
+max-height: ${({ show }) => (show ? '100px' : '0')};
+opacity: ${({ show }) => (show ? '1' : '0')};
+bottom: ${({ bottom }) => bottom};
+border: 1px solid ${({ theme }) => theme.colors.colorBlack};
+display: ${({ show }) => (show ? 'block' : 'none')};
+background-color: ${({ theme }) => theme.colors.backgroundWhite};
 `;
 
 export const TooltipList = styled.ul`
   border-radius: 4px;
-  color: ${({ theme }) => theme.colors.colorRed};
+  color: ${({ color }) => color};
   background-color: ${({ theme }) => theme.colors.backgroundWhite};
   list-style-type: none;
   margin: 0;
@@ -194,7 +184,6 @@ export const TooltipList = styled.ul`
     display: inline-block;
     width: 1em;
     vertical-align: middle;
-    color: ${({ theme }) => theme.colors.colorRed};
   }
 `;
 
@@ -215,6 +204,10 @@ export const PMeta = styled.div`
   color: ${theme.colors.colorWhite};
   margin-bottom: 16px;
   font-size: 16px;
+  &::after {
+    content: ' *';
+    color: ${theme.colors.colorRed};
+  }
 `;
 
 export const CheckboxLabel = styled.label`
@@ -383,7 +376,7 @@ export const StyledAlertCircle = styled(AlertCircleIcon)`
   height: 1em;
 `;
 
-export const CustomInput = styled.input`
+export const CustomInput = styled.input<CustomInputProps>`
   width: 314px;
   height: 48px;
   border-radius: 4px;
@@ -393,7 +386,15 @@ export const CustomInput = styled.input`
   margin-right: auto;
   border: 1px solid ${theme.colors.colorWhite};
   background-color: ${theme.colors.backgroundWhite};
-  color: ${theme.colors.colorBlack};
+  color: ${({ isValid, theme }) => 
+    isValid === undefined 
+      ? theme.colors.colorBlack 
+      : isValid === null 
+        ? theme.colors.colorBlack 
+        : isValid 
+          ? theme.colors.colorBlack 
+          : theme.colors.colorRed
+  };
 
   &::placeholder {
     color: ${theme.colors.colorGray};

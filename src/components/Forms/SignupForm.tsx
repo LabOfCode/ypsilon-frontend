@@ -125,7 +125,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
     <Form>
       <Fieldset>
         <Legend>Зареєструватись</Legend>
-        <Label htmlFor="fullname" style={{ position: 'relative' }}>
+        <Label htmlFor="fullname">
           <NamedLabel>Ім'я та прізвище</NamedLabel>
           <Field
             as={CustomInput}
@@ -139,10 +139,11 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
             show={formik.errors.fullname && formik.touched.fullname}
             tips={fullnameTips}
             bottom="-43px"
+            color="red"
           />
         </Label>
 
-        <Label htmlFor="email" style={{ position: 'relative' }}>
+        <Label htmlFor="email">
           <NamedLabel>Електронна адреса</NamedLabel>
           <Field
             as={CustomInput}
@@ -151,11 +152,13 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
             name="email"
             placeholder="email@gmail.com"
             onChange={handleEmailChange}
+            isValid={formik.touched.email ? !formik.errors.email : null}
           />
           <Tooltip
             show={formik.errors.email && formik.touched.email}
             tips={emailTips}
             bottom="-72px"
+            color="red"
           />
           {formik.touched.email && (
             <ValidationEmailIcon isValid={!formik.errors.email}>
@@ -192,7 +195,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           </CheckboxLabel>
         </CheckboxContainer>
 
-        <Label htmlFor="password" style={{ position: 'relative' }}>
+        <Label htmlFor="password">
           <NamedLabel>Пароль</NamedLabel>
           <Field
             as={CustomInput}
@@ -206,6 +209,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
             show={formik.touched.password && !!formik.errors.password}
             tips={passwordTips}
             bottom="-77px"
+            color="black"
           />
           <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
             {showPassword ? (
@@ -216,7 +220,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           </TogglePasswordButton>
         </Label>
 
-        <Label htmlFor="confirmPassword" style={{ position: 'relative' }}>
+        <Label htmlFor="confirmPassword">
           <NamedLabel>Повторити пароль</NamedLabel>
           <Field
             as={CustomInput}
@@ -230,6 +234,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
             show={formik.errors.confirmPassword && formik.touched.confirmPassword}
             tips={confirmPasswordTips}
             bottom="-26px"
+            color="black"
           />
           <ValidationPasswordIcon isValid={!formik.errors.confirmPassword}>
             {renderValidationIcon('confirmPassword')}
