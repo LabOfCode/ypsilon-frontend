@@ -136,6 +136,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           <Tooltip
             show={formik.errors.fullname && formik.touched.fullname}
             tips={fullnameTips}
+            bottom="-43px"
           />
         </Label>
 
@@ -152,6 +153,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           <Tooltip
             show={formik.errors.email && formik.touched.email}
             tips={emailTips}
+            bottom="-72px"
           />
           {formik.touched.email && (
             <ValidationEmailIcon isValid={!formik.errors.email}>
@@ -201,6 +203,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           <Tooltip
             show={formik.touched.password && !!formik.errors.password}
             tips={passwordTips}
+            bottom="-77px"
           />
           <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
             {showPassword ? (
@@ -224,6 +227,7 @@ const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () 
           <Tooltip
             show={formik.errors.confirmPassword && formik.touched.confirmPassword}
             tips={confirmPasswordTips}
+            bottom="-26px"
           />
           <ValidationPasswordIcon isValid={!formik.errors.confirmPassword}>
             {renderValidationIcon('confirmPassword')}

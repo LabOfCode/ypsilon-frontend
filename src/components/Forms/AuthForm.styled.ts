@@ -155,7 +155,7 @@ export const ErrorText = styled.div`
   margin-bottom: 8px;
 `;
 
-export const TooltipBlock = styled.div<{ show: boolean }>`
+export const TooltipBlock = styled.div<{ show: boolean, bottom: string  }>`
   background-color: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: 4px;
   color: ${({ theme }) => theme.colors.colorRed};
@@ -167,8 +167,8 @@ export const TooltipBlock = styled.div<{ show: boolean }>`
   overflow: hidden;
   opacity: ${({ show }) => (show ? '1' : '0')};
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-  bottom: -12px;
-  width: 100%;
+  bottom: ${({ bottom }) => bottom};
+  width: 94%;
   left: 0;
   right: 0;
   margin: auto;
@@ -176,7 +176,7 @@ export const TooltipBlock = styled.div<{ show: boolean }>`
   display: ${({ show }) => (show ? 'block' : 'none')};
 
   @media ${({ theme }) => theme.media.tablet} {
-    bottom: -74px;
+    bottom: ${({ bottom }) => bottom};
     display: ${({ show }) => (show ? 'block' : 'none')};
   }
 `;

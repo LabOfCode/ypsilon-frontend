@@ -65,15 +65,16 @@ export const schema = Yup.object().shape({
 interface TooltipProps {
   show: boolean;
   tips: string[];
+  bottom: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ show, tips }) => {
+const Tooltip: React.FC<TooltipProps> = ({ show, tips, bottom }) => {
   if (!show) {
     return null;
   }
 
   return (
-    <TooltipBlock show={show}>
+    <TooltipBlock show={show} bottom={bottom}>
       <TooltipList>
         {tips.map((tip, index) => (
           <TooltipItem key={index}>{tip}</TooltipItem>
