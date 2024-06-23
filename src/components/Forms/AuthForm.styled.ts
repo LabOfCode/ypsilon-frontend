@@ -21,7 +21,7 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  width: 338px;
   border: 3px solid ${theme.colors.colorTeal};
   background-image: ${theme.colors.backgroundOcean};
   border-radius: 8px;
@@ -31,15 +31,70 @@ export const Form = styled.form`
   margin-right: auto;
   margin-bottom: 276px;
   position: relative;
+  
 
   @media ${theme.media.tablet} {
-    width: 424px;
+    width: 418px;
     margin-bottom: 272px;
   }
 
   @media ${theme.media.desktop} {
-    width: 424px;
+    width: 418px;
     margin-bottom: 196px;
+  }
+`;
+
+export const Fieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin-top: 24px;
+  margin-bottom: 55px;
+  padding-left: 6px;
+  padding-right: 6px;
+
+
+  @media ${theme.media.tablet} {
+    margin-top: 48px;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
+  @media ${theme.media.desktop} {
+    margin-top: 48px;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+`;
+
+export const CustomInput = styled.input<CustomInputProps>`
+  height: 48px;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid ${theme.colors.colorWhite};
+  background-color: ${theme.colors.backgroundWhite};
+  color: ${({ isValid, theme }) => 
+    isValid === undefined 
+      ? theme.colors.colorBlack 
+      : isValid === null 
+        ? theme.colors.colorBlack 
+        : isValid 
+          ? theme.colors.colorBlack 
+          : theme.colors.colorRed
+  };
+
+  &::placeholder {
+    color: ${theme.colors.colorGray};
+    font-size: 14px;
+  }
+
+  @media ${theme.media.tablet} {
+    margin-bottom: 24px;
+  }
+
+  @media ${theme.media.desktop} {
+    margin-bottom: 24px;
   }
 `;
 
@@ -64,45 +119,38 @@ export const PLink = styled.a`
   font-size: 16px;
   text-decoration: underline;
   margin-left: 8px;
-  white-space: nowrap;
-  text-decoration: underline;
 `;
 
-export const PoliticLink = styled.a`
+export const AdressLink = styled.a`
   color: ${theme.colors.colorWhite};
   font-size: 12px;
   text-decoration: underline;
   margin-left: 8px;
-  white-space: nowrap;
+`;
+
+export const RememberLink = styled.a`
+  display: flex;
+  justify-content: center;
+  color: ${theme.colors.colorWhite};
+  font-size: 12px;
   text-decoration: underline;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
 `;
 
 export const P = styled.p`
   color: ${theme.colors.colorWhite};
   font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 0;
   margin-bottom: 16px;
-  margin-left: 24px;
+  margin-left: auto;
+  margin-right: auto;
   flex-wrap: wrap;
   word-wrap: break-word;
   white-space: normal;
-`;
-
-export const Fieldset = styled.fieldset`
-  border: none;
-  margin-top: 24px;
-  margin-bottom: 55px;
-
-
-  @media ${theme.media.tablet} {
-    margin-top: 48px;
-  }
-
-  @media ${theme.media.desktop} {
-    margin-top: 48px;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 export const Label = styled.label`
@@ -114,33 +162,9 @@ export const Label = styled.label`
 `;
 
 export const NamedLabel = styled.p`
-  margin-left: 12px;
   &::after {
     content: ' *';
     color: ${theme.colors.colorRed};
-  }
-`;
-
-export const Input = styled.input`
-  height: 48px;
-  border-radius: 4px;
-  border: 1px solid ${theme.colors.colorWhite};
-  background-color: ${theme.colors.backgroundWhite};
-  color: ${theme.colors.colorBlack};
-  margin-left: auto;
-  margin-right: auto;
-
-  &::placeholder {
-    color: ${theme.colors.colorGray};
-    font-size: 14px;
-  }
-
-  @media ${theme.media.tablet} {
-    margin-bottom: 24px;
-  }
-
-  @media ${theme.media.desktop} {
-    margin-bottom: 24px;
   }
 `;
 
@@ -213,14 +237,12 @@ export const PMeta = styled.div`
 export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  color: ${theme.colors.colorWhite};
   margin-bottom: 16px;
+  color: ${theme.colors.colorWhite};
 `;
 
 export const CheckboxTermsLabel = styled.label`
   color: ${theme.colors.colorWhite};
-  display: flex;
-  align-items: center;
 `;
 
 export const CheckboxText = styled.span`
@@ -229,7 +251,7 @@ export const CheckboxText = styled.span`
 `;
 
 export const CheckboxPoliticText = styled.span`
-  width: 265px;
+  width: 250px;
   margin-left: 24px;
   font-size: 12px;
   flex-wrap: wrap;
@@ -253,13 +275,12 @@ export const StyledCheckboxCheckedIcon = styled(CheckBoxCheckedIcon)`
 `;
 
 export const Title = styled.p`
-  max-width: 100%;
-  color: ${theme.colors.colorWhite};
+color: ${theme.colors.colorWhite};
   text-align: center;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
-  margin: 40px auto 32px;
+  margin-bottom: 32px;
   margin-left: auto;
   margin-right: auto;
 
@@ -277,6 +298,8 @@ export const Title = styled.p`
 `;
 
 export const Button = styled.button`
+color: ${theme.colors.colorWhite};
+background-color: ${theme.colors.backgroundTeal};
   width: 322px;
   height: 60px;
   border: none;
@@ -284,11 +307,8 @@ export const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
-  margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
-  color: ${theme.colors.colorWhite};
-  background-color: ${theme.colors.backgroundTeal};
   transition: background-color 0.3s ${theme.cubicBezier};
 
   &:hover {
@@ -320,44 +340,34 @@ export const TogglePasswordButton = styled.button`
 
 export const ValidationEmailIcon = styled.div<StyledCircleProps>`
   display: flex;
+  gap: 4px;
   align-items: center;
   position: absolute;
-  right: 10px;
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
   color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
-  svg {
-    width: 1em;
-    height: 1em;
-    margin-right: 5px;
-  }
 `;
 
 export const ValidationPasswordIcon = styled.div<StyledCircleProps>`
   display: flex;
   align-items: center;
   position: absolute;
-  transform: translateY(-50%);
-  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
-  right: 32px;
+  right: 36px;
   top: 50%;
   transform: translateY(-50%);
-  svg {
-    width: 1em;
-    height: 1em;
-  }
+  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
 `;
 
 export const StyledEyeOff = styled(EyeOff)`
   width: 24px;
   height: 16px;
-  margin-right: -5px;
+  margin-right: -4px;
 `;
 
 export const StyledEyeOn = styled(EyeOn)`
   width: 24px;
   height: 16px;
-  margin-right: -2px;
 `;
 
 export const EyeIcon = styled(EyeOffActive)`
@@ -367,47 +377,13 @@ export const EyeIcon = styled(EyeOffActive)`
 `;
 
 export const StyledCheckCircle = styled(CheckCircleIcon)`
-  width: 1em;
-  height: 1em;
+  width: 16px;
+  height: 16px;
 `;
 
 export const StyledAlertCircle = styled(AlertCircleIcon)`
-  width: 1em;
-  height: 1em;
-`;
-
-export const CustomInput = styled.input<CustomInputProps>`
-  width: 314px;
-  height: 48px;
-  border-radius: 4px;
-  margin-top: 8px;
-  margin-bottom: 16px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid ${theme.colors.colorWhite};
-  background-color: ${theme.colors.backgroundWhite};
-  color: ${({ isValid, theme }) => 
-    isValid === undefined 
-      ? theme.colors.colorBlack 
-      : isValid === null 
-        ? theme.colors.colorBlack 
-        : isValid 
-          ? theme.colors.colorBlack 
-          : theme.colors.colorRed
-  };
-
-  &::placeholder {
-    color: ${theme.colors.colorGray};
-    font-size: 14px;
-  }
-
-  @media ${theme.media.tablet} {
-    margin-bottom: 24px;
-  }
-
-  @media ${theme.media.desktop} {
-    margin-bottom: 24px;
-  }
+  width: 16px;
+  height: 16px;
 `;
 
 export const Underline = styled.div`

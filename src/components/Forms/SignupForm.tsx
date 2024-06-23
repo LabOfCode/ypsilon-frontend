@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Formik, Field, FormikHelpers, useFormikContext } from 'formik';
+import { Formik, Field, FormikHelpers } from 'formik';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
@@ -39,7 +39,7 @@ import {
   StyledCheckBoxIcon,
   StyledCheckboxCheckedIcon,
   Underline,
-  PoliticLink
+  AdressLink
 } from './AuthForm.styled';
 
 export interface RegisterPayload {
@@ -64,18 +64,17 @@ const initialValues: RegisterPayload = {
 
 export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const formik = useFormikContext<RegisterPayload>();
-  const [showPassword, setShowPassword] = useState(false); 
-  
-  const handleSubmit = async (values: RegisterPayload, { resetForm }: FormikHelpers<RegisterPayload>) => {
-    formik.setSubmitting(true);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (values: RegisterPayload, { resetForm, setSubmitting }: FormikHelpers<RegisterPayload>) => {
+    setSubmitting(true);
     try {
       await schema.validate(values, { abortEarly: false });
       await dispatch(signUp(values));
-      formik.setSubmitting(false);
+      setSubmitting(false);
       resetForm();
     } catch {
-      formik.setSubmitting(false);
+      setSubmitting(false);
     }
   };
 
@@ -86,197 +85,186 @@ export const SignupForm: React.FC = () => {
   return (
     <Container>
       <Title>
-        Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
+        Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
       </Title>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <InnerForm showPassword={showPassword} togglePasswordVisibility={togglePasswordVisibility} />
+        {({ handleChange, validateField, handleSubmit, isValid, dirty, isSubmitting, touched, errors, values }) => (
+          <Form onSubmit={handleSubmit}>
+            <Fieldset>
+              <Legend>Зареєструватись</Legend>
+              <P>Вже зареєстровані? <PLink href="/login">Увійти</PLink></P>
+              <Label htmlFor="fullname">
+                <NamedLabel>Ім'я та прізвище</NamedLabel>
+                <Field
+                  as={CustomInput}
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Введіть своє ім’я та прізвище"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(e);
+                    validateField('fullname');
+                  }}
+                  required
+                />
+                <Tooltip
+                  show={errors.fullname && touched.fullname}
+                  tips={fullnameTips}
+                  bottom="-43px"
+                  color="red"
+                />
+              </Label>
+
+              <Label htmlFor="email">
+                <NamedLabel>Електронна адреса</NamedLabel>
+                <Field
+                  as={CustomInput}
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="email@gmail.com"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(e);
+                    validateField('email');
+                  }}
+                  isValid={touched.email ? !errors.email : null}
+                  required
+                />
+                <Tooltip
+                  show={errors.email && touched.email}
+                  tips={emailTips}
+                  bottom="-72px"
+                  color="red"
+                />
+                {touched.email && (
+                  <ValidationEmailIcon isValid={!errors.email}>
+                    {errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
+                    <EyeIcon />
+                  </ValidationEmailIcon>
+                )}
+              </Label>
+
+              <CheckboxContainer>
+                <PMeta>Мета реєстрації</PMeta>
+                <CheckboxLabel>
+                  <Checkbox
+                    id="apply"
+                    name="apply"
+                    type="checkbox"
+                    checked={values.apply}
+                    onChange={() => handleChange({ target: { name: 'apply', value: !values.apply } })}
+                  />
+                  {values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  <CheckboxText>Подача заявки на вакансію</CheckboxText>
+                </CheckboxLabel>
+
+                <CheckboxLabel>
+                  <Checkbox
+                    id="purpose"
+                    name="purpose"
+                    type="checkbox"
+                    checked={values.purpose}
+                    onChange={() => handleChange({ target: { name: 'purpose', value: !values.purpose } })}
+                  />
+                  {values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  <CheckboxText>Реєстрація працівника</CheckboxText>
+                </CheckboxLabel>
+              </CheckboxContainer>
+
+              <Label htmlFor="password">
+                <NamedLabel>Пароль</NamedLabel>
+                <Field
+                  as={CustomInput}
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  placeholder="*********"
+                  onChange={handleChange}
+                  required
+                />
+                <Tooltip
+                  show={touched.password && !!errors.password}
+                  tips={passwordTips}
+                  bottom="-77px"
+                  color="black"
+                />
+                <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <StyledEyeOn />
+                  ) : (
+                    <StyledEyeOff />
+                  )}
+                </TogglePasswordButton>
+              </Label>
+
+              <Label htmlFor="confirmPassword">
+                <NamedLabel>Повторити пароль</NamedLabel>
+                <Field
+                  as={CustomInput}
+                  type={showPassword ? 'text' : 'password'}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="*********"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChange(e);
+                    validateField('confirmPassword');
+                  }}
+                  required
+                />
+                <Tooltip
+                  show={errors.confirmPassword && touched.confirmPassword}
+                  tips={confirmPasswordTips}
+                  bottom="-26px"
+                  color="black"
+                />
+                <ValidationPasswordIcon isValid={!errors.confirmPassword}>
+                  {touched.confirmPassword && (
+                    errors.confirmPassword ? <StyledAlertCircle /> : <StyledCheckCircle />
+                  )}
+                </ValidationPasswordIcon>
+                <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <StyledEyeOn />
+                  ) : (
+                    <StyledEyeOff />
+                  )}
+                </TogglePasswordButton>
+              </Label>
+
+              <Underline />
+
+              <CheckboxContainer>
+                <CheckboxLabel>
+                  <Checkbox
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    checked={values.terms}
+                    onChange={() => handleChange({ target: { name: 'terms', value: !values.terms } })}
+                    required
+                  />
+                  {values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  <CheckboxPoliticText>
+                    Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
+                    <AdressLink href=""> політикою конфіденційності </AdressLink> та
+                    <AdressLink href=""> умовами користування. </AdressLink>
+                  </CheckboxPoliticText>
+                </CheckboxLabel>
+              </CheckboxContainer>
+
+              <Button type="submit" disabled={
+                !isValid || !dirty || isSubmitting || (!values.apply && !values.purpose) || !values.terms}>
+                На модерацію
+              </Button>
+            </Fieldset>
+          </Form>
+        )}
       </Formik>
     </Container>
-  );
-};
-
-const InnerForm: React.FC<{ showPassword: boolean; togglePasswordVisibility: () => void }> = ({ showPassword, togglePasswordVisibility }) => {
-  const formik = useFormikContext<RegisterPayload>();
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    formik.handleChange(e);
-    formik.validateField('email');
-  };
-
-  const handleFullnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    formik.handleChange(e);
-    formik.validateField('fullname');
-  };
-
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    formik.handleChange(e);
-    formik.validateField('confirmPassword');
-  };
-
-  const renderValidationIcon = (field: keyof RegisterPayload) => {
-    const { errors, touched } = formik;
-    if (!touched[field]) return null;
-    return errors[field] ? <StyledAlertCircle /> : <StyledCheckCircle />;
-  };
-
-  return (
-    <Form>
-      <Fieldset>
-        <Legend>Зареєструватись</Legend>
-        <P>Вже зареєстровані?<PLink href="/login">Увійти</PLink></P>
-        <Label htmlFor="fullname">
-          <NamedLabel>Ім'я та прізвище</NamedLabel>
-          <Field
-            as={CustomInput}
-            type="text"
-            id="fullname"
-            name="fullname"
-            placeholder="Введіть своє ім’я та прізвище"
-            onChange={handleFullnameChange}
-          />
-          <Tooltip
-            show={formik.errors.fullname && formik.touched.fullname}
-            tips={fullnameTips}
-            bottom="-43px"
-            color="red"
-          />
-        </Label>
-
-        <Label htmlFor="email">
-          <NamedLabel>Електронна адреса</NamedLabel>
-          <Field
-            as={CustomInput}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email@gmail.com"
-            onChange={handleEmailChange}
-            isValid={formik.touched.email ? !formik.errors.email : null}
-          />
-          <Tooltip
-            show={formik.errors.email && formik.touched.email}
-            tips={emailTips}
-            bottom="-72px"
-            color="red"
-          />
-          {formik.touched.email && (
-            <ValidationEmailIcon isValid={!formik.errors.email}>
-              {formik.errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
-              <EyeIcon />
-            </ValidationEmailIcon>
-          )}
-        </Label>
-
-        <CheckboxContainer>
-          <PMeta>Мета реєстрації</PMeta>
-          <CheckboxLabel>
-            <Checkbox
-              id="apply"
-              name="apply"
-              type="checkbox"
-              checked={formik.values.apply}
-              onChange={() => formik.setFieldValue('apply', !formik.values.apply)}
-            />
-            {formik.values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
-            <CheckboxText>Подача заявки на вакансію</CheckboxText>
-          </CheckboxLabel>
-
-          <CheckboxLabel>
-            <Checkbox
-              id="purpose"
-              name="purpose"
-              type="checkbox"
-              checked={formik.values.purpose}
-              onChange={() => formik.setFieldValue('purpose', !formik.values.purpose)}
-            />
-            {formik.values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
-            <CheckboxText>Реєстрація працівника</CheckboxText>
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <Label htmlFor="password">
-          <NamedLabel>Пароль</NamedLabel>
-          <Field
-            as={CustomInput}
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            name="password"
-            placeholder="*********"
-            onChange={formik.handleChange}
-          />
-          <Tooltip
-            show={formik.touched.password && !!formik.errors.password}
-            tips={passwordTips}
-            bottom="-77px"
-            color="black"
-          />
-          <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
-            {showPassword ? (
-              <StyledEyeOn />
-            ) : (
-              <StyledEyeOff />
-            )}
-          </TogglePasswordButton>
-        </Label>
-
-        <Label htmlFor="confirmPassword">
-          <NamedLabel>Повторити пароль</NamedLabel>
-          <Field
-            as={CustomInput}
-            type={showPassword ? 'text' : 'password'}
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="*********"
-            onChange={handleConfirmPasswordChange}
-          />
-          <Tooltip
-            show={formik.errors.confirmPassword && formik.touched.confirmPassword}
-            tips={confirmPasswordTips}
-            bottom="-26px"
-            color="black"
-          />
-          <ValidationPasswordIcon isValid={!formik.errors.confirmPassword}>
-            {renderValidationIcon('confirmPassword')}
-          </ValidationPasswordIcon>
-          <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
-            {showPassword ? (
-              <StyledEyeOn />
-            ) : (
-              <StyledEyeOff />
-            )}
-          </TogglePasswordButton>
-        </Label>
-
-        <Underline />
-
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <Checkbox
-              id="terms"
-              name="terms"
-              type="checkbox"
-              checked={formik.values.terms}
-              onChange={() => formik.setFieldValue('terms', !formik.values.terms)}
-            />
-            {formik.values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
-            <CheckboxPoliticText>
-              Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
-              <PoliticLink href=""> політикою конфіденційності </PoliticLink> та
-              <PoliticLink href=""> умовами користування. </PoliticLink>
-            </CheckboxPoliticText>
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <Button type="submit" disabled={
-          !formik.isValid || !formik.dirty || formik.isSubmitting || (!formik.values.apply && !formik.values.purpose) || !formik.values.terms}>
-          На модерацію
-        </Button>
-      </Fieldset>
-    </Form>
   );
 };
 
