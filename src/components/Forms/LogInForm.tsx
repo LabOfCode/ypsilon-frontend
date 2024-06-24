@@ -36,19 +36,17 @@ export const LogInForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (values: LoginPayload, { setSubmitting }: FormikHelpers<LoginPayload>) => {
-    dispatch(logIn(values))
-      .then(() => {
-        setSubmitting(false);
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-        setSubmitting(false);
-      });
-  };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const submitForm = async (values: LoginPayload, actions: FormikHelpers<LoginPayload>) => {
+    try {
+      await dispatch(logIn(values));
+      actions.resetForm();
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   return (
@@ -56,9 +54,9 @@ export const LogInForm: React.FC = () => {
       <Title>
         Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!
       </Title>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ isSubmitting }) => (
-          <Form>
+      <Formik initialValues={initialValues} onSubmit={submitForm}>
+        {({ handleSubmit }) => ( 
+          <Form onSubmit={handleSubmit}>
             <Fieldset>
               <Legend>Увійти</Legend>
               <P>
@@ -97,11 +95,8 @@ export const LogInForm: React.FC = () => {
 
               <RememberLink href="">Забули пароль?</RememberLink>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}>
-                Увійти
-              </Button>
+              <Button type="submit"> Увійти </Button>
+
             </Fieldset>
           </Form>
         )}

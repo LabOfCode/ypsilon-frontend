@@ -46,20 +46,20 @@ export const schema = Yup.object().shape({
     .matches(/[A-Z]/, passwordTips[3])
     .matches(/[0-9]/, passwordTips[4])
     .notOneOf(['password', '123456', 'qwerty'], passwordTips[5]),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], confirmPasswordTips[0])
-    .required(confirmPasswordTips[1]),
-  apply: Yup.bool(),
-  purpose: Yup.bool(),
-  terms: Yup.bool()
-    .required('Ви повинні погодитися з умовами використання')
-    .test('checkPurpose', 'Ви повинні обрати принаймні одну мету реєстрації (Подача заявки на вакансію або Реєстрація працівника)', function(value) {
-      const { apply, purpose } = this.parent;
-      if (!apply && !purpose) {
-        return value === true;
-      }
-      return true;
-    }),
+  // confirmPassword: Yup.string()
+  //   .oneOf([Yup.ref('password'), null], confirmPasswordTips[0])
+  //   .required(confirmPasswordTips[1]),
+  // apply: Yup.bool(),
+  // purpose: Yup.bool(),
+  // terms: Yup.bool()
+  //   .required('Ви повинні погодитися з умовами використання')
+  //   .test('checkPurpose', 'Ви повинні обрати принаймні одну мету реєстрації (Подача заявки на вакансію або Реєстрація працівника)', function(value) {
+  //     const { apply, purpose } = this.parent;
+  //     if (!apply && !purpose) {
+  //       return value === true;
+  //     }
+  //     return true;
+  //   }),
 });
 
 interface TooltipProps {

@@ -13,9 +13,9 @@ interface StyledCircleProps {
   theme?: any;
 }
 
-interface CustomInputProps {
-  isValid: boolean | null;
-}
+// interface CustomInputProps {
+//   isValid: boolean | null;
+// }
 
 export const Form = styled.form`
   display: flex;
@@ -67,7 +67,7 @@ export const Fieldset = styled.fieldset`
   }
 `;
 
-export const CustomInput = styled.input<CustomInputProps>`
+export const CustomInput = styled.input<{ isValid?: boolean }>`
   height: 48px;
   border-radius: 4px;
   margin-top: 8px;
@@ -132,11 +132,19 @@ export const RememberLink = styled.a`
   display: flex;
   justify-content: center;
   color: ${theme.colors.colorWhite};
-  font-size: 12px;
+  font-size: 14px;
   text-decoration: underline;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
+
+  @media ${theme.media.tablet} {
+    margin-bottom: 24px;
+  }
+
+  @media ${theme.media.desktop} {
+    margin-bottom: 24px;
+  }
 `;
 
 export const P = styled.p`

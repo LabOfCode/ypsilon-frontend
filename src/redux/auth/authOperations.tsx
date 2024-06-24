@@ -10,10 +10,13 @@ export const signUp = createAsyncThunk(
   'auth/signup',
   async (credentials: CredentialsSignUp, thunkAPI) => {
     try {
-      const {data} = await $api.post<AuthResponse>('/auth/signup', credentials);
+      console.log('Sending signUp request with credentials:', credentials);
+      const { data } = await $api.post<AuthResponse>('/auth/signup', credentials);
+      console.log('signUp response:', data);
       // setAuthHeader.set(data.accessToken);
       return data;
     } catch (error: any) {
+      console.error('signUp error:', error.response?.data?.message || error.message);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }

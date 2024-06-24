@@ -66,20 +66,26 @@ export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (values: RegisterPayload, { resetForm, setSubmitting }: FormikHelpers<RegisterPayload>) => {
-    setSubmitting(true);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const submitForm = async (values: RegisterPayload, actions:   FormikHelpers<RegisterPayload>) => {
     try {
-      await schema.validate(values, { abortEarly: false });
-      await dispatch(signUp(values));
-      setSubmitting(false);
-      resetForm();
-    } catch {
-      setSubmitting(false);
+      const { confirmPassword, apply, purpose, terms, ...formData } = values;
+
+      await schema.validate(formData, { abortEarly: false });
+      await dispatch(signUp(formData));
+      actions.resetForm();
+    } catch (error) {
+      console.error('Error during form submission:', error);
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) => { 
+    const { errors, touched } = formikProps;
+    if (!touched[field]) return null;
+    return errors[field] ? <StyledAlertCircle /> : <StyledCheckCircle />;
   };
 
   return (
@@ -87,16 +93,13 @@ export const SignupForm: React.FC = () => {
       <Title>
         Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
       </Title>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        {({ handleChange, validateField, handleSubmit, isValid, dirty, isSubmitting, touched, errors, values }) => (
-          <Form onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submitForm}>
+        {(formikProps) => (
+          <Form onSubmit={formikProps.handleSubmit}>
             <Fieldset>
               <Legend>Зареєструватись</Legend>
-              <P>Вже зареєстровані? <PLink href="/login">Увійти</PLink></P>
+              <P>Вже зареєстровані?<PLink href="/login">Увійти</PLink></P>
+
               <Label htmlFor="fullname">
                 <NamedLabel>Ім'я та прізвище</NamedLabel>
                 <Field
@@ -105,14 +108,10 @@ export const SignupForm: React.FC = () => {
                   id="fullname"
                   name="fullname"
                   placeholder="Введіть своє ім’я та прізвище"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(e);
-                    validateField('fullname');
-                  }}
                   required
                 />
                 <Tooltip
-                  show={errors.fullname && touched.fullname}
+                  show={formikProps.errors.fullname && formikProps.touched.fullname}
                   tips={fullnameTips}
                   bottom="-43px"
                   color="red"
@@ -127,22 +126,18 @@ export const SignupForm: React.FC = () => {
                   id="email"
                   name="email"
                   placeholder="email@gmail.com"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(e);
-                    validateField('email');
-                  }}
-                  isValid={touched.email ? !errors.email : null}
+                  className={formikProps.touched.email ? (!formikProps.errors.email ? 'valid' : 'invalid') : ''}
                   required
                 />
                 <Tooltip
-                  show={errors.email && touched.email}
+                  show={formikProps.errors.email && formikProps.touched.email}
                   tips={emailTips}
                   bottom="-72px"
                   color="red"
                 />
-                {touched.email && (
-                  <ValidationEmailIcon isValid={!errors.email}>
-                    {errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
+                {formikProps.touched.email && (
+                  <ValidationEmailIcon isValid={!formikProps.errors.email}>
+                    {formikProps.errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
                     <EyeIcon />
                   </ValidationEmailIcon>
                 )}
@@ -155,10 +150,10 @@ export const SignupForm: React.FC = () => {
                     id="apply"
                     name="apply"
                     type="checkbox"
-                    checked={values.apply}
-                    onChange={() => handleChange({ target: { name: 'apply', value: !values.apply } })}
+                    checked={formikProps.values.apply}
+                    onChange={() => formikProps.setFieldValue('apply', !formikProps.values.apply)}
                   />
-                  {values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Подача заявки на вакансію</CheckboxText>
                 </CheckboxLabel>
 
@@ -167,10 +162,10 @@ export const SignupForm: React.FC = () => {
                     id="purpose"
                     name="purpose"
                     type="checkbox"
-                    checked={values.purpose}
-                    onChange={() => handleChange({ target: { name: 'purpose', value: !values.purpose } })}
+                    checked={formikProps.values.purpose}
+                    onChange={() => formikProps.setFieldValue('purpose', !formikProps.values.purpose)}
                   />
-                  {values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Реєстрація працівника</CheckboxText>
                 </CheckboxLabel>
               </CheckboxContainer>
@@ -183,11 +178,10 @@ export const SignupForm: React.FC = () => {
                   id="password"
                   name="password"
                   placeholder="*********"
-                  onChange={handleChange}
                   required
                 />
                 <Tooltip
-                  show={touched.password && !!errors.password}
+                  show={formikProps.touched.password && !!formikProps.errors.password}
                   tips={passwordTips}
                   bottom="-77px"
                   color="black"
@@ -209,22 +203,16 @@ export const SignupForm: React.FC = () => {
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="*********"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    handleChange(e);
-                    validateField('confirmPassword');
-                  }}
                   required
                 />
                 <Tooltip
-                  show={errors.confirmPassword && touched.confirmPassword}
+                  show={formikProps.errors.confirmPassword && formikProps.touched.confirmPassword}
                   tips={confirmPasswordTips}
                   bottom="-26px"
                   color="black"
                 />
-                <ValidationPasswordIcon isValid={!errors.confirmPassword}>
-                  {touched.confirmPassword && (
-                    errors.confirmPassword ? <StyledAlertCircle /> : <StyledCheckCircle />
-                  )}
+                <ValidationPasswordIcon isValid={!formikProps.errors.confirmPassword}>
+                  {formikProps.touched.confirmPassword && renderValidationIcon('confirmPassword', formikProps)}
                 </ValidationPasswordIcon>
                 <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
                   {showPassword ? (
@@ -243,11 +231,11 @@ export const SignupForm: React.FC = () => {
                     id="terms"
                     name="terms"
                     type="checkbox"
-                    checked={values.terms}
-                    onChange={() => handleChange({ target: { name: 'terms', value: !values.terms } })}
+                    checked={formikProps.values.terms}
+                    onChange={() => formikProps.setFieldValue('terms', !formikProps.values.terms)}
                     required
                   />
-                  {values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxPoliticText>
                     Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
                     <AdressLink href=""> політикою конфіденційності </AdressLink> та
@@ -256,8 +244,16 @@ export const SignupForm: React.FC = () => {
                 </CheckboxLabel>
               </CheckboxContainer>
 
-              <Button type="submit" disabled={
-                !isValid || !dirty || isSubmitting || (!values.apply && !values.purpose) || !values.terms}>
+              <Button
+                type="submit"
+                disabled={
+                  !formikProps.isValid ||
+                  !formikProps.dirty ||
+                  formikProps.isSubmitting ||
+                  (!formikProps.values.apply && !formikProps.values.purpose) ||
+                  !formikProps.values.terms
+                }
+              >
                 На модерацію
               </Button>
             </Fieldset>
