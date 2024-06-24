@@ -1,17 +1,40 @@
 import styled from 'styled-components';
+import { theme } from '@/Theme';
+
 
 export const ContainerStyled = styled.div`
   background-image: ${({ theme }) => theme.colors.backgroundOcean};
-//   padding-top: 92px;
-//   padding-bottom: 41px;
+  position: relative  
+  height: 100vh;     
+  padding-bottom: 276px; 
 
-  @media ${({ theme }) => theme.media.tablet} {
-   //  padding-top: 128px;
-   //  padding-bottom: 119px;
+  @media ${theme.media.tablet} {
+    padding-bottom: 272px; 
   }
 
-  @media ${({ theme }) => theme.media.desktop} {
-   //  padding-top: 184px;
-   //  padding-bottom: 67px;
+  @media ${theme.media.desktop} {
+    padding-bottom: 196px; 
+  }
+`;
+
+export const StyledParrotIcon = styled.img`
+    position: absolute;
+    width: 270px;
+    height: 260px;
+    bottom: -73.5%;  
+    left: 1%;
+
+  @media ${theme.media.tablet} {
+    width: 270px;
+    height: 260px;
+    bottom: -86.5%;  
+    left: 1%;
+  }
+
+  @media ${theme.media.desktop} {
+    width: 453px;
+    height: 427px;
+    top: 87.5%;  
+    left: 1%;
   }
 `;

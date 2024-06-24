@@ -13,11 +13,8 @@ interface StyledCircleProps {
   theme?: any;
 }
 
-// interface CustomInputProps {
-//   isValid: boolean | null;
-// }
-
 export const Form = styled.form`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,18 +26,13 @@ export const Form = styled.form`
   margin-top: 32px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 276px;
-  position: relative;
-  
 
   @media ${theme.media.tablet} {
     width: 418px;
-    margin-bottom: 272px;
   }
 
   @media ${theme.media.desktop} {
     width: 418px;
-    margin-bottom: 196px;
   }
 `;
 
@@ -49,7 +41,6 @@ export const Fieldset = styled.fieldset`
   flex-direction: column;
   border: none;
   margin-top: 24px;
-  margin-bottom: 55px;
   padding-left: 6px;
   padding-right: 6px;
 

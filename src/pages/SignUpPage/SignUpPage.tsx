@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { SignupForm } from '@/components/Forms/SignupForm';
-import { ContainerStyled } from './SignUpPage.styled';
+import { ContainerStyled, StyledParrotIcon } from './SignUpPage.styled';
+import parrotIcon from '@/assets/images/parrot_5.png';
 
 export default function SignUpPage(){
   return (
@@ -9,6 +10,7 @@ export default function SignUpPage(){
         <title>Зареєструватись</title>
       </Helmet>
       <SignupForm />
+      <StyledParrotIcon src={parrotIcon} alt="Parrot Icon" />
     </ContainerStyled>
   );
 }
