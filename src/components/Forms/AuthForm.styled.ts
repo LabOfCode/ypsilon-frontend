@@ -158,6 +158,7 @@ export const Label = styled.label`
   flex-direction: column;
   font-size: 16px;
   color: ${theme.colors.colorWhite};
+  
 `;
 
 export const NamedLabel = styled.p`
@@ -175,14 +176,14 @@ export const ErrorText = styled.div`
 `;
 
 export const TooltipBlock = styled.div<{ show: boolean, bottom: string  }>`
+position: absolute;
 border-radius: 4px;
 padding: 4px;
 z-index: 1000;
 font-size: 10px;
-position: absolute;
 overflow: hidden;
 transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-width: 94%;
+width: 100%;
 left: 0;
 right: 0;
 margin: auto;
@@ -211,10 +212,11 @@ export const TooltipList = styled.ul`
 `;
 
 export const TooltipItem = styled.li`
-  margin: 5px 8px;
+  margin: 2px 2px;
 `;
 
 export const CheckboxContainer = styled.div`
+  position: relative;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -376,11 +378,13 @@ export const EyeIcon = styled(EyeOffActive)`
 `;
 
 export const StyledCheckCircle = styled(CheckCircleIcon)`
+  color: ${theme.colors.colorGreen};
   width: 16px;
   height: 16px;
 `;
 
 export const StyledAlertCircle = styled(AlertCircleIcon)`
+  color: ${theme.colors.colorRed};
   width: 16px;
   height: 16px;
 `;
