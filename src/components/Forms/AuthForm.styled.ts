@@ -424,17 +424,18 @@ export const LoginTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
       : theme.colors.colorRed};
 `;
 
-export const PasswordTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
-  border-radius: 8px;
-  padding: 8px;
-  border: 1px solid ${({ isValid, theme }) =>
-    isValid === undefined
-      ? theme.colors.colorTeal
-      : isValid === null
-      ? theme.colors.colorTeal
-      : isValid
-      ? theme.colors.colorTeal
-      : theme.colors.colorRed};
+export const LoginTooltipList = styled.ul`
+  color: ${({ theme }) => theme.colors.colorWhite};
+  background-color: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const LoginTooltipItem = styled.li`
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
 `;
 
 export const EmailTooltipList = styled.ul`
