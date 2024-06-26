@@ -406,11 +406,20 @@ export const Underline = styled.div`
   margin-bottom: 16px;
 `;
 
-export const EmailTooltipBlock = styled.div`
+export const EmailTooltipBlock = styled.div<{ isValid?: boolean }>`
   border-radius: 8px;
   font-size: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.colorTeal};
   margin-bottom: 8px;
+  padding: 8px;
+
+  border: 1px solid ${({ isValid, theme }) =>
+    isValid === undefined
+      ? theme.colors.colorTeal
+      : isValid === null
+      ? theme.colors.colorTeal
+      : isValid
+      ? theme.colors.colorTeal
+      : theme.colors.colorRed};
 `;
 
 export const EmailTooltipList = styled.ul`
@@ -423,14 +432,26 @@ export const EmailTooltipList = styled.ul`
 `;
 
 export const EmailTooltipItem = styled.li`
+  display: flex;
+  gap: 8px;
   margin: 8px 8px;
 `;
 
-export const PasswordTooltipBlock = styled.div`
+export const PasswordTooltipBlock = styled.div<{ isValid?: boolean }>`
   border-radius: 8px;
   font-size: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.colorTeal};
+  padding: 8px;
   margin-bottom: 8px;
+
+  border: 1px solid
+    ${({ isValid, theme }) =>
+      isValid === undefined
+        ? theme.colors.colorTeal
+        : isValid === null
+        ? theme.colors.colorTeal
+        : isValid
+        ? theme.colors.colorTeal
+        : theme.colors.colorRed};
 `;
 
 export const PasswordTooltipList = styled.ul`
@@ -443,6 +464,8 @@ export const PasswordTooltipList = styled.ul`
 `;
 
 export const PasswordTooltipItem = styled.li`
+  display: flex;
+  gap: 8px;
   margin: 8px 8px;
 `;
 

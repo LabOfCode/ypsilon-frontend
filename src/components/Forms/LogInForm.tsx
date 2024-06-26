@@ -25,7 +25,9 @@ import {
   PasswordTooltipBlock,
   PasswordTooltipList,
   PasswordTooltipItem,
-  TogPasButLoginForm
+  TogPasButLoginForm,
+  StyledCheckCircle,
+  StyledAlertCircle
 } from './AuthForm.styled';
 
 const validationTips = {
@@ -110,11 +112,24 @@ export const LogInForm: React.FC = () => {
                   required
                 />
                 {formikProps.touched.email && (
-                  <EmailTooltipBlock>
+                  <EmailTooltipBlock isValid={!formikProps.errors.email}>
                     <EmailTooltipList>
-                      {validationTips.email.map((tip, index) => (
-                        <EmailTooltipItem key={index}>{tip}</EmailTooltipItem>
-                      ))}
+                      <EmailTooltipItem>
+                        {formikProps.errors.email ? (
+                          <StyledAlertCircle />
+                        ) : (
+                          <StyledCheckCircle />
+                        )}
+                        {validationTips.email[0]}
+                      </EmailTooltipItem>
+                      <EmailTooltipItem>
+                        {formikProps.errors.email ? (
+                          <StyledAlertCircle />
+                        ) : (
+                          <StyledCheckCircle />
+                        )}
+                        {validationTips.email[1]}
+                      </EmailTooltipItem>
                     </EmailTooltipList>
                   </EmailTooltipBlock>
                 )}
@@ -134,11 +149,32 @@ export const LogInForm: React.FC = () => {
                   {showPassword ? <StyledEyeOn /> : <StyledEyeOff />}
                 </TogPasButLoginForm>
                 {formikProps.touched.password && (
-                  <PasswordTooltipBlock>
+                  <PasswordTooltipBlock isValid={!formikProps.errors.password}>
                     <PasswordTooltipList>
-                      {validationTips.password.map((tip, index) => (
-                        <PasswordTooltipItem key={index}>{tip}</PasswordTooltipItem>
-                      ))}
+                      <PasswordTooltipItem>
+                        {formikProps.values.password.length >= 6 ? (
+                          <StyledCheckCircle />
+                        ) : (
+                          <StyledAlertCircle />
+                        )}
+                        {validationTips.password[1]}
+                      </PasswordTooltipItem>
+                      <PasswordTooltipItem>
+                        {formikProps.values.password.match(/[a-z]/) && formikProps.values.password.match(/[A-Z]/) ? (
+                          <StyledCheckCircle />
+                        ) : (
+                          <StyledAlertCircle />
+                        )}
+                        {validationTips.password[0]}
+                      </PasswordTooltipItem>
+                      <PasswordTooltipItem>
+                        {formikProps.values.password.match(/[0-9]/) ? (
+                          <StyledCheckCircle />
+                        ) : (
+                          <StyledAlertCircle />
+                        )}
+                        {validationTips.password[2]}
+                      </PasswordTooltipItem>
                     </PasswordTooltipList>
                   </PasswordTooltipBlock>
                 )}
