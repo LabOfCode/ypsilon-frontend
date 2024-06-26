@@ -406,17 +406,12 @@ export const Underline = styled.div`
   margin-bottom: 16px;
 `;
 
-export const EmailTooltipBlock = styled.div`
+export const LoginTooltipBlock = styled.div`
   margin-bottom: 8px;
   font-size: 12px;
 `;
 
-export const PasswordTooltipBlock = styled.div`
-  margin-bottom: 8px;
-  font-size: 12px;
-`;
-
-export const EmailTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
+export const LoginTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
   border-radius: 8px;
   padding: 8px;
   border: 1px solid ${({ isValid, theme }) =>

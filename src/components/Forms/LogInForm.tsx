@@ -19,11 +19,10 @@ import {
   StyledEyeOff,
   StyledEyeOn,
   RememberLink,
-  EmailTooltipBlock,
+  LoginTooltipBlock,
   EmailTooltipList,
   EmailTooltipItem,
-  EmailTooltipInnerBlock,
-  PasswordTooltipInnerBlock,
+  LoginTooltipInnerBlock,
   PasswordTooltipList,
   PasswordTooltipItem,
   TogPasButLoginForm,
@@ -31,7 +30,6 @@ import {
   StyledAlertCircle,
   ErrorText,
   Hint,
-  PasswordTooltipBlock
 } from './AuthForm.styled';
 
 const validationTips = {
@@ -119,8 +117,8 @@ export const LogInForm: React.FC = () => {
                   <ErrorText>Email не існує або не зареєстрований</ErrorText>
                 )}
                 {formikProps.touched.email && (
-                  <EmailTooltipBlock>
-                    <EmailTooltipInnerBlock isValid={!formikProps.errors.email}>
+                  <LoginTooltipBlock>
+                    <LoginTooltipInnerBlock isValid={!formikProps.errors.email}>
                       Email повинен мати: 
                     <EmailTooltipList>
                       <EmailTooltipItem>
@@ -140,8 +138,8 @@ export const LogInForm: React.FC = () => {
                         {validationTips.email[1]}
                       </EmailTooltipItem>
                       </EmailTooltipList>
-                    </EmailTooltipInnerBlock>
-                  </EmailTooltipBlock>
+                    </LoginTooltipInnerBlock>
+                  </LoginTooltipBlock>
                 )}
               </Label>
 
@@ -164,8 +162,8 @@ export const LogInForm: React.FC = () => {
                   <ErrorText>Невірний пароль</ErrorText>
                 )}
                 {formikProps.touched.password && (
-                  <PasswordTooltipBlock>
-                  <PasswordTooltipInnerBlock isValid={!formikProps.errors.password}>
+                  <LoginTooltipBlock>
+                  <LoginTooltipInnerBlock isValid={!formikProps.errors.password}>
                     Ваш пароль повинен мати: 
                     <PasswordTooltipList>
                       <PasswordTooltipItem>
@@ -194,8 +192,8 @@ export const LogInForm: React.FC = () => {
                         </PasswordTooltipItem>
                     </PasswordTooltipList>
                     <Hint>Уникайте використовування паролей, які ви використовуєте на інших сайтах та які можуть бути легко відгаданими кимось іншим</Hint>
-                    </PasswordTooltipInnerBlock>
-                  </PasswordTooltipBlock>
+                    </LoginTooltipInnerBlock>
+                  </LoginTooltipBlock>
                 )}
               </Label>
 
