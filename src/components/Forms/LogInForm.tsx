@@ -22,12 +22,16 @@ import {
   EmailTooltipBlock,
   EmailTooltipList,
   EmailTooltipItem,
-  PasswordTooltipBlock,
+  EmailTooltipInnerBlock,
+  PasswordTooltipInnerBlock,
   PasswordTooltipList,
   PasswordTooltipItem,
   TogPasButLoginForm,
   StyledCheckCircle,
-  StyledAlertCircle
+  StyledAlertCircle,
+  ErrorText,
+  Hint,
+  PasswordTooltipBlock
 } from './AuthForm.styled';
 
 const validationTips = {
@@ -95,7 +99,7 @@ export const LogInForm: React.FC = () => {
               <Legend>Увійти</Legend>
               <P>
                 Ще не зареєстровані?
-                <PLink href="//signup">
+                <PLink href="/signup">
                   Зареєструватись
                 </PLink>
               </P>
@@ -110,30 +114,37 @@ export const LogInForm: React.FC = () => {
                   placeholder="email@gmail.com"
                   isValid={formikProps.touched.email && !formikProps.errors.email}
                   required
-                />
+                  />
+                  {formikProps.touched.email && formikProps.errors.email && (
+                  <ErrorText>Email не існує або не зареєстрований</ErrorText>
+                )}
                 {formikProps.touched.email && (
-                  <EmailTooltipBlock isValid={!formikProps.errors.email}>
+                  <EmailTooltipBlock>
+                    <EmailTooltipInnerBlock isValid={!formikProps.errors.email}>
+                      Email повинен мати: 
                     <EmailTooltipList>
                       <EmailTooltipItem>
-                        {formikProps.errors.email ? (
-                          <StyledAlertCircle />
-                        ) : (
+                        {formikProps.values.email.match(/^[A-Za-z0-9@._]*[A-Za-z]+[A-Za-z0-9@._]*$/) ? (
                           <StyledCheckCircle />
+                        ) : (
+                          <StyledAlertCircle />
                         )}
                         {validationTips.email[0]}
                       </EmailTooltipItem>
                       <EmailTooltipItem>
-                        {formikProps.errors.email ? (
-                          <StyledAlertCircle />
-                        ) : (
+                        {formikProps.values.email.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/) ? (
                           <StyledCheckCircle />
+                        ) : (
+                          <StyledAlertCircle />
                         )}
                         {validationTips.email[1]}
                       </EmailTooltipItem>
-                    </EmailTooltipList>
+                      </EmailTooltipList>
+                    </EmailTooltipInnerBlock>
                   </EmailTooltipBlock>
                 )}
               </Label>
+
 
               <Label htmlFor="password">
                 <NamedLabel>Пароль</NamedLabel>
@@ -143,13 +154,19 @@ export const LogInForm: React.FC = () => {
                   id="password"
                   name="password"
                   placeholder="*********"
+                  isValid={formikProps.touched.password && !formikProps.errors.password}
                   required
                 />
                 <TogPasButLoginForm type="button" onClick={togglePasswordVisibility}>
                   {showPassword ? <StyledEyeOn /> : <StyledEyeOff />}
                 </TogPasButLoginForm>
+                {formikProps.touched.password && formikProps.errors.password && (
+                  <ErrorText>Невірний пароль</ErrorText>
+                )}
                 {formikProps.touched.password && (
-                  <PasswordTooltipBlock isValid={!formikProps.errors.password}>
+                  <PasswordTooltipBlock>
+                  <PasswordTooltipInnerBlock isValid={!formikProps.errors.password}>
+                    Ваш пароль повинен мати: 
                     <PasswordTooltipList>
                       <PasswordTooltipItem>
                         {formikProps.values.password.length >= 6 ? (
@@ -157,25 +174,27 @@ export const LogInForm: React.FC = () => {
                         ) : (
                           <StyledAlertCircle />
                         )}
-                        {validationTips.password[1]}
+                      {validationTips.password[0]}
+                        </PasswordTooltipItem>
+                        <PasswordTooltipItem>
+                          {formikProps.values.password.match(/[0-9]/) ? (
+                            <StyledCheckCircle />
+                          ) : (
+                            <StyledAlertCircle />
+                          )}
+                      {validationTips.password[1]}
                       </PasswordTooltipItem>
-                      <PasswordTooltipItem>
-                        {formikProps.values.password.match(/[a-z]/) && formikProps.values.password.match(/[A-Z]/) ? (
-                          <StyledCheckCircle />
-                        ) : (
-                          <StyledAlertCircle />
-                        )}
-                        {validationTips.password[0]}
-                      </PasswordTooltipItem>
-                      <PasswordTooltipItem>
-                        {formikProps.values.password.match(/[0-9]/) ? (
-                          <StyledCheckCircle />
-                        ) : (
-                          <StyledAlertCircle />
-                        )}
-                        {validationTips.password[2]}
-                      </PasswordTooltipItem>
+                        <PasswordTooltipItem>
+                          {formikProps.values.password.match(/[a-z]/) && formikProps.values.password.match(/[A-Z]/) ? (
+                            <StyledCheckCircle />
+                          ) : (
+                            <StyledAlertCircle />
+                          )}
+                          {validationTips.password[2]}
+                        </PasswordTooltipItem>
                     </PasswordTooltipList>
+                    <Hint>Уникайте використовування паролей, які ви використовуєте на інших сайтах та які можуть бути легко відгаданими кимось іншим</Hint>
+                    </PasswordTooltipInnerBlock>
                   </PasswordTooltipBlock>
                 )}
               </Label>
@@ -187,7 +206,8 @@ export const LogInForm: React.FC = () => {
                 disabled={
                   !formikProps.isValid ||
                   !formikProps.dirty ||
-                  formikProps.isSubmitting
+                  formikProps.isSubmitting ||
+                  formikProps.isValidating
                 }
               > Увійти </Button>
 
@@ -200,3 +220,4 @@ export const LogInForm: React.FC = () => {
 };
 
 export default LogInForm;
+

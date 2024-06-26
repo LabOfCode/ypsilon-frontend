@@ -406,12 +406,32 @@ export const Underline = styled.div`
   margin-bottom: 16px;
 `;
 
-export const EmailTooltipBlock = styled.div<{ isValid?: boolean }>`
-  border-radius: 8px;
-  font-size: 12px;
+export const EmailTooltipBlock = styled.div`
   margin-bottom: 8px;
-  padding: 8px;
+  font-size: 12px;
+`;
 
+export const PasswordTooltipBlock = styled.div`
+  margin-bottom: 8px;
+  font-size: 12px;
+`;
+
+export const EmailTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid ${({ isValid, theme }) =>
+    isValid === undefined
+      ? theme.colors.colorTeal
+      : isValid === null
+      ? theme.colors.colorTeal
+      : isValid
+      ? theme.colors.colorTeal
+      : theme.colors.colorRed};
+`;
+
+export const PasswordTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
+  border-radius: 8px;
+  padding: 8px;
   border: 1px solid ${({ isValid, theme }) =>
     isValid === undefined
       ? theme.colors.colorTeal
@@ -437,23 +457,6 @@ export const EmailTooltipItem = styled.li`
   margin: 8px 8px;
 `;
 
-export const PasswordTooltipBlock = styled.div<{ isValid?: boolean }>`
-  border-radius: 8px;
-  font-size: 12px;
-  padding: 8px;
-  margin-bottom: 8px;
-
-  border: 1px solid
-    ${({ isValid, theme }) =>
-      isValid === undefined
-        ? theme.colors.colorTeal
-        : isValid === null
-        ? theme.colors.colorTeal
-        : isValid
-        ? theme.colors.colorTeal
-        : theme.colors.colorRed};
-`;
-
 export const PasswordTooltipList = styled.ul`
   color: ${theme.colors.colorWhite};
   background-color: none;
@@ -477,4 +480,10 @@ export const TogPasButLoginForm = styled.button`
   padding: 0;
   right: 10px;
   top: 42px;
+`;
+
+
+
+export const Hint = styled.p`
+  font-size: 6px;
 `;
