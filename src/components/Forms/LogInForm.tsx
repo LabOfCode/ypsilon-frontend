@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Field, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { logIn } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
@@ -16,11 +16,40 @@ import {
   Fieldset,
   CustomInput,
   NamedLabel,
-  TogglePasswordButton,
   StyledEyeOff,
   StyledEyeOn,
-  RememberLink
+  RememberLink,
+  EmailTooltipBlock,
+  EmailTooltipList,
+  EmailTooltipItem,
+  PasswordTooltipBlock,
+  PasswordTooltipList,
+  PasswordTooltipItem,
+  TogPasButLoginForm
 } from './AuthForm.styled';
+
+const validationTips = {
+  email: [
+    "Введення символів латинецею",
+    "Використовувати дійсний емейл",
+  ],
+  password: [
+    "Заголовні та строчні літери",
+    "6 символів або більше",
+    "Хоча б одне число"
+  ],
+};
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .matches(/^[A-Za-z0-9@._]*[A-Za-z]+[A-Za-z0-9@._]*$/, validationTips.email[0])
+    .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, validationTips.email[1]),
+  password: Yup.string()
+    .matches(/[a-z]/, validationTips.password[0])
+    .matches(/[A-Z]/, validationTips.password[0])
+    .min(6, validationTips.password[1])
+    .matches(/[0-9]/, validationTips.password[2])
+});
 
 interface LoginPayload {
   email: string;
@@ -42,10 +71,13 @@ export const LogInForm: React.FC = () => {
 
   const submitForm = async (values: LoginPayload, actions: FormikHelpers<LoginPayload>) => {
     try {
-      await dispatch(logIn(values));
+      await schema.validate(values, { abortEarly: false });
+      await dispatch(logIn(values)).unwrap();
       actions.resetForm();
-    } catch (error) {
-      console.error('Login failed:', error);
+    } catch (error: any) {
+      if (error.payload === 'Email or password is wrong') {
+        console.error('Login failed:', error);
+      }
     }
   };
 
@@ -54,14 +86,14 @@ export const LogInForm: React.FC = () => {
       <Title>
         Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!
       </Title>
-      <Formik initialValues={initialValues} onSubmit={submitForm}>
-        {({ handleSubmit }) => ( 
-          <Form onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submitForm}>
+        {(formikProps) => (
+          <Form onSubmit={formikProps.handleSubmit}>
             <Fieldset>
               <Legend>Увійти</Legend>
               <P>
                 Ще не зареєстровані?
-                <PLink as={Link} to="/signup">
+                <PLink href="//signup">
                   Зареєструватись
                 </PLink>
               </P>
@@ -74,8 +106,18 @@ export const LogInForm: React.FC = () => {
                   id="email"
                   name="email"
                   placeholder="email@gmail.com"
+                  isValid={formikProps.touched.email && !formikProps.errors.email}
                   required
                 />
+                {formikProps.touched.email && (
+                  <EmailTooltipBlock>
+                    <EmailTooltipList>
+                      {validationTips.email.map((tip, index) => (
+                        <EmailTooltipItem key={index}>{tip}</EmailTooltipItem>
+                      ))}
+                    </EmailTooltipList>
+                  </EmailTooltipBlock>
+                )}
               </Label>
 
               <Label htmlFor="password">
@@ -88,14 +130,30 @@ export const LogInForm: React.FC = () => {
                   placeholder="*********"
                   required
                 />
-                <TogglePasswordButton type="button" onClick={togglePasswordVisibility}>
+                <TogPasButLoginForm type="button" onClick={togglePasswordVisibility}>
                   {showPassword ? <StyledEyeOn /> : <StyledEyeOff />}
-                </TogglePasswordButton>
+                </TogPasButLoginForm>
+                {formikProps.touched.password && (
+                  <PasswordTooltipBlock>
+                    <PasswordTooltipList>
+                      {validationTips.password.map((tip, index) => (
+                        <PasswordTooltipItem key={index}>{tip}</PasswordTooltipItem>
+                      ))}
+                    </PasswordTooltipList>
+                  </PasswordTooltipBlock>
+                )}
               </Label>
 
               <RememberLink href="">Забули пароль?</RememberLink>
 
-              <Button type="submit"> Увійти </Button>
+              <Button
+                type="submit"
+                disabled={
+                  !formikProps.isValid ||
+                  !formikProps.dirty ||
+                  formikProps.isSubmitting
+                }
+              > Увійти </Button>
 
             </Fieldset>
           </Form>

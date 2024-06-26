@@ -233,6 +233,7 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                   name="email"
                   placeholder="email@gmail.com"
                   className={formikProps.touched.email ? (!formikProps.errors.email ? 'valid' : 'invalid') : ''}
+                  isValid={formikProps.touched.email && !formikProps.errors.email}
                   required
                 />
                 <Tooltip

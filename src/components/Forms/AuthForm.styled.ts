@@ -63,7 +63,15 @@ export const CustomInput = styled.input<{ isValid?: boolean }>`
   border-radius: 4px;
   margin-top: 8px;
   margin-bottom: 16px;
-  border: 1px solid ${theme.colors.colorWhite};
+  border: 1px solid ${({ isValid, theme }) => 
+    isValid === undefined 
+      ? theme.colors.colorWhite 
+      : isValid === null 
+        ? theme.colors.colorWhite 
+        : isValid 
+          ? theme.colors.colorWhite 
+          : theme.colors.colorRed
+  };
   background-color: ${theme.colors.backgroundWhite};
   color: ${({ isValid, theme }) => 
     isValid === undefined 
@@ -81,13 +89,14 @@ export const CustomInput = styled.input<{ isValid?: boolean }>`
   }
 
   @media ${theme.media.tablet} {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   @media ${theme.media.desktop} {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 `;
+
 
 export const Legend = styled.legend`
   color: ${theme.colors.colorWhite};
@@ -395,4 +404,54 @@ export const Underline = styled.div`
   height: 1px;
   background-color: ${theme.colors.backgroundWhite};
   margin-bottom: 16px;
+`;
+
+export const EmailTooltipBlock = styled.div`
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.colorTeal};
+  margin-bottom: 8px;
+`;
+
+export const EmailTooltipList = styled.ul`
+  color: ${theme.colors.colorWhite};
+  background-color: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  }
+`;
+
+export const EmailTooltipItem = styled.li`
+  margin: 8px 8px;
+`;
+
+export const PasswordTooltipBlock = styled.div`
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.colorTeal};
+  margin-bottom: 8px;
+`;
+
+export const PasswordTooltipList = styled.ul`
+  color: ${theme.colors.colorWhite};
+  background-color: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  }
+`;
+
+export const PasswordTooltipItem = styled.li`
+  margin: 8px 8px;
+`;
+
+export const TogPasButLoginForm = styled.button`
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  right: 10px;
+  top: 42px;
 `;
