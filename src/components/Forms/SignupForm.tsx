@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Formik, Field, FormikHelpers } from 'formik';
+import { Formik, Field, FormikHelpers, FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import * as Yup from 'yup';
+// import IconSprite from '@/assets/images/svg_sprite.svg';
 import {
   Form,
   PLink,
@@ -25,7 +26,6 @@ import {
   TogglePasswordButton,
   ValidationEmailIcon,
   ValidationPasswordIcon,
-  EyeIcon,
   StyledEyeOff,
   StyledEyeOn,
   StyledCheckCircle,
@@ -140,8 +140,9 @@ export const SignupForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showConfirmPasswordTips, setShowConfirmPasswordTips] = useState(false);
-  const [showTips, setShowTips] = useState(false);
+  const [showTermsTooltip, setShowTermsTooltip] = useState(false);
+  const [showApplyPurposeTooltip, setShowApplyPurposeTooltip] = useState(false);
+  const [formCompleted, setFormCompleted] = useState(false);
 
   const togglePasswordVisibilityPassword = () => {
     setShowPassword(!showPassword);
@@ -149,56 +150,101 @@ export const SignupForm: React.FC = () => {
 
   const togglePasswordVisibilityConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
-    setShowConfirmPasswordTips(false);
-    setShowTips(false); 
   };
-
+  
   const submitForm = async (values: RegisterPayload, actions: FormikHelpers<RegisterPayload>) => {
-    try {
-      const { confirmPassword, apply, purpose, terms, ...formData } = values;
+    const showApplyPurposeTooltip = !values.apply && !values.purpose;
+    const showTermsTooltip = !values.terms && (!values.apply && !values.purpose);
+    
+    setShowApplyPurposeTooltip(showApplyPurposeTooltip);
+    setShowTermsTooltip(showTermsTooltip);
 
-      if (values.password !== values.confirmPassword) {
-      actions.setFieldError('confirmPassword', validationTips.confirmPassword[0]);
+    if (showApplyPurposeTooltip || showTermsTooltip) {
+      setFormCompleted(false);
       actions.setSubmitting(false);
       return;
     }
 
-      await schema.validate(formData, { abortEarly: false });
-
-      if (!values.terms || (!values.apply && !values.purpose)) {
-        setShowTips(true); 
-        actions.setSubmitting(false); 
-        return;
-      }
-
-      await dispatch(signUp(formData));
+    try {
+      await schema.validate(values);
+      await dispatch(signUp(values));
       actions.resetForm();
+      setFormCompleted(true); 
     } catch (error) {
       console.error('Error during form submission:', error);
+    } finally {
+      actions.setSubmitting(false);
     }
   };
 
-const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) => {
-  const { errors, touched, values } = formikProps;
+  const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) => {
+    const { errors, touched, values } = formikProps;
 
-  if (!touched[field]) return null;
+    if (!touched[field]) return null;
 
-  if (field === 'confirmPassword') {
-    const isMatch = values.confirmPassword === values.password;
-    setShowConfirmPasswordTips(!isMatch); 
-    const icon = isMatch ? <StyledCheckCircle /> : <StyledAlertCircle />;
-    return icon;
+    if (field === 'confirmPassword') {
+      const isMatch = values.confirmPassword === values.password;
+      const icon = isMatch ? <StyledCheckCircle /> : <StyledAlertCircle />;
+    return (
+      <ValidationPasswordIcon isValid={isMatch}>
+        {icon}
+      </ValidationPasswordIcon>
+    );
   }
 
-  return errors[field] ? <StyledAlertCircle /> : <StyledCheckCircle />;
+  return errors[field] ? (
+    <ValidationPasswordIcon isValid={false}>
+      <StyledAlertCircle />
+    </ValidationPasswordIcon>
+  ) : (
+    <ValidationPasswordIcon isValid={true}>
+      <StyledCheckCircle />
+    </ValidationPasswordIcon>
+  );
 };
-
   
+  const toggleCheckboxApply = (formikProps: FormikProps<RegisterPayload>) => {
+    const newApplyValue = !formikProps.values.apply;
+    formikProps.setFieldValue('apply', newApplyValue);
+    const newValues = { ...formikProps.values, apply: newApplyValue };
+    const formCompleted = areCheckboxesCompleted(newValues);
+    setFormCompleted(formCompleted);
+    setShowApplyPurposeTooltip(!newValues.apply && !newValues.purpose);
+    setShowTermsTooltip(!newValues.terms && (newValues.apply || newValues.purpose));
+  };
+
+  const toggleCheckboxPurpose = (formikProps: FormikProps<RegisterPayload>) => {
+    const newPurposeValue = !formikProps.values.purpose;
+    formikProps.setFieldValue('purpose', newPurposeValue);
+    const newValues = { ...formikProps.values, purpose: newPurposeValue };
+    const formCompleted = areCheckboxesCompleted(newValues);
+    setFormCompleted(formCompleted);
+    setShowApplyPurposeTooltip(!newValues.apply && !newValues.purpose);
+    setShowTermsTooltip(!newValues.terms && (newValues.apply || newValues.purpose));
+  };
+
+  const toggleCheckboxTerms = (formikProps: FormikProps<RegisterPayload>) => {
+    const newTermsValue = !formikProps.values.terms;
+    formikProps.setFieldValue('terms', newTermsValue);
+    const newValues = { ...formikProps.values, terms: newTermsValue };
+    const formCompleted = areCheckboxesCompleted(newValues);
+    setFormCompleted(formCompleted);
+    setShowApplyPurposeTooltip(!newValues.apply && !newValues.purpose);
+    setShowTermsTooltip(!newValues.terms && (newValues.apply || newValues.purpose));
+    setShowTermsTooltip(!newValues.terms && (!newValues.apply || !newValues.purpose));
+  };
+
+  const areCheckboxesCompleted = (values: RegisterPayload) => {
+    return (values.apply || values.purpose) && values.terms;
+  };
+
+
   return (
     <Container>
       <Title>
         Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
       </Title>
+      {/* {formCompleted && <p>Форма успішно відправлена!</p>} */}
       <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submitForm}>
         {(formikProps) => (
           <Form onSubmit={formikProps.handleSubmit}>
@@ -245,21 +291,18 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                 {formikProps.touched.email && (
                   <ValidationEmailIcon isValid={!formikProps.errors.email}>
                     {formikProps.errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
-                    <EyeIcon />
                   </ValidationEmailIcon>
                 )}
               </Label>
 
               <CheckboxContainer>
-                <PMeta>Мета реєстрації</PMeta>
-
                 <CheckboxLabel>
                   <Checkbox
                     id="apply"
                     name="apply"
                     type="checkbox"
                     checked={formikProps.values.apply}
-                    onChange={() => formikProps.setFieldValue('apply', !formikProps.values.apply)}
+                    onChange={() => toggleCheckboxApply(formikProps)}
                   />
                   {formikProps.values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Подача заявки на вакансію</CheckboxText>
@@ -271,20 +314,18 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                     name="purpose"
                     type="checkbox"
                     checked={formikProps.values.purpose}
-                    onChange={() => formikProps.setFieldValue('purpose', !formikProps.values.purpose)}
+                    onChange={() => toggleCheckboxPurpose(formikProps)}
                   />
                   {formikProps.values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
                   <CheckboxText>Реєстрація працівника</CheckboxText>
                 </CheckboxLabel>
 
-                {showTips && !formikProps.values.apply && !formikProps.values.purpose && (
                   <Tooltip
-                    show={!formikProps.values.apply && !formikProps.values.purpose}
-                    tips={validationTips.apply} 
-                    bottom="-12px"
+                    show={showApplyPurposeTooltip}
+                    tips={['Ви повинні обрати принаймні одну мету реєстрації']}
+                    bottom="-14px"
                     color="red"
                   />
-                )}
               </CheckboxContainer>
 
               <Label htmlFor="password">
@@ -322,6 +363,12 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                   placeholder="*********"
                   required
                 />
+                  <Tooltip
+                    show={formikProps.errors.confirmPassword && formikProps.touched.confirmPassword} 
+                    tips={validationTips.confirmPassword}
+                    bottom="-18px"
+                    color="black"
+                  />
                 <ValidationPasswordIcon isValid={formikProps.values.confirmPassword === formikProps.values.password}>
                   {renderValidationIcon('confirmPassword', formikProps)}
                 </ValidationPasswordIcon>
@@ -332,16 +379,7 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                     <StyledEyeOff />
                   )}
                 </TogglePasswordButton>
-                {(formikProps.touched.confirmPassword && !showConfirmPasswordTips) || showTips && (
-                  <Tooltip
-                    show={formikProps.errors.confirmPassword && formikProps.touched.confirmPassword}
-                    tips={validationTips.confirmPassword}
-                    bottom="-18px"
-                    color="black"
-                  />
-                )}
               </Label>
-
               <Underline />
 
               <CheckboxContainer>
@@ -351,12 +389,12 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
                     name="terms"
                     type="checkbox"
                     checked={formikProps.values.terms}
-                    onChange={() => formikProps.setFieldValue('terms', !formikProps.values.terms)}
+                    onChange={() => toggleCheckboxTerms(formikProps)}
                     required
                   />
                   <Tooltip
-                    show={!formikProps.values.terms && formikProps.touched.terms}
-                    tips={validationTips.terms}
+                    show={showTermsTooltip}
+                    tips={['Ви повинні погодитися з умовами використання']}
                     bottom="-14px"
                     color="red"
                   />
@@ -372,10 +410,12 @@ const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) =>
               <Button
                 type="submit"
                 disabled={
-                  !formikProps.isValid ||
-                  !formikProps.dirty ||
-                  formikProps.isSubmitting
-                }
+                !formikProps.isValid ||
+                !formikProps.dirty ||
+                formikProps.isSubmitting ||
+                showApplyPurposeTooltip ||
+                showTermsTooltip
+              }
               >
                 На модерацію
               </Button>

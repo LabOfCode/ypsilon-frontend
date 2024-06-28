@@ -18,23 +18,23 @@ export const ContainerStyled = styled.div`
 `;
 
 export const StyledParrotIcon = styled.img`
-    position: fixed;
+    position: absolute;
     width: 270px;
     height: 260px;
-    bottom: 0%;  
-    left: 6%;
+    bottom: -48%;  
+    left: 8%;
 
   @media ${theme.media.tablet} {
     width: 270px;
     height: 260px;
-    bottom: -2%;  
-    left: 1%;
+    bottom: -52%;  
+    left: 2%;
   }
 
   @media ${theme.media.desktop} {
     width: 453px;
     height: 427px;
-    top: 60%;  
+    top: 89%;  
     left: 2%;
   }
 `;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '@/Theme';
-import EyeOffActive from '@/assets/images/icons/eye_off_active.svg';
 import EyeOff from '@/assets/images/icons/eye_off.svg';
 import EyeOn from '@/assets/images/icons/eye_on.svg';
 import CheckCircleIcon from '@/assets/images/icons/check_circle.svg';
@@ -12,6 +11,10 @@ interface StyledCircleProps {
   isValid: boolean;
   theme?: any;
 }
+
+// export const SvgIcon = styled.svg<{ color?: string }>`
+//   stroke: ${(props) => props.color || 'currentColor'}; 
+// `;
 
 export const Form = styled.form`
   position: relative;
@@ -344,7 +347,7 @@ export const TogglePasswordButton = styled.button`
   padding: 0;
   position: absolute;
   right: 10px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
 `;
 
@@ -353,18 +356,18 @@ export const ValidationEmailIcon = styled.div<StyledCircleProps>`
   gap: 4px;
   align-items: center;
   position: absolute;
-  right: 4px;
-  top: 50%;
+  right: 12px;
+  top: 55%;
   transform: translateY(-50%);
-  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
+  color: ${({ isValid }) => (isValid ? 'green' : 'red')};
 `;
 
-export const ValidationPasswordIcon = styled.div<StyledCircleProps>`
+export const ValidationPasswordIcon = styled.div<{ isValid?: boolean }>`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 36px;
-  top: 50%;
+  right: 18px;
+  top: 55%;
   transform: translateY(-50%);
   color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
 `;
@@ -376,12 +379,6 @@ export const StyledEyeOff = styled(EyeOff)`
 `;
 
 export const StyledEyeOn = styled(EyeOn)`
-  width: 24px;
-  height: 16px;
-`;
-
-export const EyeIcon = styled(EyeOffActive)`
-  color: ${theme.colors.colorBlack};
   width: 24px;
   height: 16px;
 `;
@@ -477,8 +474,6 @@ export const TogPasButLoginForm = styled.button`
   right: 10px;
   top: 42px;
 `;
-
-
 
 export const Hint = styled.p`
   font-size: 6px;

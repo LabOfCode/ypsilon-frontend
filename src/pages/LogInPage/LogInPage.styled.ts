@@ -9,7 +9,7 @@ export const ContainerStyled = styled.div`
 
 export const IconContainer = styled.div`
   display: flex;
-  position: fixed;
+  position: absolute;
   justify-content: space-between;
   align-items: flex-start; 
   width: 100%; 
@@ -19,8 +19,8 @@ export const StyledParrotIconLeft = styled.img`
   width: 198px;
   height: 188px;
   transform: rotate(-2deg);
-  margin-left: 2%; 
-  margin-top: -10%; 
+  margin-left: 4%; 
+  margin-top: 4%; 
 
   @media ${theme.media.tablet} {
     width: 198px;
@@ -35,7 +35,7 @@ export const StyledParrotIconLeft = styled.img`
     height: 473px;
     transform: rotate(90deg);
     margin-left: -2%; 
-    margin-top: -24%; 
+    margin-top: -30%; 
   }
 `;
 
@@ -48,6 +48,6 @@ export const StyledParrotIconRight = styled.img`
     height: 357px;
     transform: rotate(-1.5deg);
     margin-right: 2%; 
-    margin-top: -4%; 
+    margin-top: -6%; 
   }
 `;
