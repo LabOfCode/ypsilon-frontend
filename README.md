@@ -178,3 +178,12 @@ return(
 	{isDesktop && (<img src={map_d} alt="map"/>)}
 )
 ```
+
+- `Spiner` - для всех запросов на сервер использовать спинер (loader)
+
+```tsx
+<Spiner
+  loading={true}
+  size={100}
+/>
+```

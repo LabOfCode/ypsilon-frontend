@@ -30,12 +30,42 @@ export const App = () => {
   ) : (
     <>
       <Routes>
-        <Route path={routes.HOME} element={<Layout />}>
-          <Route index element={<MainPage />} />
-          <Route path={routes.LOGIN} element={<PublicRoute redirectTo="/vacancies" element={<LogInPage />} />} />
-          <Route path={routes.SIGNUP} element={<PublicRoute redirectTo="/vacancies" element={<SignUpPage />} />} />
-          <Route path={routes.VACANCIES} element={<VacanciesPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path={routes.HOME}
+          element={<Layout />}
+        >
+          <Route
+            index
+            element={<MainPage />}
+          />
+          <Route 
+            path={routes.LOGIN} 
+            element={<PublicRoute 
+            redirectTo="/vacancies" 
+            element={<LogInPage />} />} 
+          />
+          <Route 
+            path={routes.SIGNUP} 
+            element={<PublicRoute 
+            redirectTo="/vacancies" 
+            element={<SignUpPage />} />} 
+          />
+          <Route
+            path={routes.VACANCIES}
+            element={<VacanciesPage />}
+          />
+          <Route
+            path={routes.REVIEWS}
+            element={<p>Reviews page</p>}
+          />
+          <Route
+            path={routes.CONTACTS}
+            element={<p>Contacts page</p>}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
         </Route>
       </Routes>
       <GlobalStyle />
