@@ -1,19 +1,18 @@
 import { Helmet } from 'react-helmet';
 import { SignupForm } from '@/components/Forms/SignupForm';
+import { ContainerStyled, ContentWrapper, StyledParrotIcon } from './SignUpPage.styled';
+import parrotIcon from '@/assets/images/parrot_5.png';
 
-export default function SignUpPage(){
+export default function SignUpPage() {
   return (
-    <div>
+    <ContainerStyled>
       <Helmet>
         <title>Зареєструватись</title>
       </Helmet>
-      <SignupForm />
-    </div>
+      <ContentWrapper>
+        <SignupForm />
+      </ContentWrapper>
+      <StyledParrotIcon src={parrotIcon} alt="Parrot Icon" />
+    </ContainerStyled>
   );
 }
-
-// const SignUpPage = () => {
-//   return <SignupForm />;
-// };
-
-// export default SignUpPage;

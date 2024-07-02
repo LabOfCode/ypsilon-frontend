@@ -11,5 +11,13 @@ export const Username = styled.p`
 `;
 
 export const LogoutButton = styled.button`
-  / * Додаткові стилі для кнопки */
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #2a363b;
+
+  &.active {
+    color: #000;
+  }
 `;

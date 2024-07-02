@@ -11,8 +11,8 @@ export const Navigation: React.FC = () => {
         Головна
       </StyledNavLink>
       {isLoggedIn && (
-        <StyledNavLink to="/user">
-          Мій профіль
+        <StyledNavLink to="/vacancies">
+          Вакансії
         </StyledNavLink>
       )}
     </nav>

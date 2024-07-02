@@ -1,23 +1,13 @@
-import { useSelector } from 'react-redux';
-import { Navigate, Route } from 'react-router-dom';
-import authSelectors from '@/redux/auth/authSelectors';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '@/redux/hooks/useAuth';
 
-type PathRouteProps = any; 
-type LayoutRouteProps = any; 
-type IndexRouteProps = any; 
-
-type RouteProps = PathRouteProps & LayoutRouteProps & IndexRouteProps;
-
-interface PublicRouteProps extends RouteProps {
-  path: string;
+interface PublicRouteProps {
   redirectTo: string;
   element: React.ReactNode;
 }
 
-export default function PublicRoute({ redirectTo, ...rest }: PublicRouteProps) {
-  const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
+export const PublicRoute = ({ element, redirectTo = '/' }: PublicRouteProps) => {
+  const { isLoggedIn } = useAuth();
 
-  return (
-    <Route {...rest} element={isLoggedIn ? <Navigate to={redirectTo} replace /> : rest.element} />
-  );
-}
+  return isLoggedIn ? <Navigate to={redirectTo} /> : element;
+};
