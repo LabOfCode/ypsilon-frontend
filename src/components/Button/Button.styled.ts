@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export interface ButtonStyledProps {
-  to: string;
+  to?: string;
   $yellow?: boolean;
   $teal?: boolean;
   $ocean?: boolean;
@@ -12,14 +12,17 @@ export interface ButtonStyledProps {
 }
 
 export const ButtonStyled = styled.button<ButtonStyledProps>`
-  width: ${({ width }) => width || '322px'};
-  font-size: ${({ fontSize }) => fontSize || '24px'};
+  width: ${({ width }) => width || '164px'};
+  font-size: ${({ fontSize }) => fontSize || '14px'};
   font-weight: 700;
   line-height: 1.4;
-  padding: 9px 21px;
+  padding: 16px 8px;
   border: none;
   border-radius: 10px;
   margin: ${({ margin }) => margin || '0'};
+  transition:
+    color 250ms ${({ theme }) => theme.cubicBezier},
+    box-shadow 250ms ${({ theme }) => theme.cubicBezier};
 
   &:hover,
   &:focus {
@@ -30,6 +33,11 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     props.$yellow &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundYellow};
+
+      @media ${({ theme }) => theme.media.tablet} {
+        width: 322px;
+        font-size: 24px;
+      }
 
       &:hover,
       &:focus {
@@ -42,6 +50,13 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     css`
       background-color: ${({ theme }) => theme.colors.backgroundTeal};
       color: ${({ theme }) => theme.colors.colorWhite};
+      font-weight: 600;
+      width: 150px;
+
+      @media ${({ theme }) => theme.media.desktop} {
+        width: 220px;
+        font-size: 16px;
+      }
 
       &:hover,
       &:focus {
