@@ -28,6 +28,7 @@ import {
   StyledAlertCircle,
   ErrorText,
   Hint,
+  PRule,
 } from './AuthForm.styled';
 
 const validationTips = {
@@ -58,12 +59,16 @@ interface LoginPayload {
   password: string;
 }
 
+interface LogInFormProps {
+  onRecoveryClick: () => void;
+}
+
 const initialValues: LoginPayload = {
   email: '',
   password: '',
 };
 
-const LogInForm: React.FC = () => {
+const LogInForm: React.FC<LogInFormProps> = ({ onRecoveryClick }) => {
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -93,7 +98,7 @@ const LogInForm: React.FC = () => {
   ) => (
     touched && (
       <LoginTooltipBlock>
-        <LoginTooltipInnerBlock isValid={!errors}>
+        <LoginTooltipInnerBlock isValid={!errors}> <PRule>Email повинен мати: </PRule>
           <LoginTooltipList>
             {validationArray.map((regex, index) => (
               <LoginTooltipItem key={index}>
@@ -174,7 +179,7 @@ const LogInForm: React.FC = () => {
                 )}
               </Label>
 
-              <RememberLink href="">Забули пароль?</RememberLink>
+              <RememberLink as="button" type="button" onClick={onRecoveryClick}>Забули пароль?</RememberLink>
 
               <Button
                 type="submit"

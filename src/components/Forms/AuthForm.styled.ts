@@ -164,6 +164,36 @@ export const P = styled.p`
   justify-content: center;
 `;
 
+export const PInstr = styled.p`
+  color: ${theme.colors.colorWhite};
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
+  display: flex;
+  justify-content: center;
+`;
+
+
+export const PSentLink = styled.p`
+  color: ${theme.colors.colorWhite};
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
+  display: flex;
+  justify-content: center;
+`;
+
+
 export const Label = styled.label`
   position: relative;
   display: flex;
@@ -180,7 +210,12 @@ export const NamedLabel = styled.p`
   }
 `;
 
-export const ErrorText = styled.div`
+export const ErrorTextContainer = styled.div`
+  min-height: 16px; 
+  margin-bottom: 24px;
+`;
+
+export const ErrorText = styled.p`
   color: ${theme.colors.colorRed};
   font-size: 14px;
   margin-top: -8px;
@@ -362,6 +397,13 @@ export const ValidationEmailIcon = styled.div<StyledCircleProps>`
   color: ${({ isValid }) => (isValid ? 'green' : 'red')};
 `;
 
+export const ValidEmailIcon = styled.div<StyledCircleProps>`
+  position: absolute;
+  right: 12px;
+  top: 18%;
+  color: ${({ isValid }) => (isValid ? 'green' : 'red')};
+`;
+
 export const ValidationPasswordIcon = styled.div<{ isValid?: boolean }>`
   display: flex;
   align-items: center;
@@ -404,11 +446,12 @@ export const Underline = styled.div`
 `;
 
 export const LoginTooltipBlock = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   font-size: 12px;
 `;
 
 export const LoginTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
+  font-size: 12px;
   border-radius: 8px;
   padding: 8px;
   border: 1px solid ${({ isValid, theme }) =>
@@ -419,6 +462,12 @@ export const LoginTooltipInnerBlock = styled.div<{ isValid?: boolean }>`
       : isValid
       ? theme.colors.colorTeal
       : theme.colors.colorRed};
+`;
+
+export const PRule = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.colorWhite};
 `;
 
 export const LoginTooltipList = styled.ul`
