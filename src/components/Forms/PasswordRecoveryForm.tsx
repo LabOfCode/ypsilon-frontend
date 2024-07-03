@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { logIn } from '@/redux/auth/authOperations';
+// import { recoverPassword } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import Container from '@/components/Container';
 import {
@@ -56,7 +56,7 @@ const PasswordRecoveryForm: React.FC = () => {
   const submitForm = async (values: RecoveryPayload, actions: FormikHelpers<RecoveryPayload>) => {
     try {
       await schema.validate(values, { abortEarly: false });
-      // await dispatch(logIn(values)).unwrap();
+      // await dispatch(recoverPassword(values.email)).unwrap();
       setEmailSent(true);
       actions.resetForm();
     } catch (error: any) {
