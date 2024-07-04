@@ -4,6 +4,7 @@ export interface ButtonStyledProps {
   to?: string;
   $yellow?: boolean;
   $teal?: boolean;
+  $tealForCard?: boolean;
   $ocean?: boolean;
   $disabled?: boolean;
   width?: string;
@@ -16,7 +17,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   font-size: ${({ fontSize }) => fontSize || '14px'};
   font-weight: 700;
   line-height: 1.4;
-  padding: 16px 8px;
+  padding: 16px 6px;
   border: none;
   border-radius: 10px;
   margin: ${({ margin }) => margin || '0'};
@@ -47,6 +48,23 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
 
   ${props =>
     props.$teal &&
+    css`
+      background-color: ${({ theme }) => theme.colors.backgroundTeal};
+      color: ${({ theme }) => theme.colors.colorWhite};
+
+      @media ${({ theme }) => theme.media.tablet} {
+        width: 322px;
+        font-size: 24px;
+      }
+
+      &:hover,
+      &:focus {
+        color: ${({ theme }) => theme.colors.colorYellow};
+      }
+    `}
+
+  ${props =>
+    props.$tealForCard &&
     css`
       background-color: ${({ theme }) => theme.colors.backgroundTeal};
       color: ${({ theme }) => theme.colors.colorWhite};

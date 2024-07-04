@@ -53,7 +53,7 @@ export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => 
           <PriceText>{`${price} крон/год`}</PriceText>
         </ItemWrap>
         <ButtonWrap>
-          <Button $teal>Залишити заявку</Button>
+          <Button $tealForCard>Залишити заявку</Button>
           <button onClick={() => onToggleFavorite(_id)}>
             {vacancy.isFavorite ? (
               <HeartActiveIcon>
