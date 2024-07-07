@@ -12,10 +12,6 @@ interface StyledCircleProps {
   theme?: any;
 }
 
-// export const SvgIcon = styled.svg<{ color?: string }>`
-//   stroke: ${(props) => props.color || 'currentColor'}; 
-// `;
-
 export const Form = styled.form`
   position: relative;
   display: flex;
@@ -527,3 +523,5 @@ export const TogPasButLoginForm = styled.button`
 export const Hint = styled.p`
   font-size: 6px;
 `;
+
+

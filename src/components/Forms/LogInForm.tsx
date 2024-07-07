@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
-import Container from '@/components/Container';
+// import Container from '@/components/Container';
 import {
   Form,
   PLink,
@@ -28,7 +28,7 @@ import {
   StyledAlertCircle,
   ErrorText,
   Hint,
-  PRule,
+  PRule
 } from './AuthForm.styled';
 
 const validationTips = {
@@ -114,7 +114,7 @@ const LogInForm: React.FC<LogInFormProps> = ({ onRecoveryClick }) => {
   );
 
   return (
-    <Container>
+    <>
       <Title>
         Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!
       </Title>
@@ -195,7 +195,7 @@ const LogInForm: React.FC<LogInFormProps> = ({ onRecoveryClick }) => {
           </Form>
         )}
       </Formik>
-    </Container>
+    </>
   );
 };
 

@@ -3,9 +3,10 @@ import { theme } from '@/Theme';
 
 export const ContainerStyled = styled.div`
   background-image: ${({ theme }) => theme.colors.backgroundOcean};
-  position: relative;
-  display: flex;
-  flex-direction: column;
+`;
+
+export const IconContainer = styled.div`
+  position: relative; 
   padding-bottom: 276px; 
   
   @media ${theme.media.tablet} {
@@ -17,6 +18,29 @@ export const ContainerStyled = styled.div`
   }
 `;
 
+export const StyledParrotIcon = styled.img`
+  position: absolute;
+  width: 270px;
+  height: 260px;
+  bottom: -0.3%;  
+  left: -2%;
+
+  @media ${theme.media.tablet} {
+    width: 270px;
+    height: 260px;
+    left: -2%;
+    bottom: 0;  
+  }
+
+  @media ${theme.media.desktop} {
+    left: 10%;
+    width: 453px;
+    height: 427px;
+    bottom: 0.1%;  
+    left: -1%;
+  }
+`;
+
 export const ContentWrapper = styled.div`
   flex: 1;
   display: flex;
@@ -25,24 +49,4 @@ export const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-export const StyledParrotIcon = styled.img`
-  position: absolute;
-  width: 270px;
-  height: 260px;
-  bottom: 0;  
-  left: 36%;
-  transform: translateX(-50%);
 
-  @media ${theme.media.tablet} {
-    width: 270px;
-    height: 260px;
-    left: 22%;
-    bottom: 0;  
-  }
-
-  @media ${theme.media.desktop} {
-    left: 24%;
-    width: 453px;
-    height: 427px;
-  }
-`;

@@ -3,10 +3,13 @@ import { theme } from '@/Theme';
 
 export const ContainerStyled = styled.div`
   background-image: ${({ theme }) => theme.colors.backgroundOcean};
+`;
+
+export const IconsContainer = styled.div`
   position: relative; 
   padding-bottom: 204px;
 
-   @media ${theme.media.tablet} {
+  @media ${theme.media.tablet} {
     padding-bottom: 180px;
   }
 
@@ -34,20 +37,15 @@ export const StyledParrotIconLeft = styled.img`
   @media ${theme.media.desktop} {
     width: 511px;
     height: 473px;
-    transform: rotate(90deg);
-    left: -1.6%;
-    bottom: 15%;
+    transform: rotate(88.45deg);
+    left: -4.8%;
+    bottom: 80%;
   }
 `;
 
 export const StyledParrotIconRight = styled.img`
   position: absolute;
   display: none;
-  width: 198px;
-  height: 188px;
-  transform: rotate(2deg);
-  right: 4%;
-  bottom: 4%;
 
   @media ${theme.media.desktop} {
     display: block;
@@ -55,6 +53,6 @@ export const StyledParrotIconRight = styled.img`
     height: 357px;
     transform: rotate(-1.5deg);
     right: 2%;
-    bottom: -0.6%;
+    bottom: -9%;
   }
 `;

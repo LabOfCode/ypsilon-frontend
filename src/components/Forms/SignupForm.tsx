@@ -3,7 +3,6 @@ import { Formik, Field, FormikHelpers, FormikProps } from 'formik';
 import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
-import Container from '@/components/Container';
 import * as Yup from 'yup';
 // import IconSprite from '@/assets/images/svg_sprite.svg';
 import {
@@ -240,7 +239,7 @@ export const SignupForm: React.FC = () => {
 
 
   return (
-    <Container>
+    <>
       <Title>
         Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
       </Title>
@@ -423,7 +422,7 @@ export const SignupForm: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </Container>
+    </>
   );
 };
 
