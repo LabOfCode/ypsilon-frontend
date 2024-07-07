@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 // import { recoverPassword } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
-import Container from '@/components/Container';
 import {
   Form,
   Label,
@@ -90,7 +89,7 @@ const PasswordRecoveryForm: React.FC = () => {
   );
 
   return (
-   <Container>
+   <>
       <Title>
         Шукаєте роботу в Чехії? Не шукайте далі! Ваша мрія про чеські багаті зарплати ось-ось здійсниться!
       </Title>
@@ -154,7 +153,7 @@ const PasswordRecoveryForm: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </Container>
+    </>
   );
 };
 
