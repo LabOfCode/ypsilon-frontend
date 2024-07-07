@@ -1,12 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; 
 import { authReducer } from '@/redux/auth/authSlice';
-
 import { vacancyApi } from './services/vacancies';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['auth'], 
+};
+
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: persistedAuthReducer,
     [vacancyApi.reducerPath]: vacancyApi.reducer,
   },
   middleware: getDefaultMiddleware =>
