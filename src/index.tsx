@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store';
 import { theme } from '@/Theme';
 import '@/assets/images/svg_sprite.svg';
+
 import { App } from '@/components/App';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -26,3 +27,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </PersistGate>
   </Provider>
 );
+
