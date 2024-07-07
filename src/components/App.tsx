@@ -16,6 +16,7 @@ const SignUpPage = lazy(() => import('@/pages/SignUpPage/SignUpPage'));
 const LogInPage = lazy(() => import('@/pages/LogInPage/LogInPage'));
 const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage'));
+const ContactsPage = lazy(() => import('@/pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -60,7 +61,7 @@ export const App = () => {
           />
           <Route
             path={routes.CONTACTS}
-            element={<p>Contacts page</p>}
+            element={<ContactsPage />}
           />
           <Route
             path="*"

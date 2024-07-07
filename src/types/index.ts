@@ -6,6 +6,20 @@ export interface IUser {
   lastname?: string;
 }
 
+export interface IVacancy {
+  _id: string;
+  title: string;
+  place: string;
+  price: number;
+  img: string;
+  isTop: boolean;
+}
+
+export interface VacanciesResponse {
+  vacancies: IVacancy[];
+  total: number;
+}
+
 //Auth
 
 export interface AuthState {

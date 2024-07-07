@@ -15,11 +15,11 @@ const isDev = process.env.NODE_ENV === 'development';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-    {/* <PersistGate
+  <Provider store={store}>
+    <PersistGate
       loading={null}
       persistor={persistor}
-    > */}
+    >
     <BrowserRouter basename={isDev ? '/' : '/ypsilon-frontend/'}>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
@@ -27,7 +27,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </ThemeProvider>
       </HelmetProvider>
     </BrowserRouter>
-    {/* </PersistGate> */}
+    </PersistGate>
     </Provider>
-  </React.StrictMode>
-);
+  </React.StrictMode>)
