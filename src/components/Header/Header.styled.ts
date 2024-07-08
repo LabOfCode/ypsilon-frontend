@@ -9,6 +9,7 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   background-image: ${({ theme }) => theme.colors.backgroundHeader};
   opacity: 0.9; 
+  opacity: initial; 
   z-index: 1000; 
 `;
 
@@ -89,7 +90,6 @@ export const LinkHeader = styled(Link)`
 export const MenuHeaderWrap = styled.div`
   display: none;
   
-
   @media ${({ theme }) => theme.media.tablet} {
     display: flex;
     gap: 16px;
@@ -121,8 +121,8 @@ export const ButtonWrap = styled.div`
   @media ${({ theme }) => theme.media.tablet} {
     background-image: ${({ theme }) => theme.colors.backgroundOcean};
     border: 1px solid ${({ theme }) => theme.colors.colorTeal};
-      transition: background-color 0.3s ${({ theme }) => theme.cubicBezier};
-        border-radius: 10px;
+    transition: background-color 0.3s ${({ theme }) => theme.cubicBezier};
+    border-radius: 10px;
     gap: 8px;
     width: 163px;
     height: 32px;
@@ -175,18 +175,17 @@ export const LoginLink = styled(Link)`
 `;
 
 export const LoveLogo = styled.div`
-   display: none;
+  display: none;
 
-   @media ${({ theme }) => theme.media.tablet} {
-      display: block;
-      width: 24px;
-      height: 24px;
-    }
+  @media ${({ theme }) => theme.media.tablet} {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
 
-   @media ${({ theme }) => theme.media.desktop} {
-      width: 32px;
-      height: 32px;
-    }
+  @media ${({ theme }) => theme.media.desktop} {
+    width: 32px;
+    height: 32px;
   }
 `;
 
@@ -194,77 +193,14 @@ export const UserLogo = styled.div`
   width: 24px;
   height: 24px;
 
-    @media ${({ theme }) => theme.media.tablet} {
-      display: block;
-      width: 24px;
-      height: 24px;
-    }
-
-    @media ${({ theme }) => theme.media.desktop} {
-      width: 32px;
-      height: 32px;
-    }
-`;
-
-export const BurgerButtonWrapper = styled.div`
-   padding-right: 16px;
-
-   @media ${({ theme }) => theme.media.tablet} {
-      display: none;
-   }
-   @media ${({ theme }) => theme.media.desktop} {
-      display: none;
-    }
-`;
-
-export const MobileMenuWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-image: ${({ theme }) => theme.colors.backgroundOcean};
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-`;
-
-export const CloseButton = styled.button`
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 50px;
-`;
-
-export const MenuBurgerWrap = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
-
-export const LiBurger = styled(Link)`
-  color: ${({ theme }) => theme.colors.colorWhite};
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform 250ms ${({ theme }) => theme.cubicBezier}, color 250ms ${({ theme }) => theme.cubicBezier};
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-    color: ${({ theme }) => theme.colors.colorYellow};
+  @media ${({ theme }) => theme.media.tablet} {
+    display: block;
+    width: 24px;
+    height: 24px;
   }
-`;
 
-export const LoveBurgerLogo = styled.div`
-  width: 24px;
-  height: 24px;
-`;
-
-export const ChangeLangBurgerLogo = styled.div`
-   width: 24px;
-   height: 24px;
+  @media ${({ theme }) => theme.media.desktop} {
+    width: 32px;
+    height: 32px;
+  }
 `;
