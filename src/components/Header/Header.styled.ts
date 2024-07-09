@@ -174,20 +174,31 @@ export const LoginLink = styled(Link)`
   }
 `;
 
-export const LoveLogo = styled.div`
+export const LoveLogo = styled.svg`
   display: none;
 
   @media ${({ theme }) => theme.media.tablet} {
     display: block;
     width: 24px;
     height: 24px;
+
+    path {
+      fill: white; 
+    }
   }
 
   @media ${({ theme }) => theme.media.desktop} {
+    display: block;
     width: 32px;
     height: 32px;
+
+      path {
+        fill: white; 
+      }
   }
 `;
+
+
 
 export const UserLogo = styled.div`
   width: 24px;

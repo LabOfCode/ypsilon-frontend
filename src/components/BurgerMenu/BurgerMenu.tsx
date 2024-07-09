@@ -11,9 +11,9 @@ import {
   LoveBurgerLogo,
   ChangeLangBurgerLogo
 } from './BurgerMenu.styled';
-import heartLogo from '@/assets/images/heart.png';
 import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
+import { LinkButton } from '../Button/Button';
 
 interface BurgerMenuProps {
   language: 'ua' | 'cz';
@@ -53,9 +53,11 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ language, handleLanguage
               alt={language === 'ua' ? 'uaLogo' : 'czLogo'}
             />
           </ChangeLangBurgerLogo>
-          <LoveBurgerLogo>
-            <img src={heartLogo} alt="heartLogo" />
-          </LoveBurgerLogo>
+          <LinkButton to={routes.FAVORITES}>
+            <svg>
+              <use href="/assets/images/svg_sprite.svg#heart"></use>
+            </svg>
+          </LinkButton>
         </MobileMenuWrapper>
       )}
     </>

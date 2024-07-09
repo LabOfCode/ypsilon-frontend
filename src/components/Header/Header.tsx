@@ -20,6 +20,7 @@ import czLogo from '@/assets/images/flag_cz.png';
 import heartLogo from '@/assets/images/heart.png';
 import userLogo from '@/assets/images/user.png';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
+import { LinkButton } from '../Button/Button';
 
 const Logo: React.FC = React.memo(() => (
   <LogoLink to={routes.HOME}>
@@ -69,9 +70,11 @@ export const Header: React.FC = () => {
           <HeaderWrap>
             <Menu />
             <LanguageToggle language={language} onToggle={handleLanguageChange} />
-            <LoveLogo>
-              <img src={heartLogo} alt="heartLogo" />
-            </LoveLogo>
+            <LinkButton to={routes.FAVORITES}>
+                <LoveLogo>
+                  <use href="#svg_sprite.svg#heart"></use>
+                </LoveLogo>
+            </LinkButton>
             <BurgerMenu language={language} handleLanguageChange={handleLanguageChange} />
             <UserButton />
           </HeaderWrap>

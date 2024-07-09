@@ -77,7 +77,7 @@ export const LiBurger = styled(Link)`
   }
 `;
 
-export const LoveBurgerLogo = styled.div`
+export const LoveBurgerLogo = styled.svg`
   width: 24px;
   height: 24px;
 `;
