@@ -1,4 +1,4 @@
-import { Button } from '../Button/Button';
+import { LinkButton } from '../Button/Button';
 import { IVacancyLocal } from '../VacanciesList/VacanciesList';
 
 import {
@@ -15,6 +15,7 @@ import {
   TopImg,
 } from './VacancyItem.styled';
 import topVacancy from '@/assets/images/label_top.png';
+import { routes } from '@/routes';
 import { IVacancy } from '@/types';
 
 interface VacancyItemProps {
@@ -53,7 +54,12 @@ export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => 
           <PriceText>{`${price} крон/год`}</PriceText>
         </ItemWrap>
         <ButtonWrap>
-          <Button $tealForCard>Залишити заявку</Button>
+          <LinkButton
+            $tealForCard
+            to={`${routes.VACANCIES}/${_id}`}
+          >
+            Дізнатись більше
+          </LinkButton>
           <button onClick={() => onToggleFavorite(_id)}>
             {vacancy.isFavorite ? (
               <HeartActiveIcon>

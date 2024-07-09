@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Layout } from './Layout';
 import { GlobalStyle } from '@/Globalstyle';
+import VacancyPage from '@/pages/VacancyPage/VacancyPage';
 import { routes } from '@/routes';
 
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
@@ -25,6 +26,10 @@ export const App = () => {
           <Route
             path={routes.VACANCIES}
             element={<VacanciesPage />}
+          />
+          <Route
+            path={`${routes.VACANCIES}/:id`}
+            element={<VacancyPage />}
           />
           <Route
             path={routes.REVIEWS}
