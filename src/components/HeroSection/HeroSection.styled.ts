@@ -15,25 +15,26 @@ export const SlideImage = styled.div<{ bgImage: string }>`
   background-size: cover;
   background-position: center;
   background-image: url(${props => props.bgImage});
-  opasity: hsla(0, 0%, 0%, 0.25);
+  
 `;
 
 export const HeroContent = styled.div`
   position: absolute;
-  top: 176px;
+  top: 184px;
   left: 50%;
   transform: translateX(-50%);
   width: 328px;
   text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
+    top: 176px;
     width: 664px;
-    margin: 0 auto 30px auto; // корегувати, не відповідає макету на живій сторінці
   }
 
   @media ${({ theme }) => theme.media.desktop} {
+    top: 272px;
+
     width: 783px;
-    margin: 0 auto 148px auto;
   }
 `;
 
@@ -85,11 +86,10 @@ export const HeroText = styled.p`
 
 export const FlexStyled = styled(Flex)`
   gap: 15px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  
 
   @media ${({ theme }) => theme.media.tablet} {
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
     gap: 20px;
   }
 

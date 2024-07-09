@@ -5,9 +5,10 @@ import 'slick-carousel/slick/slick.css';
 import { Button } from '../Button/Button';
 import { LinkButton } from '../Button/Button';
 import Container from '../Container';
+import Flex from '../Flex/Flex';
 
 import {
-  FlexStyled,
+  // FlexStyled,
   HeroContent,
   HeroText,
   HeroTitle,
@@ -73,12 +74,21 @@ export const HeroSection = () => {
       </Slider>
       <Container>
         <HeroContent>
+          
           <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
           <HeroText>
             Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
           </HeroText>
-          <FlexStyled>
+          <Flex
+          justify="space-between"
+            wrap
+            gap="15px"
+            // gapMobile="15px"
+            // gapTablet="20px"
+            // gapDesktop="24px"
+          >
             <Button
+              // height="48x"
               $teal
               to=""
             >
@@ -86,11 +96,12 @@ export const HeroSection = () => {
             </Button>
             <LinkButton
               $yellow
-              to=""
+              to="/vacancies"
             >
               Підібрати вакансію
             </LinkButton>
-          </FlexStyled>
+          </Flex>
+          
         </HeroContent>
       </Container>
     </HeroWrapper>
