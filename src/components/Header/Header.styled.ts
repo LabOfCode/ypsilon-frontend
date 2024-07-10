@@ -176,29 +176,22 @@ export const LoginLink = styled(Link)`
 
 export const LoveLogo = styled.svg`
   display: none;
+  fill: none;
+  stroke: ${({ theme }) => theme.colors.colorWhite};
+  stroke-width: 3px;
 
   @media ${({ theme }) => theme.media.tablet} {
     display: block;
     width: 24px;
     height: 24px;
-
-    path {
-      fill: white; 
-    }
   }
 
   @media ${({ theme }) => theme.media.desktop} {
     display: block;
     width: 32px;
     height: 32px;
-
-      path {
-        fill: white; 
-      }
   }
 `;
-
-
 
 export const UserLogo = styled.div`
   width: 24px;

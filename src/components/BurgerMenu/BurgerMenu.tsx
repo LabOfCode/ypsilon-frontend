@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { routes } from '@/routes';
 import {
   BurgerButton,
@@ -9,11 +10,10 @@ import {
   MenuBurgerWrap,
   LiBurger,
   LoveBurgerLogo,
-  ChangeLangBurgerLogo
+  ChangeLangBurgerLogo,
 } from './BurgerMenu.styled';
 import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
-import { LinkButton } from '../Button/Button';
 
 interface BurgerMenuProps {
   language: 'ua' | 'cz';
@@ -21,43 +21,47 @@ interface BurgerMenuProps {
 }
 
 export const BurgerMenu: React.FC<BurgerMenuProps> = ({ language, handleLanguageChange }) => {
-  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsOpenMobileMenu(!isOpenMobileMenu);
-  };
-
-  const closeMobileMenu = () => {
-    setIsOpenMobileMenu(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
     <>
-      <BurgerButtonWrapper onClick={toggleMobileMenu}>
+      <BurgerButtonWrapper onClick={toggleMenu}>
         <BurgerButton type="button">
-          <Burger />
+          <Burger>
+            <use href="#svg_sprite_align-justify"></use>
+          </Burger>
         </BurgerButton>
       </BurgerButtonWrapper>
-      {isOpenMobileMenu && (
+      {isOpen && (
         <MobileMenuWrapper>
-          <CloseButton onClick={toggleMobileMenu}>×</CloseButton>
+          <CloseButton onClick={toggleMenu}>×</CloseButton>
           <MenuBurgerWrap>
-            <LiBurger to={routes.HOME} onClick={closeMobileMenu}>Головна</LiBurger>
-            <LiBurger to={routes.VACANCIES} onClick={closeMobileMenu}>Вакансії</LiBurger>
-            <LiBurger to={routes.REVIEWS} onClick={closeMobileMenu}>Відгуки</LiBurger>
-            <LiBurger to={routes.CONTACTS} onClick={closeMobileMenu}>Контакти</LiBurger>
+            {[
+              { route: routes.HOME, label: 'Головна' },
+              { route: routes.VACANCIES, label: 'Вакансії' },
+              { route: routes.REVIEWS, label: 'Відгуки' },
+              { route: routes.CONTACTS, label: 'Контакти' },
+            ].map(({ route, label }) => (
+              <LiBurger to={route} onClick={toggleMenu} key={route}>
+                {label}
+              </LiBurger>
+            ))}
           </MenuBurgerWrap>
+          <Link to={routes.FAVORITES} onClick={toggleMenu}>
+            <LoveBurgerLogo>
+              <use href="#svg_sprite_heart"></use>
+            </LoveBurgerLogo>
+          </Link>
           <ChangeLangBurgerLogo onClick={handleLanguageChange}>
             <img
               src={language === 'ua' ? uaLogo : czLogo}
               alt={language === 'ua' ? 'uaLogo' : 'czLogo'}
             />
           </ChangeLangBurgerLogo>
-          <LinkButton to={routes.FAVORITES}>
-            <svg>
-              <use href="/assets/images/svg_sprite.svg#heart"></use>
-            </svg>
-          </LinkButton>
         </MobileMenuWrapper>
       )}
     </>

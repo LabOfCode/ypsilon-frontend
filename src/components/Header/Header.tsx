@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { routes } from '@/routes';
 import {
   HeaderContent,
@@ -17,10 +18,8 @@ import {
 import logo from '@/assets/images/logo.png';
 import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
-import heartLogo from '@/assets/images/heart.png';
 import userLogo from '@/assets/images/user.png';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
-import { LinkButton } from '../Button/Button';
 
 const Logo: React.FC = React.memo(() => (
   <LogoLink to={routes.HOME}>
@@ -63,23 +62,21 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <>
-      <HeaderWrapper>
-        <HeaderContent>
-          <Logo />
-          <HeaderWrap>
-            <Menu />
-            <LanguageToggle language={language} onToggle={handleLanguageChange} />
-            <LinkButton to={routes.FAVORITES}>
-                <LoveLogo>
-                  <use href="#svg_sprite.svg#heart"></use>
-                </LoveLogo>
-            </LinkButton>
-            <BurgerMenu language={language} handleLanguageChange={handleLanguageChange} />
-            <UserButton />
-          </HeaderWrap>
-        </HeaderContent>
-      </HeaderWrapper>
-    </>
+    <HeaderWrapper>
+      <HeaderContent>
+        <Logo />
+        <HeaderWrap>
+          <Menu />
+          <LanguageToggle language={language} onToggle={handleLanguageChange} />
+          <Link to={routes.FAVORITES}> 
+            <LoveLogo>
+              <use href="#svg_sprite_heart"></use>
+            </LoveLogo>
+          </Link>
+          <BurgerMenu language={language} handleLanguageChange={handleLanguageChange} />
+          <UserButton />
+        </HeaderWrap>
+      </HeaderContent>
+    </HeaderWrapper>
   );
 };

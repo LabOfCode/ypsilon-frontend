@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BurgerIcon from '@/assets/images/burger.svg';
 
 export const BurgerButton = styled.button`
   background-color: transparent;
@@ -15,7 +14,9 @@ export const BurgerButton = styled.button`
   }
 `;
 
-export const Burger = styled(BurgerIcon)`
+export const Burger = styled.svg`
+  width: 24px;
+  height: 24px;
   color: white;
 `;
 
@@ -80,6 +81,9 @@ export const LiBurger = styled(Link)`
 export const LoveBurgerLogo = styled.svg`
   width: 24px;
   height: 24px;
+  fill: none;
+  stroke: ${({ theme }) => theme.colors.colorWhite};
+  stroke-width: 3px;
 `;
 
 export const ChangeLangBurgerLogo = styled.div`
