@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const BurgerButton = styled.button`
   background-color: transparent;
@@ -34,18 +34,18 @@ export const BurgerButtonWrapper = styled.div`
 export const MobileMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   position: fixed;
   gap: 16px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: ${({ theme }) => theme.colors.backgroundOcean}; 
+  background-image: ${({ theme }) => theme.colors.backgroundOcean};
   background-size: cover;
   opacity: 1;
-  overflow-y: auto; 
+  overflow-y: auto;
   z-index: 9999;
 `;
 
@@ -69,7 +69,9 @@ export const LiBurger = styled(Link)`
   color: ${({ theme }) => theme.colors.colorWhite};
   font-size: 24px;
   font-weight: 600;
-  transition: transform 250ms ${({ theme }) => theme.cubicBezier}, color 250ms ${({ theme }) => theme.cubicBezier};
+  transition:
+    transform 250ms ${({ theme }) => theme.cubicBezier},
+    color 250ms ${({ theme }) => theme.cubicBezier};
 
   &:hover,
   &:focus {
@@ -84,6 +86,12 @@ export const LoveBurgerLogo = styled.svg`
   fill: none;
   stroke: ${({ theme }) => theme.colors.colorWhite};
   stroke-width: 3px;
+  transition: stroke 250ms ${({ theme }) => theme.cubicBezier};
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.colorYellow};
+  }
 `;
 
 export const ChangeLangBurgerLogo = styled.div`

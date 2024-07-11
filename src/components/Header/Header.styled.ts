@@ -1,16 +1,18 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import Container from '../Container';
+
 import { theme } from '@/Theme';
 
 export const HeaderWrapper = styled.div`
-  position: fixed; 
+  position: fixed;
   top: 0;
   width: 100%;
   background-image: ${({ theme }) => theme.colors.backgroundHeader};
-  opacity: 0.9; 
-  opacity: initial; 
-  z-index: 1000; 
+  opacity: 0.9;
+  opacity: initial;
+  z-index: 1000;
 `;
 
 export const HeaderContent = styled(Container)`
@@ -19,13 +21,13 @@ export const HeaderContent = styled(Container)`
   align-items: center;
   padding: 6px 16px;
 
-   @media ${({ theme }) => theme.media.tablet} {
-      padding: 8.5px 40px;
-   }
+  @media ${({ theme }) => theme.media.tablet} {
+    padding: 8.5px 40px;
+  }
 
-   @media ${({ theme }) => theme.media.desktop} {
-      padding: 15px 40px;
-    }
+  @media ${({ theme }) => theme.media.desktop} {
+    padding: 15px 40px;
+  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -70,7 +72,9 @@ export const LinkHeader = styled(Link)`
   color: ${({ theme }) => theme.colors.colorWhite};
   font-size: 12px;
   font-weight: 600;
-  transition: transform 250ms ${({ theme }) => theme.cubicBezier}, color 250ms ${({ theme }) => theme.cubicBezier};
+  transition:
+    transform 250ms ${({ theme }) => theme.cubicBezier},
+    color 250ms ${({ theme }) => theme.cubicBezier};
 
   &:hover,
   &:focus {
@@ -89,7 +93,7 @@ export const LinkHeader = styled(Link)`
 
 export const MenuHeaderWrap = styled.div`
   display: none;
-  
+
   @media ${({ theme }) => theme.media.tablet} {
     display: flex;
     gap: 16px;
@@ -161,7 +165,7 @@ export const LoginLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none; 
+  text-decoration: none;
   width: 100%;
   height: 100%;
 
@@ -179,6 +183,12 @@ export const LoveLogo = styled.svg`
   fill: none;
   stroke: ${({ theme }) => theme.colors.colorWhite};
   stroke-width: 3px;
+  transition: stroke 250ms ${({ theme }) => theme.cubicBezier};
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.colorYellow};
+  }
 
   @media ${({ theme }) => theme.media.tablet} {
     display: block;
