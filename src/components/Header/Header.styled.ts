@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import Container from '../Container';
-
 import { theme } from '@/Theme';
 
 export const HeaderWrapper = styled.div`
@@ -203,7 +201,8 @@ export const LoveLogo = styled.svg`
   }
 `;
 
-export const UserLogo = styled.div`
+export const UserLogo = styled.svg`
+  stroke: ${({ theme }) => theme.colors.colorWhite};
   width: 24px;
   height: 24px;
 
