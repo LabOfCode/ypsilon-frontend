@@ -5,4 +5,5 @@ export const routes = {
   VACANCIES: '/vacancies',
   REVIEWS: '/reviews',
   CONTACTS: '/contacts',
+  FAVORITES: '/favorites',
 };
