@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
-// import Container from '@/components/Container';
 import {
   Form,
   PLink,
@@ -102,7 +101,11 @@ const LogInForm: React.FC<LogInFormProps> = ({ onRecoveryClick }) => {
           <LoginTooltipList>
             {validationArray.map((regex, index) => (
               <LoginTooltipItem key={index}>
-                {values.match(new RegExp(regex)) ? <StyledCheckCircle /> : <StyledAlertCircle />}
+                {values.match(new RegExp(regex)) ?
+                  <StyledCheckCircle><use href="#svg_sprite_check-circle"></use></StyledCheckCircle>
+                  :
+                  <StyledAlertCircle><use href="#svg_sprite_alert-circle"></use></StyledAlertCircle>
+                }
                 {tips[index]}
               </LoginTooltipItem>
             ))}
@@ -165,7 +168,11 @@ const LogInForm: React.FC<LogInFormProps> = ({ onRecoveryClick }) => {
                   required
                 />
                 <TogPasButLoginForm type="button" onClick={togglePasswordVisibility}>
-                  {showPassword ? <StyledEyeOn /> : <StyledEyeOff />}
+                  {showPassword ?
+                    <StyledEyeOn><use href="#svg_sprite_eye"></use></StyledEyeOn>
+                    :
+                    <StyledEyeOff><use href="#svg_sprite_eye-off"></use></StyledEyeOff>
+                  }
                 </TogPasButLoginForm>
                 {formikProps.touched.password && formikProps.errors.password && (
                   <ErrorText>Невірний пароль</ErrorText>

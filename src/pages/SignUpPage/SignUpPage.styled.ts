@@ -3,6 +3,15 @@ import { theme } from '@/Theme';
 
 export const ContainerStyled = styled.div`
   background-image: ${({ theme }) => theme.colors.backgroundOcean};
+  padding-top: 80px;
+
+  @media ${theme.media.tablet} {
+    padding-top: 114px;
+  }
+
+  @media ${theme.media.desktop} {
+    padding-top: 184px;
+  }
 `;
 
 export const IconContainer = styled.div`

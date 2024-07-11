@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '@/Theme';
-import EyeOff from '@/assets/images/icons/eye_off.svg';
-import EyeOn from '@/assets/images/icons/eye_on.svg';
-import CheckCircleIcon from '@/assets/images/icons/check_circle.svg';
-import AlertCircleIcon from '@/assets/images/icons/alert_circle.svg';
-import CheckBoxIcon from '@/assets/images/icons/checkbox.svg';
-import CheckBoxCheckedIcon from '@/assets/images/icons/checkbox-сhecked.svg';
-
-interface StyledCircleProps {
-  isValid: boolean;
-  theme?: any;
-}
 
 export const Form = styled.form`
   position: relative;
@@ -308,12 +297,12 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `;
 
-export const StyledCheckBoxIcon = styled(CheckBoxIcon)`
+export const StyledCheckBoxIcon = styled.svg`
   width: 24px;
   height: 24px
 `;
 
-export const StyledCheckboxCheckedIcon = styled(CheckBoxCheckedIcon)`
+export const StyledCheckboxCheckedIcon = styled.svg`
   width: 24px;
   height: 24px
 `;
@@ -382,53 +371,57 @@ export const TogglePasswordButton = styled.button`
   transform: translateY(-50%);
 `;
 
-export const ValidationEmailIcon = styled.div<StyledCircleProps>`
+export const ValidationEmailIcon = styled.svg`
   display: flex;
+  width: 16px;
+  height: 16px;
   gap: 4px;
   align-items: center;
   position: absolute;
   right: 12px;
   top: 55%;
   transform: translateY(-50%);
-  color: ${({ isValid }) => (isValid ? 'green' : 'red')};
 `;
 
-export const ValidEmailIcon = styled.div<StyledCircleProps>`
+export const ValidEmailIcon = styled.svg`
   position: absolute;
   right: 12px;
   top: 18%;
-  color: ${({ isValid }) => (isValid ? 'green' : 'red')};
-`;
-
-export const ValidationPasswordIcon = styled.div<{ isValid?: boolean }>`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 18px;
-  top: 55%;
-  transform: translateY(-50%);
-  color: ${({ isValid, theme }) => (isValid ? theme.colors.colorGreen : theme.colors.colorRed)};
-`;
-
-export const StyledEyeOff = styled(EyeOff)`
-  width: 24px;
-  height: 16px;
-  margin-right: -4px;
-`;
-
-export const StyledEyeOn = styled(EyeOn)`
-  width: 24px;
-  height: 16px;
-`;
-
-export const StyledCheckCircle = styled(CheckCircleIcon)`
-  color: ${theme.colors.colorGreen};
   width: 16px;
   height: 16px;
 `;
 
-export const StyledAlertCircle = styled(AlertCircleIcon)`
-  color: ${theme.colors.colorRed};
+export const ValidationPasswordIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 30px;
+  top: 55%;
+  transform: translateY(-50%);
+`;
+
+export const StyledEyeOff = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: none;    
+  stroke: black; 
+`;
+
+export const StyledEyeOn = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: none;    
+  stroke: black; 
+`;
+
+export const StyledCheckCircle = styled.svg`
+  width: 16px;
+  height: 16px;
+`;
+
+export const StyledAlertCircle = styled.svg`
   width: 16px;
   height: 16px;
 `;

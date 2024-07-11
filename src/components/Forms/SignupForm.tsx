@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { signUp } from '@/redux/auth/authOperations';
 import { AppDispatch } from '@/redux/store';
 import * as Yup from 'yup';
-// import IconSprite from '@/assets/images/svg_sprite.svg';
 import {
   Form,
   PLink,
@@ -15,7 +14,6 @@ import {
   Title,
   Legend,
   Fieldset,
-  PMeta,
   CheckboxContainer,
   CheckboxLabel,
   CheckboxText,
@@ -176,32 +174,6 @@ export const SignupForm: React.FC = () => {
     }
   };
 
-  const renderValidationIcon = (field: keyof RegisterPayload, formikProps: any) => {
-    const { errors, touched, values } = formikProps;
-
-    if (!touched[field]) return null;
-
-    if (field === 'confirmPassword') {
-      const isMatch = values.confirmPassword === values.password;
-      const icon = isMatch ? <StyledCheckCircle /> : <StyledAlertCircle />;
-    return (
-      <ValidationPasswordIcon isValid={isMatch}>
-        {icon}
-      </ValidationPasswordIcon>
-    );
-  }
-
-  return errors[field] ? (
-    <ValidationPasswordIcon isValid={false}>
-      <StyledAlertCircle />
-    </ValidationPasswordIcon>
-  ) : (
-    <ValidationPasswordIcon isValid={true}>
-      <StyledCheckCircle />
-    </ValidationPasswordIcon>
-  );
-};
-  
   const toggleCheckboxApply = (formikProps: FormikProps<RegisterPayload>) => {
     const newApplyValue = !formikProps.values.apply;
     formikProps.setFieldValue('apply', newApplyValue);
@@ -237,13 +209,11 @@ export const SignupForm: React.FC = () => {
     return (values.apply || values.purpose) && values.terms;
   };
 
-
   return (
     <>
       <Title>
         Готові розпочати свою пригоду в Чехії? Заповніть цю форму, щоб створити профіль користувача та розпочати пошук роботи!
       </Title>
-      {/* {formCompleted && <p>Форма успішно відправлена!</p>} */}
       <Formik initialValues={initialValues} validationSchema={schema} onSubmit={submitForm}>
         {(formikProps) => (
           <Form onSubmit={formikProps.handleSubmit}>
@@ -288,8 +258,11 @@ export const SignupForm: React.FC = () => {
                   color="red"
                 />
                 {formikProps.touched.email && (
-                  <ValidationEmailIcon isValid={!formikProps.errors.email}>
-                    {formikProps.errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
+                  <ValidationEmailIcon>
+                    {formikProps.errors.email ?
+                    <StyledAlertCircle><use href="#svg_sprite_alert-circle"></use></StyledAlertCircle>
+                    :
+                    <StyledCheckCircle><use href="#svg_sprite_check-circle"></use></StyledCheckCircle>}
                   </ValidationEmailIcon>
                 )}
               </Label>
@@ -303,7 +276,11 @@ export const SignupForm: React.FC = () => {
                     checked={formikProps.values.apply}
                     onChange={() => toggleCheckboxApply(formikProps)}
                   />
-                  {formikProps.values.apply ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.apply ?
+                    <StyledCheckboxCheckedIcon><use href="#svg_sprite_check-boxhover"></use></StyledCheckboxCheckedIcon>
+                    :
+                    <StyledCheckBoxIcon><use href="#svg_sprite_check-boxdefault"></use></StyledCheckBoxIcon>
+                  }
                   <CheckboxText>Подача заявки на вакансію</CheckboxText>
                 </CheckboxLabel>
 
@@ -315,7 +292,11 @@ export const SignupForm: React.FC = () => {
                     checked={formikProps.values.purpose}
                     onChange={() => toggleCheckboxPurpose(formikProps)}
                   />
-                  {formikProps.values.purpose ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.purpose ?
+                    <StyledCheckboxCheckedIcon><use href="#svg_sprite_check-boxhover"></use></StyledCheckboxCheckedIcon>
+                    :
+                    <StyledCheckBoxIcon><use href="#svg_sprite_check-boxdefault"></use></StyledCheckBoxIcon>
+                  }
                   <CheckboxText>Реєстрація працівника</CheckboxText>
                 </CheckboxLabel>
 
@@ -344,11 +325,11 @@ export const SignupForm: React.FC = () => {
                   color="black"
                 />
                 <TogglePasswordButton type="button" onClick={togglePasswordVisibilityPassword}>
-                  {showPassword ? (
-                    <StyledEyeOn />
-                  ) : (
-                    <StyledEyeOff />
-                  )}
+                  {showPassword ?
+                    <StyledEyeOn><use href="#svg_sprite_eye"></use></StyledEyeOn>
+                    :
+                    <StyledEyeOff><use href="#svg_sprite_eye-off"></use></StyledEyeOff>
+                  }
                 </TogglePasswordButton>
               </Label>
 
@@ -368,15 +349,20 @@ export const SignupForm: React.FC = () => {
                     bottom="-18px"
                     color="black"
                   />
-                <ValidationPasswordIcon isValid={formikProps.values.confirmPassword === formikProps.values.password}>
-                  {renderValidationIcon('confirmPassword', formikProps)}
+                <ValidationPasswordIcon>
+                  {formikProps.touched.confirmPassword && (
+                    formikProps.values.confirmPassword === formikProps.values.password ?
+                    <StyledCheckCircle><use href="#svg_sprite_check-circle"></use></StyledCheckCircle>
+                    :
+                    <StyledAlertCircle><use href="#svg_sprite_alert-circle"></use></StyledAlertCircle>
+                  )}
                 </ValidationPasswordIcon>
                 <TogglePasswordButton type="button" onClick={togglePasswordVisibilityConfirmPassword}>
-                  {showConfirmPassword ? (
-                    <StyledEyeOn />
-                  ) : (
-                    <StyledEyeOff />
-                  )}
+                  {showConfirmPassword ?
+                    <StyledEyeOn><use href="#svg_sprite_eye"></use></StyledEyeOn>
+                    :
+                    <StyledEyeOff><use href="#svg_sprite_eye-off"></use></StyledEyeOff>
+                  }
                 </TogglePasswordButton>
               </Label>
               <Underline />
@@ -397,7 +383,11 @@ export const SignupForm: React.FC = () => {
                     bottom="-14px"
                     color="red"
                   />
-                  {formikProps.values.terms ? <StyledCheckboxCheckedIcon /> : <StyledCheckBoxIcon />}
+                  {formikProps.values.terms ?
+                    <StyledCheckboxCheckedIcon><use href="#svg_sprite_check-boxhover"></use></StyledCheckboxCheckedIcon>
+                    :
+                    <StyledCheckBoxIcon><use href="#svg_sprite_check-boxdefault"></use></StyledCheckBoxIcon>
+                  }
                   <CheckboxPoliticText>
                     Реєструючись, я даю згоду на використання моїх персональних даних сайту Ypsilon та згоден з
                     <AdressLink href=""> політикою конфіденційності </AdressLink> та

@@ -78,7 +78,10 @@ const PasswordRecoveryForm: React.FC = () => {
           <LoginTooltipList>
             {validationArray.map((regex, index) => (
               <LoginTooltipItem key={index}>
-                {values.match(new RegExp(regex)) ? <StyledCheckCircle /> : <StyledAlertCircle />}
+                {values.match(new RegExp(regex)) ?
+                  <StyledCheckCircle><use href="#svg_sprite_check-circle"></use></StyledCheckCircle>
+                  :
+                  <StyledAlertCircle><use href="#svg_sprite_alert-circle"></use></StyledAlertCircle>}
                 {tips[index]}
               </LoginTooltipItem>
             ))}
@@ -114,8 +117,11 @@ const PasswordRecoveryForm: React.FC = () => {
                required
                />
                {formikProps.touched.email && (
-                <ValidEmailIcon isValid={!formikProps.errors.email}>
-                  {formikProps.errors.email ? <StyledAlertCircle /> : <StyledCheckCircle />}
+                <ValidEmailIcon>
+                    {formikProps.errors.email ?
+                    <StyledAlertCircle><use href="#svg_sprite_alert-circle"></use></StyledAlertCircle>
+                    :
+                    <StyledCheckCircle><use href="#svg_sprite_check-circle"></use></StyledCheckCircle>}
                 </ValidEmailIcon>
               )}
                <ErrorTextContainer>
