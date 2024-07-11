@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from '@/routes';
+import { useAuth } from '@/redux/hooks/useAuth';
 import {
   HeaderContent,
   HeaderWrap,
@@ -20,6 +21,7 @@ import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
 import userLogo from '@/assets/images/user.png';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
+import { UserMenu } from '@/components/UserMenu/UserMenu';
 
 const Logo: React.FC = React.memo(() => (
   <LogoLink to={routes.HOME}>
@@ -56,6 +58,7 @@ const UserButton: React.FC = React.memo(() => (
 
 export const Header: React.FC = () => {
   const [language, setLanguage] = useState<'ua' | 'cz'>('ua');
+  const { isLoggedIn } = useAuth();
 
   const handleLanguageChange = () => {
     setLanguage((prev) => (prev === 'ua' ? 'cz' : 'ua'));
@@ -68,13 +71,13 @@ export const Header: React.FC = () => {
         <HeaderWrap>
           <Menu />
           <LanguageToggle language={language} onToggle={handleLanguageChange} />
-          <Link to={routes.FAVORITES}> 
+          <Link to={routes.FAVORITES}>
             <LoveLogo>
               <use href="#svg_sprite_heart"></use>
             </LoveLogo>
           </Link>
           <BurgerMenu language={language} handleLanguageChange={handleLanguageChange} />
-          <UserButton />
+          {isLoggedIn ? <UserMenu /> : <UserButton />}
         </HeaderWrap>
       </HeaderContent>
     </HeaderWrapper>

@@ -1,9 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AppBar } from '@/components/AppBar/AppBar';
+import { Header } from '@/components/Header/Header';
 import { Footer } from './Footer/Footer';
-import { Header } from './Header/Header';
-
 
 export const Layout = () => {
   return (
@@ -12,7 +10,6 @@ export const Layout = () => {
         <Header />
       </header>
       <main>
-        <AppBar />
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>

@@ -2,9 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '@/redux/auth/authOperations';
 import { useAuth } from '@/redux/hooks/useAuth';
-import { Wrapper, Username, LogoutButton } from './UserMenu.styled';
+import { Wrapper, Username, LogoutButton, LogoutWrap } from './UserMenu.styled';
 import { AppDispatch } from '@/redux/store';
-
 
 export const UserMenu: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -15,9 +14,11 @@ export const UserMenu: React.FC = () => {
   return (
     <Wrapper>
       <Username>{user?.firstname}</Username>
-      <LogoutButton type="button" onClick={handleLogOut}>
-        Вийти
-      </LogoutButton>
+      <LogoutWrap>
+        <LogoutButton type="button" onClick={handleLogOut}>
+          Вийти
+        </LogoutButton>
+      </LogoutWrap>
     </Wrapper>
   );
 };
