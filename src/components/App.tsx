@@ -35,6 +35,10 @@ export const App = () => {
             element={<ContactsPage />}
           />
           <Route
+            path={routes.FAVORITES}
+            // element={<FavoritesPage />}
+          />
+          <Route
             path="*"
             element={<NotFoundPage />}
           />
