@@ -19,7 +19,6 @@ import {
 import logo from '@/assets/images/logo.png';
 import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
-import userLogo from '@/assets/images/user.png';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
 import { UserMenu } from '@/components/UserMenu/UserMenu';
 
@@ -51,7 +50,9 @@ const UserButton: React.FC = React.memo(() => (
   <ButtonWrap>
     <LoginLink to="/login">
       <EnterButton>Увійти</EnterButton>
-      <UserLogo><img src={userLogo} alt="userLogo" /></UserLogo>
+      <UserLogo>
+        <use href="#svg_sprite_user"></use>
+      </UserLogo>
     </LoginLink>
   </ButtonWrap>
 ));
@@ -71,7 +72,7 @@ export const Header: React.FC = () => {
         <HeaderWrap>
           <Menu />
           <LanguageToggle language={language} onToggle={handleLanguageChange} />
-          <Link to={routes.FAVORITES}>
+          <Link to={routes.FAVORITES}> 
             <LoveLogo>
               <use href="#svg_sprite_heart"></use>
             </LoveLogo>
