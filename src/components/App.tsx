@@ -10,6 +10,7 @@ import { Layout } from './Layout';
 import { GlobalStyle } from '@/Globalstyle';
 import { routes } from '@/routes';
 import { AppDispatch } from '@/redux/store';
+import FavoritesPage from '@/pages/FavoritesPage/FavoritesPage';
 
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
 const SignUpPage = lazy(() => import('@/pages/SignUpPage/SignUpPage'));
@@ -65,7 +66,7 @@ export const App = () => {
           />
           <Route
             path={routes.FAVORITES}
-            // element={<FavoritesPage />}
+            element={<FavoritesPage />}
           />
           <Route
             path="*"

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import Container from '../Container';
 import { theme } from '@/Theme';
 
+interface LoveLogoProps {
+  isActive: boolean;
+}
+
 export const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -176,12 +180,12 @@ export const LoginLink = styled(Link)`
   }
 `;
 
-export const LoveLogo = styled.svg`
+export const LoveLogo = styled.svg<LoveLogoProps>`
   display: none;
-  fill: none;
-  stroke: ${({ theme }) => theme.colors.colorWhite};
+  fill: ${({ theme, isActive }) => (isActive ? theme.colors.colorYellow : 'none')};
+  stroke: ${({ theme, isActive }) => (isActive ? theme.colors.colorYellow : theme.colors.colorWhite)};
   stroke-width: 3px;
-  transition: stroke 250ms ${({ theme }) => theme.cubicBezier};
+  transition: fill 250ms ${({ theme }) => theme.cubicBezier}, stroke 250ms ${({ theme }) => theme.cubicBezier};
 
   &:hover,
   &:focus {

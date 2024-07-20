@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { routes } from '@/routes';
 import { useAuth } from '@/redux/hooks/useAuth';
 import {
@@ -60,6 +60,7 @@ const UserButton: React.FC = React.memo(() => (
 export const Header: React.FC = () => {
   const [language, setLanguage] = useState<'ua' | 'cz'>('ua');
   const { isLoggedIn } = useAuth();
+  const location = useLocation();
 
   const handleLanguageChange = () => {
     setLanguage((prev) => (prev === 'ua' ? 'cz' : 'ua'));
@@ -73,7 +74,7 @@ export const Header: React.FC = () => {
           <Menu />
           <LanguageToggle language={language} onToggle={handleLanguageChange} />
           <Link to={routes.FAVORITES}> 
-            <LoveLogo>
+            <LoveLogo isActive={location.pathname === routes.FAVORITES}>
               <use href="#svg_sprite_heart"></use>
             </LoveLogo>
           </Link>
