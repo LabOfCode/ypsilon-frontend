@@ -84,17 +84,15 @@ export const HeroText = styled.p`
   }
 `;
 
-export const FlexStyled = styled(Flex)`
-  gap: 15px;
-  
+// export const FlexStyled = styled(Flex)`
 
-  @media ${({ theme }) => theme.media.tablet} {
-    // flex-wrap: nowrap;
-    gap: 20px;
-  }
+//   @media ${({ theme }) => theme.media.tablet} {
+   
+//     gap: 20px;
+//   }
 
   //   @media ${({ theme }) => theme.media.desktop} {
   //     gap: 24px;
   //   }
   //
-`;
+// `;

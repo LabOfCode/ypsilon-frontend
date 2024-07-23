@@ -15,17 +15,14 @@ import {
   HeroWrapper,
   SlideImage,
 } from './HeroSection.styled';
-import slide1 from '@/assets/images/employment_0 2.jpg';
-import slide2 from '@/assets/images/employment_0-2 2.jpg';
-import slide3 from '@/assets/images/employment_1-2 2.jpg';
-import slide4 from '@/assets/images/employment_1-3.jpg';
-import slide5 from '@/assets/images/employment_2 2.jpg';
-import slide6 from '@/assets/images/employment_2-2 2.jpg';
-import slide7 from '@/assets/images/employment_2-3 11.jpg';
-import slide8 from '@/assets/images/employment_2-4 1.jpg';
-import slide9 from '@/assets/images/employment_3-2 1.jpg';
+
+import { responsive } from '@/helpers/responsive';
+import { slidesMobile, slidesTablet, slidesDesktop } from './HeroSectionImages';
 
 export const HeroSection = () => {
+
+const { isMobile, isTablet, isDesktop } = responsive();
+
   const settings = {
     dots: false,
     infinite: true,
@@ -59,18 +56,25 @@ export const HeroSection = () => {
     ],
   };
 
+    const getSlides = () => {
+    if (isMobile) {
+      return slidesMobile;
+    } else if (isTablet) {
+      return slidesTablet;
+    } else if (isDesktop) {
+      return slidesDesktop;
+    }
+    return [];
+  };
+
+  const slides = getSlides();
+
   return (
     <HeroWrapper>
-      <Slider {...settings}>
-        <SlideImage bgImage={slide1} />
-        <SlideImage bgImage={slide2} />
-        <SlideImage bgImage={slide3} />
-        <SlideImage bgImage={slide4} />
-        <SlideImage bgImage={slide5} />
-        <SlideImage bgImage={slide6} />
-        <SlideImage bgImage={slide7} />
-        <SlideImage bgImage={slide8} />
-        <SlideImage bgImage={slide9} />
+     <Slider {...settings}>
+        {slides.map((slide, index) => (
+          <SlideImage key={index} bgImage={slide} />
+        ))}
       </Slider>
       <Container>
         <HeroContent>
