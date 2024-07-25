@@ -7,26 +7,17 @@ import { LinkButton } from '../Button/Button';
 import Container from '../Container';
 import Flex from '../Flex/Flex';
 
-import {
-  // FlexStyled,
-  HeroContent,
-  HeroText,
-  HeroTitle,
-  HeroWrapper,
-  SlideImage,
-} from './HeroSection.styled';
-
+import { HeroContent, HeroText, HeroTitle, HeroWrapper, SlideImage } from './HeroSection.styled';
+import { slidesDesktop, slidesMobile, slidesTablet } from './HeroSectionImages';
 import { responsive } from '@/helpers/responsive';
-import { slidesMobile, slidesTablet, slidesDesktop } from './HeroSectionImages';
 
 export const HeroSection = () => {
-
-const { isMobile, isTablet, isDesktop } = responsive();
+  const { isMobile, isTablet, isDesktop } = responsive();
 
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -56,7 +47,7 @@ const { isMobile, isTablet, isDesktop } = responsive();
     ],
   };
 
-    const getSlides = () => {
+  const getSlides = () => {
     if (isMobile) {
       return slidesMobile;
     } else if (isTablet) {
@@ -71,28 +62,28 @@ const { isMobile, isTablet, isDesktop } = responsive();
 
   return (
     <HeroWrapper>
-     <Slider {...settings}>
+      <Slider {...settings}>
         {slides.map((slide, index) => (
-          <SlideImage key={index} bgImage={slide} />
+          <SlideImage
+            key={index}
+            bgImage={slide}
+          />
         ))}
       </Slider>
       <Container>
         <HeroContent>
-          
           <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
           <HeroText>
             Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
           </HeroText>
           <Flex
-          justify="space-between"
-            wrap
-            gap="15px"
-            // gapMobile="15px"
-            // gapTablet="20px"
-            // gapDesktop="24px"
+            flex-wrap="nowrap"
+            align-items={isMobile || isTablet ? 'stretch' : 'flex-start'}
+            gap={isMobile ? '15px' : isTablet ? '20px' : '24px'}
           >
             <Button
-              // height="48x"
+              width={isMobile ? '148px' : '322px'}
+              fontSize={isMobile ? '14px' : '24px'}
               $teal
               to=""
             >
@@ -105,7 +96,6 @@ const { isMobile, isTablet, isDesktop } = responsive();
               Підібрати вакансію
             </LinkButton>
           </Flex>
-          
         </HeroContent>
       </Container>
     </HeroWrapper>

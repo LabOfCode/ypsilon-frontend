@@ -8,6 +8,7 @@ import { routes } from '@/routes';
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
 const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage/NotFoundPage'));
+const ContactsPage = lazy(() => import('@/pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
   return (
@@ -31,7 +32,11 @@ export const App = () => {
           />
           <Route
             path={routes.CONTACTS}
-            element={<p>Contacts page</p>}
+            element={<ContactsPage />}
+          />
+          <Route
+            path={routes.FAVORITES}
+            // element={<FavoritesPage />}
           />
           <Route
             path="*"

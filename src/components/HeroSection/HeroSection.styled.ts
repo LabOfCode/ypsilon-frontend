@@ -20,21 +20,21 @@ export const SlideImage = styled.div<{ bgImage: string }>`
 
 export const HeroContent = styled.div`
   position: absolute;
-  top: 184px;
+    bottom: 21px;
   left: 50%;
   transform: translateX(-50%);
   width: 328px;
   text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
-    top: 176px;
+     bottom: 30px;
     width: 664px;
   }
 
   @media ${({ theme }) => theme.media.desktop} {
-    top: 272px;
-
+     bottom: 148px;
     width: 783px;
+    text-align: start;
   }
 `;
 
@@ -84,15 +84,3 @@ export const HeroText = styled.p`
   }
 `;
 
-// export const FlexStyled = styled(Flex)`
-
-//   @media ${({ theme }) => theme.media.tablet} {
-   
-//     gap: 20px;
-//   }
-
-  //   @media ${({ theme }) => theme.media.desktop} {
-  //     gap: 24px;
-  //   }
-  //
-// `;
