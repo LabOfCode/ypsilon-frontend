@@ -4,10 +4,16 @@ import 'slick-carousel/slick/slick.css';
 
 import { Button } from '../Button/Button';
 import { LinkButton } from '../Button/Button';
-import Container from '../Container';
 import Flex from '../Flex/Flex';
 
-import { HeroContent, HeroText, HeroTitle, HeroWrapper, SlideImage } from './HeroSection.styled';
+import {
+  ContainerStyled,
+  HeroContent,
+  HeroText,
+  HeroTitle,
+  HeroWrapper,
+  SlideImage,
+} from './HeroSection.styled';
 import { slidesDesktop, slidesMobile, slidesTablet } from './HeroSectionImages';
 import { responsive } from '@/helpers/responsive';
 
@@ -70,7 +76,7 @@ export const HeroSection = () => {
           />
         ))}
       </Slider>
-      <Container>
+      <ContainerStyled>
         <HeroContent>
           <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
           <HeroText>
@@ -81,23 +87,22 @@ export const HeroSection = () => {
             align-items={isMobile || isTablet ? 'stretch' : 'flex-start'}
             gap={isMobile ? '15px' : isTablet ? '20px' : '24px'}
           >
-            <Button
-              width={isMobile ? '148px' : '322px'}
-              fontSize={isMobile ? '14px' : '24px'}
-              $teal
-              to=""
-            >
-              Залишити заявку
-            </Button>
             <LinkButton
               $yellow
               to="/vacancies"
             >
               Підібрати вакансію
             </LinkButton>
+            <Button
+              width={isMobile ? '148px' : '322px'}
+              fontSize={isMobile ? '14px' : '24px'}
+              $teal
+            >
+              Залишити заявку
+            </Button>
           </Flex>
         </HeroContent>
-      </Container>
+      </ContainerStyled>
     </HeroWrapper>
   );
 };

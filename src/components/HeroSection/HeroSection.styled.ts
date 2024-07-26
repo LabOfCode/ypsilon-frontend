@@ -1,39 +1,72 @@
 import styled from 'styled-components';
 
-import Flex from '../Flex/Flex';
+import Container from '../Container';
 
 export const HeroWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+  /* width: 100vw;
+  height: 100vh; */
+  /* position: relative; */
+  /* overflow: hidden; */
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.media.tablet} {
+    margin-bottom: 50px;
+  }
+
+  @media ${({ theme }) => theme.media.desktop} {
+    margin-bottom: 80px;
+  }
 `;
 
 export const SlideImage = styled.div<{ bgImage: string }>`
-  height: 100vh;
+  height: 432px;
   background-size: cover;
   background-position: center;
   background-image: url(${props => props.bgImage});
-  
+
+  @media ${({ theme }) => theme.media.tablet} {
+    height: 512px;
+  }
+
+  @media ${({ theme }) => theme.media.desktop} {
+    height: 900px;
+  }
+`;
+
+export const ContainerStyled = styled(Container)`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translatex(-50%);
+  padding-top: 184px;
+  height: 432px;
+
+  @media ${({ theme }) => theme.media.tablet} {
+    padding-top: 176px;
+    height: 512px;
+  }
+
+  @media ${({ theme }) => theme.media.desktop} {
+    padding-top: 272px;
+    height: 900px;
+  }
 `;
 
 export const HeroContent = styled.div`
-  position: absolute;
-    bottom: 21px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto;
   width: 328px;
   text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
-     bottom: 30px;
+    margin: 0 auto;
     width: 664px;
   }
 
   @media ${({ theme }) => theme.media.desktop} {
-     bottom: 148px;
+    margin-left: 155px;
+    transform: translateX(0);
     width: 783px;
+    height: 480px;
     text-align: start;
   }
 `;
@@ -81,6 +114,6 @@ export const HeroText = styled.p`
     width: 787px;
     font-size: 25px;
     font-weight: 700;
+    margin-bottom: 40px;
   }
 `;
-
