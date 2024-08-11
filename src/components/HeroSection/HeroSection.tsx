@@ -1,23 +1,21 @@
+import React, { ReactNode} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-import { Button } from '../Button/Button';
-import { LinkButton } from '../Button/Button';
-import Flex from '../Flex/Flex';
-
 import {
   ContainerStyled,
-  HeroContent,
-  HeroText,
-  HeroTitle,
-  HeroWrapper,
+   HeroWrapper,
   SlideImage,
 } from './HeroSection.styled';
 import { slidesDesktop, slidesMobile, slidesTablet } from './HeroSectionImages';
 import { responsive } from '@/helpers/responsive';
 
-export const HeroSection = () => {
+
+interface HeroSectionProps {
+  children: ReactNode;
+}
+export const HeroSection:React.FC<HeroSectionProps> = ({children}) => {
   const { isMobile, isTablet, isDesktop } = responsive();
 
   const settings = {
@@ -77,31 +75,7 @@ export const HeroSection = () => {
         ))}
       </Slider>
       <ContainerStyled>
-        <HeroContent>
-          <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
-          <HeroText>
-            Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
-          </HeroText>
-          <Flex
-            flex-wrap="nowrap"
-            align-items={isMobile || isTablet ? 'stretch' : 'flex-start'}
-            gap={isMobile ? '15px' : isTablet ? '20px' : '24px'}
-          >
-            <LinkButton
-              $yellow
-              to="/vacancies"
-            >
-              Підібрати вакансію
-            </LinkButton>
-            <Button
-              width={isMobile ? '148px' : '322px'}
-              fontSize={isMobile ? '14px' : '24px'}
-              $teal
-            >
-              Залишити заявку
-            </Button>
-          </Flex>
-        </HeroContent>
+        {children}
       </ContainerStyled>
     </HeroWrapper>
   );

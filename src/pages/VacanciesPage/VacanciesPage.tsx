@@ -1,3 +1,5 @@
+import { HeroContentVacancy } from '@/components/HeroSection/HeroContentVacancy';
+import { HeroSection } from '@/components/HeroSection/HeroSection';
 import { MapSection } from '@/components/MapSection/MapSection';
 import { VacanciesSection } from '@/components/VacanciesSection/VacanciesSection';
 import { VacancyNotFound } from '@/components/VacancyNotFound/VacancyNotFound';
@@ -8,6 +10,11 @@ const VacanciesPage = () => {
 
   return (
     <div>
+      <HeroSection>
+        <HeroContentVacancy
+          title='Вакансії'
+        />
+      </HeroSection>
       {data?.total !== 0 ? <VacanciesSection /> : <VacancyNotFound />}
       <MapSection />
     </div>
