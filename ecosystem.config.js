@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'your-app-name',
-      script: './server.js',
+      script: './server.mjs',
       interpreter: 'node',
       interpreter_args: '--experimental-modules',
     },
