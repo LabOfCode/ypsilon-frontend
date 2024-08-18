@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       loading={null}
       persistor={persistor}
     > */}
-    <BrowserRouter basename={isDev ? '/' : path.join(__dirname)}>
+    <BrowserRouter basename={isDev ? '/' : '/ypsilon-frontend/'}>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <App />
