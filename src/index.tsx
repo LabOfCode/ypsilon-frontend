@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       loading={null}
       persistor={persistor}
     > */}
-    <BrowserRouter basename={isDev ? '/' : ''}>
+    <BrowserRouter basename={isDev ? '/' : '/'}>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <App />
