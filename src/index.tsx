@@ -1,3 +1,4 @@
+import path from 'path';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       loading={null}
       persistor={persistor}
     > */}
-    <BrowserRouter basename={isDev ? '/' : '/var/www/ypsilon-frontend/dist/'}>
+    <BrowserRouter basename={isDev ? '/' : path.join(__dirname)}>
       <HelmetProvider>
         <ThemeProvider theme={theme}>
           <App />
