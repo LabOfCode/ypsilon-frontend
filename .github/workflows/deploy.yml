@@ -1,23 +1,38 @@
-name: Build and deploy to GitHub Pages
+name: Build and Deploy React App to VPS
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main # или любая другая ветка, при пуше в которую должен происходить деплой
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout 📦
-        uses: actions/checkout@v2.3.1
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Install and build 🔧
-        run: |
-          npm ci
-          npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          branch: gh-pages
-          folder: dist
+          node-version: '16' # или другая версия Node.js, совместимая с вашим проектом
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the React app
+        run: npm run build
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy build to VPS
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" dist/ root@80.211.203.90:/var/www/ypsilon-frontend/
+
+      - name: Restart server
+        run: |
+          ssh -o StrictHostKeyChecking=no root@80.211.203.90 "pm2 restart all"
