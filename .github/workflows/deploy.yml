@@ -3,7 +3,7 @@ name: Build and Deploy React App to VPS
 on:
   push:
     branches:
-      - main # или любая другая ветка, при пуше в которую должен происходить деплой
+      - main #ветка, при пуше в которую должен происходить деплой
 
 jobs:
   build:
