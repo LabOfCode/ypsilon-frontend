@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 
 // Использование __dirname для определения пути к статическим файлам
 //app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static('/'));
+app.use(express.static(path.join(__dirname)));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
