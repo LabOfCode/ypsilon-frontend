@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy build to VPS
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" dist/ root@80.211.203.90:/var/www/ypsilon-frontend/dist
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" dist/ root@80.211.203.90:/var/www/ypsilon-frontend
 
       - name: Restart server
         run: |
