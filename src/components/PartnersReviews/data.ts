@@ -2,9 +2,9 @@ import logo9 from '../../assets/images/partners/a.png';
 import logo1 from '../../assets/images/partners/hpc_research.png';
 import logo6 from '../../assets/images/partners/ks-europe.png';
 import logo3 from '../../assets/images/partners/kuvag.png';
-import logo5 from '../../assets/images/partners/pelzer.png';
+import logo5 from '../../assets/images/partners/pelzer2.png';
 import logo4 from '../../assets/images/partners/pens.png';
-import logo8 from '../../assets/images/partners/systherm.png';
+import logo8 from '../../assets/images/partners/systherm2.png';
 import logo2 from '../../assets/images/partners/tatra.png';
 import logo7 from '../../assets/images/partners/weiler.png';
 

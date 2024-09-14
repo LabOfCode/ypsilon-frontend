@@ -28,6 +28,11 @@ export const StarsBlock = styled.div`
 `;
 
 export const Text = styled.p`
+ display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 7;
   color: ${({ theme }) => theme.colors.colorBlack};
   font-size: 14px;
   font-weight: 400;
@@ -54,4 +59,9 @@ export const Company = styled.p`
  font-size: 14px;
 font-weight: 600;
 line-height: 1.4;
+text-align:center;
+
+  @media ${({ theme }) => theme.media.tablet} {
+    white-space: nowrap
+  }
 `;
