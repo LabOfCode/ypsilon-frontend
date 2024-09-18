@@ -35,7 +35,6 @@ const ReviewsSlider = () => {
   };
 
   return (
-
       <StyledSlider {...settings}>
          {data.map(({ id, review, logo, company, count }) => (<ReviewItem key={id} count={count} review={review} logo={logo} company={company} />))}
       </StyledSlider>

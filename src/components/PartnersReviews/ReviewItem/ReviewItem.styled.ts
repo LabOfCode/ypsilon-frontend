@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 280px;
+  width: 246px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +12,10 @@ export const Wrapper = styled.div`
     0px 2px 2px 0px rgba(71, 74, 89, 0.02),
     0px 2px 8px 0px rgba(71, 74, 89, 0.08);
   padding: 30px;
+
+  @media (min-width: 350px) {
+    width: 280px;
+  }
 
   @media ${({ theme }) => theme.media.tablet} {
     width: 320px;
@@ -28,7 +32,7 @@ export const StarsBlock = styled.div`
 `;
 
 export const Text = styled.p`
- display: -webkit-box;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -55,13 +59,13 @@ export const Logo = styled.img`
 `;
 
 export const Company = styled.p`
- color: ${({ theme }) => theme.colors.colorBlack};
- font-size: 14px;
-font-weight: 600;
-line-height: 1.4;
-text-align:center;
+  color: ${({ theme }) => theme.colors.colorBlack};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
 
   @media ${({ theme }) => theme.media.tablet} {
-    white-space: nowrap
+    white-space: nowrap;
   }
 `;

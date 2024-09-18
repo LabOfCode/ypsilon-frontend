@@ -39,7 +39,7 @@ const QuestionSection = () => {
             onClick={() => {
               console.log('on btn click');
             }}
-            icon
+            icon={true}
             width={isMobile ? '164px' : '219px'}
             fontSize={isMobile ? '14px' : '16px'}
             $teal
