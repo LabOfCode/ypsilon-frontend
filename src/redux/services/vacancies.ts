@@ -4,7 +4,7 @@ import type { IVacancy, VacanciesResponse } from '@/types';
 
 export const vacancyApi = createApi({
   reducerPath: 'vacancyApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://ypsilon-backend.onrender.com/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://app.ypsilonwork.cz/api' }),
   tagTypes: ['vacancies'],
   endpoints: builder => ({
     getVacancies: builder.query<VacanciesResponse, string>({

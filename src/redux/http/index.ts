@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { AuthResponse } from '@/types';
 
-export const API_URL = 'https://ypsilon-backend.onrender.com/api';
+// export const API_URL = 'https://ypsilon-backend.onrender.com/api';
+export const API_URL = 'https://app.ypsilonwork.cz/api';
 
 const $api = axios.create({
   withCredentials: true,
