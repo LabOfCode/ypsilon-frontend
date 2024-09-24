@@ -16,10 +16,10 @@ export const HeroContentVacancy:React.FC<HeroContentVacancyProps> = ({ title }) 
     <HeroContent>
       <HeroTitle>{title}</HeroTitle>
        <InputField 
-                // label="Ваше ім'я" 
-                // id="name" 
-                // placeholder="Введіть ваше ім'я" 
-                // required 
+                label="Ваше ім'я" 
+                id="name" 
+                placeholder="Введіть ваше ім'я" 
+                required 
             />
     </HeroContent>
   );
