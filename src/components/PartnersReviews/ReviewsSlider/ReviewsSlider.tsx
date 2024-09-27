@@ -1,24 +1,43 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import { data } from "../data";
-import ReviewItem from "../ReviewItem/ReviewItem";
-import { StyledSlider } from "./ReviewsSlider.styled";
-import { SvgArrowLeft, SvgArrowRight } from "@/assets/icons/icons";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+
+import ReviewItem from '../ReviewItem/ReviewItem';
+import { data } from '../data';
+
+import { StyledSlider } from './ReviewsSlider.styled';
+import { SvgArrowLeft, SvgArrowRight } from '@/assets/icons/icons';
+
+const SlickButtonFix = (props: {
+  children: JSX.Element;
+  slideCount?: number;
+  currentSlide?: number;
+}) => {
+  const { children, currentSlide, slideCount, ...others } = props;
+  return <span {...others}>{children}</span>;
+};
 
 const ReviewsSlider = () => {
   const settings = {
     dots: false,
-      arrows: true,
-     nextArrow: <SvgArrowRight />,
-    prevArrow: <SvgArrowLeft/>,
+    arrows: true,
+    nextArrow: (
+      <SlickButtonFix>
+        <SvgArrowRight />
+      </SlickButtonFix>
+    ),
+    prevArrow: (
+      <SlickButtonFix>
+        <SvgArrowLeft />
+      </SlickButtonFix>
+    ),
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
-      touchThreshold: 45,
-    class:'slider',
-        responsive: [
+    touchThreshold: 45,
+    class: 'slider',
+    responsive: [
       {
         breakpoint: 1439,
         settings: {
@@ -35,10 +54,17 @@ const ReviewsSlider = () => {
   };
 
   return (
-      <StyledSlider {...settings}>
-         {data.map(({ id, review, logo, company, count }) => (<ReviewItem key={id} count={count} review={review} logo={logo} company={company} />))}
-      </StyledSlider>
-
+    <StyledSlider {...settings}>
+      {data.map(({ id, review, logo, company, count }) => (
+        <ReviewItem
+          key={id}
+          count={count}
+          review={review}
+          logo={logo}
+          company={company}
+        />
+      ))}
+    </StyledSlider>
   );
 };
 

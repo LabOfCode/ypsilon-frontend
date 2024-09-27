@@ -9,6 +9,9 @@ export const StyledSlider = styled(Slider)`
 
   .slick-prev,
   .slick-next {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
     width: 32px;
     height: 32px;
 
@@ -16,6 +19,21 @@ export const StyledSlider = styled(Slider)`
       width: 40px;
       height: 40px;
     }
+
+    svg{
+          width: 32px;
+    height: 32px;
+
+  @media ${({ theme }) => theme.media.desktop} {
+      width: 40px;
+      height: 40px;
+    }    
+    }
+  }
+
+  .slick-next:before,
+  .slick-prev:before{
+    display:none
   }
 
   .slick-next {
