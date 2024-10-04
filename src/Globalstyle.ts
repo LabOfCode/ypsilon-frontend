@@ -46,7 +46,9 @@ export const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
-	body {
+	html,body {
+		overflow-x:hidden;
+		width:100vw;
 		font-family: 'Montserrat';
 		font-feature-settings:
     'clig' off,
@@ -58,6 +60,18 @@ export const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		background-color: ${({ theme }) => theme.backgroundWhite};
 		color: ${({ theme }) => theme.colorBlack};
+	}
+
+	#root{
+		display: flex;
+  		flex-direction: column;
+		height: 100vh;
+	}
+
+	main {
+  		display: flex;
+  		flex-direction: column;
+  		flex-grow: 1;
 	}
 
 	h1,
