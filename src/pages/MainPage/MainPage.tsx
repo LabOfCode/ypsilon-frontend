@@ -1,15 +1,20 @@
 import { AboutUs } from '@/components/AboutUs/AboutUs';
+import { HeroSection } from '@/components/HeroSection/HeroSection';
+import PartnersReviews from '@/components/PartnersReviews/PartnersReviews';
+import QuestionSection from '@/components/QuestionsSection/QuestionSection';
 import { VacanciesSection } from '@/components/VacanciesSection/VacanciesSection';
 import { useGetTopVacanciesQuery } from '@/redux/services/vacancies';
-import { HeroSection } from '@/components/HeroSection/HeroSection';
+
 export default function MainPage() {
   const { data, isFetching } = useGetTopVacanciesQuery('');
 
   return (
     <div>
-      <HeroSection/>
+      <HeroSection />
       <AboutUs />
       {data?.total !== 0 && <VacanciesSection top />}
+      <PartnersReviews />
+      <QuestionSection />
     </div>
   );
 }
