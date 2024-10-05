@@ -10,9 +10,14 @@ export interface ButtonStyledProps {
   width?: string;
   fontSize?: string;
   margin?: string;
+  icon?: boolean;
+  onClick?:()=>void
+  
 }
 
-export const ButtonStyled = styled.button<ButtonStyledProps>`
+export const ButtonStyled = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== 'icon',
+})<ButtonStyledProps>`
   width: ${({ width }) => width || '164px'};
   font-size: ${({ fontSize }) => fontSize || '14px'};
   font-weight: 700;
@@ -104,4 +109,17 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
       color: ${({ theme }) => theme.colors.colorGray};
       pointer-events: none;
     `}
+
+   ${props =>
+  props.icon &&
+  css`
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 8px; 
+  
+     @media ${({ theme }) => theme.media.tablet} {
+      gap:16px;
+      }
+  `}
 `;
