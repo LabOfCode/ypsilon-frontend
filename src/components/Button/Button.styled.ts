@@ -11,18 +11,19 @@ export interface ButtonStyledProps {
   fontSize?: string;
   margin?: string;
   icon?: boolean;
-  onClick?:()=>void
-  
+  onClick?: () => void;
+  padding?: string;
+  type?:'button'|'submit'
 }
 
 export const ButtonStyled = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== 'icon',
+  shouldForwardProp: prop => prop !== 'icon',
 })<ButtonStyledProps>`
   width: ${({ width }) => width || '164px'};
   font-size: ${({ fontSize }) => fontSize || '14px'};
   font-weight: 700;
   line-height: 1.4;
-  padding: 16px 6px;
+  padding: ${({ padding }) => padding || '16px 6px'};
   border: none;
   border-radius: 10px;
   margin: ${({ margin }) => margin || '0'};
@@ -111,15 +112,15 @@ export const ButtonStyled = styled.button.withConfig({
     `}
 
    ${props =>
-  props.icon &&
-  css`
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    gap: 8px; 
-  
-     @media ${({ theme }) => theme.media.tablet} {
-      gap:16px;
+    props.icon &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      @media ${({ theme }) => theme.media.tablet} {
+        gap: 16px;
       }
-  `}
+    `}
 `;
