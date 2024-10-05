@@ -7,17 +7,13 @@ import { Header } from './Header/Header';
 export const Layout = () => {
   return (
     <>
-      <header>
-        <Header />
-      </header>
+      <Header />
       <main>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </>
   );
 };
