@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { routes } from '@/routes';
 import {
   HeaderContent,
@@ -14,34 +14,56 @@ import {
   LoginLink,
   LoveLogo,
   UserLogo,
+  LogoYP
 } from './Header.styled';
-import logo from '@/assets/images/logo.png';
-import uaLogo from '@/assets/images/flag_us.png';
-import czLogo from '@/assets/images/flag_cz.png';
-import userLogo from '@/assets/images/user.png';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
 
 const Logo: React.FC = React.memo(() => (
-  <LogoLink to={routes.HOME}>
-    <img src={logo} alt="logo" />
+  <LogoLink to={routes.HOME} onClick={() => window.scrollTo(0, 0)}>
+    <LogoYP viewBox="0 0 126 74">
+      <use href="#svg_sprite_logo"></use>
+    </LogoYP>
   </LogoLink>
 ));
 
-const Menu: React.FC = React.memo(() => (
-  <MenuHeaderWrap>
-    <LinkHeader to={routes.HOME}>Головна</LinkHeader>
-    <LinkHeader to={routes.VACANCIES}>Вакансії</LinkHeader>
-    <LinkHeader to={routes.REVIEWS}>Відгуки</LinkHeader>
-    <LinkHeader to={routes.CONTACTS}>Контакти</LinkHeader>
-  </MenuHeaderWrap>
-));
+const Menu: React.FC = () => {
+  const location = useLocation(); 
+
+  return (
+    <MenuHeaderWrap>
+      <LinkHeader
+        to={routes.HOME}
+        className={location.pathname === routes.HOME ? 'active' : ''}
+      >
+        Головна
+      </LinkHeader>
+      <LinkHeader
+        to={routes.VACANCIES}
+        className={location.pathname === routes.VACANCIES ? 'active' : ''}
+      >
+        Вакансії
+      </LinkHeader>
+      <LinkHeader
+        to={routes.REVIEWS}
+        className={location.pathname === routes.REVIEWS ? 'active' : ''}
+      >
+        Відгуки
+      </LinkHeader>
+      <LinkHeader
+        to={routes.CONTACTS}
+        className={location.pathname === routes.CONTACTS ? 'active' : ''}
+      >
+        Контакти
+      </LinkHeader>
+    </MenuHeaderWrap>
+  );
+};
 
 const LanguageToggle: React.FC<{ language: 'ua' | 'cz'; onToggle: () => void }> = React.memo(({ language, onToggle }) => (
   <ChangeLangLogo onClick={onToggle}>
-    <img
-      src={language === 'ua' ? uaLogo : czLogo}
-      alt={language === 'ua' ? 'uaLogo' : 'czLogo'}
-    />
+    <svg viewBox="0 0 32 32">
+      <use href={language === 'ua' ? '#svg_sprite_flag_ua' : '#svg_sprite_flag_cz'} />
+    </svg>
   </ChangeLangLogo>
 ));
 
@@ -49,7 +71,11 @@ const UserButton: React.FC = React.memo(() => (
   <ButtonWrap>
     <LoginLink to="/login">
       <EnterButton>Увійти</EnterButton>
-      <UserLogo><img src={userLogo} alt="userLogo" /></UserLogo>
+      <UserLogo>
+        <svg viewBox="0 0 32 32">
+          <use href="#svg_sprite_user_main"></use>
+        </svg>
+      </UserLogo>
     </LoginLink>
   </ButtonWrap>
 ));
