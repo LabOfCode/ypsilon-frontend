@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import Container from '../Container';
+
 import { theme } from '@/Theme';
 
 export const HeaderWrapper = styled.div`
@@ -31,26 +33,33 @@ export const HeaderContent = styled(Container)`
 export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
+`;
 
-  & img {
-    width: 50px;
-    height: 28px;
+export const LogoYP = styled.svg`
+  width: 50px;
+  height: 28px;
 
-    @media ${({ theme }) => theme.media.tablet} {
-      width: 98px;
-      height: 58px;
-    }
+  @media ${({ theme }) => theme.media.tablet} {
+    width: 98px;
+    height: 58px;
+  }
 
-    @media ${({ theme }) => theme.media.desktop} {
-      width: 126px;
-      height: 74px;
-    }
+  @media ${({ theme }) => theme.media.desktop} {
+    width: 126px;
+    height: 74px;
+  }
+
+  /* Это поможет сделать содержимое SVG адаптивным */
+  & use {
+    width: 100%;
+    height: 100%;
   }
 `;
 
 export const ChangeLangLogo = styled.div`
   cursor: pointer;
-  & img {
+  
+  & svg {
     display: none;
 
     @media ${({ theme }) => theme.media.tablet} {
@@ -62,6 +71,11 @@ export const ChangeLangLogo = styled.div`
     @media ${({ theme }) => theme.media.desktop} {
       width: 32px;
       height: 32px;
+    }
+
+    & use {
+      width: 100%;
+      height: 100%;
     }
   }
 `;
@@ -78,6 +92,10 @@ export const LinkHeader = styled(Link)`
   &:focus {
     transform: scale(1.1);
     color: ${({ theme }) => theme.colors.colorYellow};
+  }
+
+  &.active {
+    color: ${({ theme }) => theme.colors.colorYellow};  /* Цвет для активной ссылки */
   }
 
   @media ${({ theme }) => theme.media.tablet} {
@@ -201,19 +219,25 @@ export const LoveLogo = styled.svg`
   }
 `;
 
-export const UserLogo = styled.svg`
-  stroke: ${({ theme }) => theme.colors.colorWhite};
-  width: 24px;
-  height: 24px;
-
-  @media ${({ theme }) => theme.media.tablet} {
-    display: block;
+export const UserLogo = styled.div`
+  & svg {
     width: 24px;
     height: 24px;
-  }
 
-  @media ${({ theme }) => theme.media.desktop} {
-    width: 32px;
-    height: 32px;
+    @media ${({ theme }) => theme.media.tablet} {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media ${({ theme }) => theme.media.desktop} {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Это поможет сделать содержимое SVG адаптивным */
+    & use {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

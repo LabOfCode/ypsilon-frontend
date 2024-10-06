@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+import config from '@/config';
 import { AuthResponse } from '@/types';
 
-export const API_URL = 'https://ypsilon-backend.onrender.com/api';
+const API_URL = config.apiUrl;
 
 const $api = axios.create({
   withCredentials: true,
