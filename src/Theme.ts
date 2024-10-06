@@ -16,6 +16,7 @@ export const theme = {
     colorTeal: '#0FB7D1',
     colorGray: '##A3A8A9',
     colorRed: '#FF4141',
+    colorGreen: '#00ea13',
   },
   //animation
   cubicBezier: 'cubic-bezier(0.4, 0, 0.2, 1)',
