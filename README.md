@@ -31,7 +31,7 @@
 ## Деплой
 
 Продакшн версия проекта будет автоматически проходить линтинг, собираться и деплоиться на
-[git-pages](https://labofcode.github.io/ypsilon-frontend/)
+[Cloud VPS](https://app.ypsilonwork.cz)
 
 ## Инфо по процессу проектирования
 

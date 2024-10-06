@@ -16,7 +16,7 @@ export default (env: EnvVariables) => {
     html: path.resolve(__dirname, 'public', 'index.html'),
     public: path.resolve(__dirname, 'public'),
     src: path.resolve(__dirname, 'src'),
-    publicpath: '/ypsilon-frontend/',
+    publicpath: '/',
   };
 
   const config: webpack.Configuration = buildWebpack({
