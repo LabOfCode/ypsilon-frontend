@@ -9,6 +9,10 @@ export const FormWrapper = styled(Form)`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+
+  @media (min-width: 989px) {
+    width: 90%;
+  }
 `;
 
 export const Title = styled.h2`
@@ -16,12 +20,20 @@ export const Title = styled.h2`
   font-size: 20px;
   font-weight: 700;
   line-height: 1.4;
+
+  @media (min-width: 744px) {
+    font-size: 24px;
+  }
 `;
 
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (min-width: 989px) {
+    gap: 32px;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -43,6 +55,12 @@ export const InputWithMask = styled(IMaskInput)<{ error: string | undefined }>`
   color: ${({ theme }) => theme.colors.colorBlack};
   background-color: ${({ theme }) => theme.colors.colorWhite};
   transition: border 250ms ${({ theme }) => theme.cubicBezier};
+
+  @media (min-width: 744px) {
+    height: 52px;
+    padding: 16px;
+    font-size: 16px;
+  }
 
   &::placeholder {
     font-weight: 400;

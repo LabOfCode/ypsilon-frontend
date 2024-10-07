@@ -25,6 +25,10 @@ export const ModalContainer = styled.div`
   width: 300px;
   border-radius: 8px;
   background-image: linear-gradient(180deg, #01252a 0%, #0392a6 100%);
+
+  @media (min-width: 744px) {
+    width: 40%;
+  }
 `;
 
 export const CloseSvg = styled(SvgClose)`

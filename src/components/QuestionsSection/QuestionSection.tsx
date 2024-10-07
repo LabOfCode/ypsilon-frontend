@@ -1,8 +1,5 @@
-import { log } from 'console';
-
 import { Button } from '../Button/Button';
 import Container from '../Container';
-
 import QuestionItem from './QuestionItem/QuestionItem';
 import {
   Feedback,
@@ -14,11 +11,20 @@ import {
 } from './QuestionSection.styled';
 import { temporaryData } from './temporaryData';
 import { responsive } from '@/helpers/responsive';
+import { useState } from 'react';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import FeedbackForm from '../modules/FeedbackForm/FeedbackForm';
 
 const QuestionSection = () => {
-  const { isMobile, isTablet, isDesktop } = responsive();
+  const { isMobile } = responsive();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const onClick = () => {
+    setModalOpen(prev => !prev);
+  };
 
   return (
+    <>
     <Wrapper>
       <Container>
         <Title>
@@ -36,9 +42,7 @@ const QuestionSection = () => {
         <Feedback>
           <FeedbackText>Залишились питання?</FeedbackText>
           <Button
-            onClick={() => {
-              console.log('on btn click');
-            }}
+            onClick={onClick}
             icon={true}
             width={isMobile ? '164px' : '219px'}
             fontSize={isMobile ? '14px' : '16px'}
@@ -49,7 +53,14 @@ const QuestionSection = () => {
           </Button>
         </Feedback>
       </Container>
-    </Wrapper>
+      </Wrapper>
+       {modalOpen && (
+        <ModalWindow setIsModalOpen={setModalOpen}>
+          <FeedbackForm setModalFormOpen={setModalOpen} />
+        </ModalWindow>
+      )}
+    </>
+    
   );
 };
 

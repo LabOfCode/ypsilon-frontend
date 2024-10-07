@@ -16,6 +16,12 @@ export const StyledTextField = styled.input<{ error?: string }>`
   background-color: ${({ theme }) => theme.colors.colorWhite};
   transition: border 250ms ${({ theme }) => theme.cubicBezier};
 
+  @media (min-width: 744px) {
+    height: 52px;
+    padding: 16px;
+    font-size: 16px;
+  }
+
   &::placeholder {
     font-weight: 400;
     color: ${({ theme }) => theme.colors.colorGray};

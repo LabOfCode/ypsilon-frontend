@@ -214,3 +214,36 @@ return(
     rows={4} // Кількість рядків для textarea
   />;
   ```
+
+  - `ModalWindow` - компонент, призначений для відображення модальних вікон. Він блокує
+    прокручування сторінки під час відкриття модального вікна, дозволяє закрити вікно через клавішу
+    "Escape" або натискання за межами вікна, та підтримує будь-який контент всередині через пропс
+    `children`.
+
+  Компонент підтримує наступні пропси:
+
+  - **`setIsModalOpen`**: функція, що керує станом відкриття/закриття модального вікна.
+  - **`children`**: контент, який буде відображатися всередині модального вікна.
+
+  Приклад використання:
+
+  ```tsx
+  import { useState } from 'react';
+
+  import ModalWindow from '@/components/ModalWindow/ModalWindow';
+
+  const MyComponent = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    return (
+      <>
+        <button onClick={() => setIsModalOpen(true)}>Відкрити Модальне Вікно</button>
+        {isModalOpen && (
+          <ModalWindow setIsModalOpen={setIsModalOpen}>
+            <p>Це контент модального вікна</p>
+          </ModalWindow>
+        )}
+      </>
+    );
+  };
+  ```
