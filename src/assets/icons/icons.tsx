@@ -1,7 +1,7 @@
 import React, { SVGProps } from 'react';
 
 export const SvgStar: React.FC<SVGProps<SVGSVGElement>> = props => (
-     <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
     height={24}
@@ -16,12 +16,12 @@ export const SvgStar: React.FC<SVGProps<SVGSVGElement>> = props => (
 );
 
 export const SvgArrowLeft: React.FC<SVGProps<SVGSVGElement>> = props => (
-    <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={40}
     height={40}
     fill="none"
-  viewBox="0 0 40 40"
+    viewBox="0 0 40 40"
     {...props}
   >
     <path
@@ -42,12 +42,12 @@ export const SvgArrowLeft: React.FC<SVGProps<SVGSVGElement>> = props => (
 );
 
 export const SvgArrowRight: React.FC<SVGProps<SVGSVGElement>> = props => (
-     <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={40}
     height={40}
     fill="none"
-  viewBox="0 0 40 40"
+    viewBox="0 0 40 40"
     {...props}
   >
     <path
@@ -68,12 +68,12 @@ export const SvgArrowRight: React.FC<SVGProps<SVGSVGElement>> = props => (
 );
 
 export const SvgPlus: React.FC<SVGProps<SVGSVGElement>> = props => (
-    <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={40}
     height={40}
     fill="none"
-  viewBox="0 0 40 40"
+    viewBox="0 0 40 40"
     {...props}
   >
     <path
@@ -87,12 +87,12 @@ export const SvgPlus: React.FC<SVGProps<SVGSVGElement>> = props => (
 );
 
 export const SvgMinus: React.FC<SVGProps<SVGSVGElement>> = props => (
-    <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={40}
     height={40}
     fill="none"
-  viewBox="0 0 40 40"
+    viewBox="0 0 40 40"
     {...props}
   >
     <path
@@ -106,11 +106,11 @@ export const SvgMinus: React.FC<SVGProps<SVGSVGElement>> = props => (
 );
 
 export const SvgMail: React.FC<SVGProps<SVGSVGElement>> = props => (
-   <svg
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
     height={32}
-      viewBox="0 0 32 32"
+    viewBox="0 0 32 32"
     fill="none"
     {...props}
   >
@@ -131,4 +131,40 @@ export const SvgMail: React.FC<SVGProps<SVGSVGElement>> = props => (
   </svg>
 );
 
+export const SvgFixedBtn: React.FC<SVGProps<SVGSVGElement>> = props => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={31}
+    height={30}
+    viewBox="0 0 30 30"
+    fill=""
+    {...props}
+  >
+    <path
+      stroke=""
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={3}
+      d="M26.75 18.75a2.5 2.5 0 0 1-2.5 2.5h-15l-5 5v-20a2.5 2.5 0 0 1 2.5-2.5h17.5a2.5 2.5 0 0 1 2.5 2.5v12.5Z"
+    />
+  </svg>
+);
 
+export const SvgClose: React.FC<SVGProps<SVGSVGElement>> = props => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      stroke="#F9F9F9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M18 6 6 18M6 6l12 12"
+    />
+  </svg>
+);

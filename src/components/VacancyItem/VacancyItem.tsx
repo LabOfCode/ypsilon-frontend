@@ -1,4 +1,4 @@
-import { Button } from '../Button/Button';
+import { Button, LinkButton } from '../Button/Button';
 import { IVacancyLocal } from '../VacanciesList/VacanciesList';
 
 import {
@@ -53,7 +53,7 @@ export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => 
           <PriceText>{`${price} крон/год`}</PriceText>
         </ItemWrap>
         <ButtonWrap>
-          <Button $tealForCard>Залишити заявку</Button>
+          <LinkButton to={`/${_id}`} $tealForCard>Дізнатися більше</LinkButton>
           <button onClick={() => onToggleFavorite(_id)}>
             {vacancy.isFavorite ? (
               <HeartActiveIcon>

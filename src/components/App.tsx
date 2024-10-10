@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { GlobalStyle } from '@/Globalstyle';
 import { routes } from '@/routes';
+import VacancyPage from '@/pages/VacancyPage/VacancyPage';
 
 const MainPage = lazy(() => import('@/pages/MainPage/MainPage'));
 const VacanciesPage = lazy(() => import('@/pages/VacanciesPage/VacanciesPage'));
@@ -38,6 +39,7 @@ export const App = () => {
             path={routes.FAVORITES}
             // element={<FavoritesPage />}
           />
+          <Route path="/:section" element={<VacancyPage />} />
           <Route
             path="*"
             element={<NotFoundPage />}
