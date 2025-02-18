@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -19,6 +20,7 @@ import { responsive } from '@/helpers/responsive';
 
 export const HeroSection = () => {
   const { isMobile, isTablet, isDesktop } = responsive();
+  const { t } = useTranslation();
 
   const settings = {
     dots: false,
@@ -78,10 +80,8 @@ export const HeroSection = () => {
       </Slider>
       <ContainerStyled>
         <HeroContent>
-          <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
-          <HeroText>
-            Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
-          </HeroText>
+          <HeroTitle>{t('welcome')}</HeroTitle>
+          <HeroText>{t('textHero')}</HeroText>
           <Flex
             flex-wrap="nowrap"
             align-items={isMobile || isTablet ? 'stretch' : 'flex-start'}
