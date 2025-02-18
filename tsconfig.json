@@ -10,11 +10,15 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "public", "config"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

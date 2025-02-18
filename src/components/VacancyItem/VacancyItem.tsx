@@ -15,7 +15,6 @@ import {
   TopImg,
 } from './VacancyItem.styled';
 import topVacancy from '@/assets/images/label_top.png';
-import { IVacancy } from '@/types';
 
 interface VacancyItemProps {
   vacancy: IVacancyLocal;
