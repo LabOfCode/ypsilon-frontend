@@ -11,14 +11,15 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "skipLibCheck": true,
+    // "resolveJsonModule": true,
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist", "config", "public"],
   "ts-node": {
     "compilerOptions": {
