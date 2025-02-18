@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import Container from '../Container';
 
 export const HeroWrapper = styled.div`
-  /* width: 100vw;
-  height: 100vh; */
-  /* position: relative; */
-  /* overflow: hidden; */
   margin-bottom: 40px;
 
   @media ${({ theme }) => theme.media.tablet} {
@@ -18,9 +14,13 @@ export const HeroWrapper = styled.div`
   }
 `;
 
-export const SlideImage = styled.div<{ bgImage: string }>`
+export const SlideImage = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'bgImage',
+})<{ bgImage: string }>`
   height: 432px;
-  background-size: cover;
+  background: ${({ theme }) => theme.colors.backgroundDarkTeal};
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   background-image: url(${props => props.bgImage});
 
