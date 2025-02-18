@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
 import Container from '../Container';
+import Flex from '../Flex/Flex';
+
 
 export const ContainerFooter = styled(Container)`
   position: relative;

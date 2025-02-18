@@ -6,7 +6,7 @@ import { VacanciesSection } from '@/components/VacanciesSection/VacanciesSection
 import { useGetTopVacanciesQuery } from '@/redux/services/vacancies';
 
 export default function MainPage() {
-  const { data } = useGetTopVacanciesQuery('');
+  const { data, isFetching } = useGetTopVacanciesQuery('');
 
   return (
     <div>

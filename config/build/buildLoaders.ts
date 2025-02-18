@@ -94,5 +94,13 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   //babel-loader
   const babelLoader = buildBabelLoader(options);
 
-  return [assetLoader, cssLoader, tsLoader, babelLoader, svgSpriteLoader, svgLoader, fontsLoader];
+  return [
+    assetLoader,
+    cssLoader,
+    //tsLoader,
+    babelLoader,
+    svgSpriteLoader,
+    svgLoader,
+    fontsLoader,
+  ];
 }

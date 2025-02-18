@@ -11,8 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "@/*": ["src/*"]
     }

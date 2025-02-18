@@ -18,13 +18,9 @@ export const HeroWrapper = styled.div`
   }
 `;
 
-export const SlideImage = styled.div.withConfig({
-  shouldForwardProp: prop => prop !== 'bgImage',
-})<{ bgImage: string }>`
+export const SlideImage = styled.div<{ bgImage: string }>`
   height: 432px;
-  background: ${({ theme }) => theme.colors.backgroundDarkTeal};
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
   background-image: url(${props => props.bgImage});
 

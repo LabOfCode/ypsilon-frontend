@@ -1,3 +1,5 @@
+import { log } from 'console';
+
 import { Button } from '../Button/Button';
 import Container from '../Container';
 
@@ -14,7 +16,7 @@ import { temporaryData } from './temporaryData';
 import { responsive } from '@/helpers/responsive';
 
 const QuestionSection = () => {
-  const { isMobile } = responsive();
+  const { isMobile, isTablet, isDesktop } = responsive();
 
   return (
     <Wrapper>

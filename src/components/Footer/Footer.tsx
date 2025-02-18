@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Flex from '../Flex/Flex';
 
 import {
@@ -16,8 +18,8 @@ import facebook from '@/assets/images/devicon-plain_facebook.png';
 import logo from '@/assets/images/logo.png';
 import instagram from '@/assets/images/skill-icons_instagram.png';
 import twiter from '@/assets/images/skill-icons_twitter.png';
-import { responsive } from '@/helpers/responsive';
 import { routes } from '@/routes';
+import { responsive } from '@/helpers/responsive';
 
 export const Footer = () => {
   const { isMobile, isDesktop } = responsive();
@@ -44,10 +46,7 @@ export const Footer = () => {
           </FooterWrap>
         </LogoLinkWrap>
         <WrapLogo>
-          <Flex
-            gap={isMobile ? '16px' : '24px'}
-            justify={isDesktop ? 'flex-end' : 'center'}
-          >
+          <Flex gap={isMobile ? '16px' : '24px'} justify={isDesktop?'flex-end':'center'}>
             <a
               target="_blank"
               rel="noopener noreferrer nofollow"

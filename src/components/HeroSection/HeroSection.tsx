@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -20,16 +19,15 @@ import { responsive } from '@/helpers/responsive';
 
 export const HeroSection = () => {
   const { isMobile, isTablet, isDesktop } = responsive();
-  const { t } = useTranslation();
 
   const settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     fade: true,
     cssEase: 'linear',
     arrows: false,
@@ -80,8 +78,10 @@ export const HeroSection = () => {
       </Slider>
       <ContainerStyled>
         <HeroContent>
-          <HeroTitle>{t('welcome')}</HeroTitle>
-          <HeroText>{t('textHero')}</HeroText>
+          <HeroTitle>Агенція з працевлаштування в Чехії</HeroTitle>
+          <HeroText>
+            Робота в Чехії. Ypsylon - компанія, яка надає повний супровід та підбір вакансій
+          </HeroText>
           <Flex
             flex-wrap="nowrap"
             align-items={isMobile || isTablet ? 'stretch' : 'flex-start'}

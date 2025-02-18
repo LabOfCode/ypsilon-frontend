@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import { LinkButton } from '../Button/Button';
 import { VacanciesList } from '../VacanciesList/VacanciesList';
 
 import { ContainerStyled, Title } from './VacanciesSection.styled';
 import { routes } from '@/routes';
+import { IVacancy } from '@/types';
 
 interface VacanciesSectionProps {
   top?: boolean;

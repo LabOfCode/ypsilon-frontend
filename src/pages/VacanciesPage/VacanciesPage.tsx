@@ -4,7 +4,7 @@ import { VacancyNotFound } from '@/components/VacancyNotFound/VacancyNotFound';
 import { useGetVacanciesQuery } from '@/redux/services/vacancies';
 
 const VacanciesPage = () => {
-  const { data } = useGetVacanciesQuery('');
+  const { data, isFetching } = useGetVacanciesQuery('');
 
   return (
     <div>
