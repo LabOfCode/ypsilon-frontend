@@ -75,21 +75,21 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   };
 
   //ts-loader
-  const tsLoader = {
-    test: /\.tsx?$/,
-    use: [
-      {
-        loader: 'ts-loader',
-        options: {
-          getCustomTransformers: () => ({
-            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-          }),
-          transpileOnly: isDev,
-        },
-      },
-    ],
-    exclude: /node_modules/,
-  };
+  // const tsLoader = {
+  //   test: /\.tsx?$/,
+  //   use: [
+  //     {
+  //       loader: 'ts-loader',
+  //       options: {
+  //         getCustomTransformers: () => ({
+  //           before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+  //         }),
+  //         transpileOnly: isDev,
+  //       },
+  //     },
+  //   ],
+  //   exclude: /node_modules/,
+  // };
 
   //babel-loader
   const babelLoader = buildBabelLoader(options);
