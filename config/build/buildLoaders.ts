@@ -1,5 +1,5 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import ReactRefreshTypeScript from 'react-refresh-typescript';
+// import ReactRefreshTypeScript from 'react-refresh-typescript';
 import { ModuleOptions } from 'webpack';
 
 import { buildBabelLoader } from './babel/buildBabelLoader';
@@ -66,6 +66,35 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       publicPath: 'images/',
       outputPath: 'images/',
     },
+    parser: {
+      dataUrlCondition: {
+        maxSize: 8 * 1024, // Изображения < 8KB инлайнить в base64
+      },
+    },
+    use: [
+      {
+        loader: 'image-webpack-loader',
+        options: {
+          mozjpeg: {
+            progressive: true,
+            quality: 75, // Сжатие JPEG
+          },
+          optipng: {
+            enabled: true,
+          },
+          pngquant: {
+            quality: [0.65, 0.9], // Сжатие PNG
+            speed: 4,
+          },
+          gifsicle: {
+            interlaced: false,
+          },
+          webp: {
+            quality: 75, // Конвертация в WebP
+          },
+        },
+      },
+    ],
   };
 
   //CSS
@@ -75,7 +104,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   };
 
   //ts-loader
-  // const tsLoader = {
+  // const tsLoader  = {
   //   test: /\.tsx?$/,
   //   use: [
   //     {
