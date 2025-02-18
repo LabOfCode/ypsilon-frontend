@@ -19,8 +19,8 @@ export function fontFace(
   srcwoff2: string,
   srcwoff: string,
   srcttf: string,
-  fontWeight: number = 400,
-  fontStyle: string = 'normal'
+  fontWeight = 400,
+  fontStyle = 'normal'
 ) {
   return `
       @font-face{
@@ -36,7 +36,7 @@ export function fontFace(
 
 export const GlobalStyle = createGlobalStyle`
 	${fontFace('Montserrat', MontserratRegularwoff2, MontserratRegularwoff, MontserratRegularttf)};
-	${fontFace('Montserrat', MontserratMediumwoff2, MontserratMediumwoff, MontserratMediumttf, 500)};
+	${fontFace('Montserrat', MontserratMediumwoff2, MontserratMediumwoff, MontserratMediumttf, 500)}
 	${fontFace('Montserrat', MontserratSemiBoldwoff2, MontserratSemiBoldwoff, MontserratSemiBoldttf, 600)};
 	${fontFace('Montserrat', MontserratBoldwoff2, MontserratBoldwoff, MontserratBoldttf, 700)};
 
@@ -84,7 +84,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	img {
-		display: block;
+		display: block;		
 		height: auto;
 		max-width:100%;
 	}
