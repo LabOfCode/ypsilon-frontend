@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { routes } from '@/routes';
+
 import {
-  HeaderContent,
-  HeaderWrap,
-  LinkHeader,
-  LogoLink,
-  MenuHeaderWrap,
-  HeaderWrapper,
+  ButtonWrap,
   ChangeLangLogo,
   EnterButton,
-  ButtonWrap,
+  HeaderContent,
+  HeaderWrap,
+  HeaderWrapper,
+  LinkHeader,
   LoginLink,
+  LogoLink,
+  LogoYP,
   LoveLogo,
+  MenuHeaderWrap,
   UserLogo,
-  LogoYP
 } from './Header.styled';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
+import { routes } from '@/routes';
 
 const Logo: React.FC = React.memo(() => (
-  <LogoLink to={routes.HOME} onClick={() => window.scrollTo(0, 0)}>
+  <LogoLink
+    to={routes.HOME}
+    onClick={() => window.scrollTo(0, 0)}
+  >
     <LogoYP viewBox="0 0 126 74">
       <use href="#svg_sprite_logo"></use>
     </LogoYP>
@@ -27,7 +32,7 @@ const Logo: React.FC = React.memo(() => (
 ));
 
 const Menu: React.FC = () => {
-  const location = useLocation(); 
+  const location = useLocation();
 
   return (
     <MenuHeaderWrap>
@@ -59,13 +64,15 @@ const Menu: React.FC = () => {
   );
 };
 
-const LanguageToggle: React.FC<{ language: 'ua' | 'cz'; onToggle: () => void }> = React.memo(({ language, onToggle }) => (
-  <ChangeLangLogo onClick={onToggle}>
-    <svg viewBox="0 0 32 32">
-      <use href={language === 'ua' ? '#svg_sprite_flag_ua' : '#svg_sprite_flag_cz'} />
-    </svg>
-  </ChangeLangLogo>
-));
+const LanguageToggle: React.FC<{ language: 'ua' | 'cz'; onToggle: () => void }> = React.memo(
+  ({ language, onToggle }) => (
+    <ChangeLangLogo onClick={onToggle}>
+      <svg viewBox="0 0 32 32">
+        <use href={language === 'ua' ? '#svg_sprite_flag_ua' : '#svg_sprite_flag_cz'} />
+      </svg>
+    </ChangeLangLogo>
+  )
+);
 
 const UserButton: React.FC = React.memo(() => (
   <ButtonWrap>
@@ -82,9 +89,12 @@ const UserButton: React.FC = React.memo(() => (
 
 export const Header: React.FC = () => {
   const [language, setLanguage] = useState<'ua' | 'cz'>('ua');
+  const { i18n } = useTranslation();
 
   const handleLanguageChange = () => {
-    setLanguage((prev) => (prev === 'ua' ? 'cz' : 'ua'));
+    const newLanguage = language === 'cz' ? 'ua' : 'cz';
+    setLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage);
   };
 
   return (
@@ -93,13 +103,19 @@ export const Header: React.FC = () => {
         <Logo />
         <HeaderWrap>
           <Menu />
-          <LanguageToggle language={language} onToggle={handleLanguageChange} />
-          <Link to={routes.FAVORITES}> 
+          <LanguageToggle
+            language={language}
+            onToggle={handleLanguageChange}
+          />
+          <Link to={routes.FAVORITES}>
             <LoveLogo>
               <use href="#svg_sprite_heart"></use>
             </LoveLogo>
           </Link>
-          <BurgerMenu language={language} handleLanguageChange={handleLanguageChange} />
+          <BurgerMenu
+            language={language}
+            handleLanguageChange={handleLanguageChange}
+          />
           <UserButton />
         </HeaderWrap>
       </HeaderContent>
