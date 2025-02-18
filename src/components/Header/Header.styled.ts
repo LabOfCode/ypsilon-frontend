@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import Container from '../Container';
 
-import { theme } from '@/Theme';
-
 export const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -58,7 +56,7 @@ export const LogoYP = styled.svg`
 
 export const ChangeLangLogo = styled.div`
   cursor: pointer;
-  
+
   & svg {
     display: none;
 
@@ -95,7 +93,7 @@ export const LinkHeader = styled(Link)`
   }
 
   &.active {
-    color: ${({ theme }) => theme.colors.colorYellow};  /* Цвет для активной ссылки */
+    color: ${({ theme }) => theme.colors.colorYellow}; /* Цвет для активной ссылки */
   }
 
   @media ${({ theme }) => theme.media.tablet} {
