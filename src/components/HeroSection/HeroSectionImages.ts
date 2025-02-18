@@ -15,9 +15,9 @@ export const slidesTablet = [
 ];
 
 export const slidesDesktop = [
-    require('@/assets/images/slider/slideDesktop1.jpg'),
-    require('@/assets/images/slider/slideDesktop1.jpg'),
-    require('@/assets/images/slider/slideDesktop1.jpg'),
-    require('@/assets/images/slider/slideDesktop1.jpg'),
-    require('@/assets/images/slider/slideDesktop1.jpg'),
+  require('@/assets/images/slider/slideDesktop1.png'),
+  require('@/assets/images/slider/slideDesktop2.png'),
+  require('@/assets/images/slider/slideDesktop3.png'),
+  require('@/assets/images/slider/slideDesktop4.png'),
+  require('@/assets/images/slider/slideDesktop5.png'),
 ];
