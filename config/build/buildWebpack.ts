@@ -2,6 +2,7 @@ import webpack from 'webpack';
 
 import { buildDevServer } from './buildDevServer';
 import { buildLoaders } from './buildLoaders';
+import { buildOptimization } from './buildOptimization';
 import { buildPlugins } from './buildPlugins';
 import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/types';
@@ -19,6 +20,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       filename: '[name].[contenthash].js',
       clean: true,
     },
+    optimization: buildOptimization(), // Настройте Webpack для разделения кода
     plugins: buildPlugins(options),
     module: {
       rules: buildLoaders(options),
