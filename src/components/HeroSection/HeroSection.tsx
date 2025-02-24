@@ -91,14 +91,14 @@ export const HeroSection = () => {
               $yellow
               to="/vacancies"
             >
-              Підібрати вакансію
+              { t('btnVacancy')}
             </LinkButton>
             <Button
               width={isMobile ? '148px' : '322px'}
               fontSize={isMobile ? '14px' : '24px'}
               $teal
             >
-              Залишити заявку
+              {t('btnOrder')}
             </Button>
           </Flex>
         </HeroContent>

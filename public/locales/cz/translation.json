@@ -1,3 +1,23 @@
 {
-  "welcome": "Pracovní agentura v České republice"
+  "welcome": "Pracovní agentura v České republice",
+  "textHero":"Práce v ČR. Ypsilon je společnost, která poskytuje plnou podporu a výběr volných pracovních míst",
+  "btnVacancy":"Zvolte si pracovní místo",
+  "btnOrder": "Mám zájem o práce",
+  "aboutUs":"- je licencovaná agentura práce, která pomáhá lidem najít práci v ČR. V tomto oboru máme dlouholeté a hluboké zkušenosti pochopení českého trhu práce. Nabízíme širokou škálu služeb, které vám pomohou najít práci, která odpovídá vašim schopnostem, zkušenostem a zájmům.",
+  "iconHandshake":"Oficiální zaměstnání",
+  "iconBestSeller":"Práce u nejlepších firm ČR",
+  "iconConsultation":"Konzultace ve všech fázích",
+  "icononLineSupport":"Koordinace a podpora",
+  "title":"O nás",
+  "ourVacancy":"Naše volná pracovní místa",
+  "lookAll":"Zobrazit vše",
+  "partnersReviews":"Recenze našich partnerů",
+  "question":"Dotazy",
+  "answer":" Odpovědi",
+  "feedbackText":"Máte nějaké dotazy?",
+  "mailSvg":"Napište nám",
+  "home":"Domov",
+  "vacancies":"Pozice",
+  "reviews":"Recenze",
+  "contacts":"Kontakty"
 }

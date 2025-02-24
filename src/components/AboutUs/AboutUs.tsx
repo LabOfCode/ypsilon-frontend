@@ -1,4 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
+
+
 import Container from '../Container';
+
+
 
 import { AboutUsWrapper, FlexStyled, IconWrap, Text, TextWrap, Title } from './AboutUs.styled';
 import handshake from '@/assets/images/Handshake.png';
@@ -6,17 +12,16 @@ import bestSeller from '@/assets/images/bestSeller.png';
 import consultation from '@/assets/images/consultation.png';
 import onlineSupport from '@/assets/images/onlineSupport.png';
 
+
 export const AboutUs = () => {
+  const { t } = useTranslation();
   return (
     <AboutUsWrapper>
       <Container>
         <TextWrap>
-          <Title>Про нас</Title>
+          <Title>{ t('title')}</Title>
           <Text>
-            <span>Ypsilon</span> - це ліцензована агенція з працевлаштування, яка допомагає людям
-            знайти роботу в Чехії. Ми маємо багаторічний досвід роботи в цій сфері та глибоке
-            розуміння чеського ринку праці. Ми пропонуємо широкий спектр послуг, які допоможуть вам
-            знайти роботу, яка відповідає вашим навичкам, досвіду та інтересам.
+            <span>Ypsilon</span> {t('aboutUs')}
           </Text>
         </TextWrap>
         <FlexStyled>
@@ -25,28 +30,28 @@ export const AboutUs = () => {
               src={handshake}
               alt="Icon"
             />
-            <p>Офіційне працевлаштування</p>
+            <p>{ t('iconHandshake')}</p>
           </IconWrap>
           <IconWrap>
             <img
               src={bestSeller}
               alt="Icon"
             />
-            <p>Вакансії в кращіх компаніях Чехії</p>
+            <p>{ t('iconBestSeller')}</p>
           </IconWrap>
           <IconWrap>
             <img
               src={consultation}
               alt="Icon"
             />
-            <p>Консультування на кожному етапі</p>
+            <p>{ t('iconConsultation')}</p>
           </IconWrap>
           <IconWrap>
             <img
               src={onlineSupport}
               alt="Icon"
             />
-            <p>Координування та підтримка</p>
+            <p>{t('icononLineSupport') }</p>
           </IconWrap>
         </FlexStyled>
       </Container>

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button } from '../Button/Button';
 import Container from '../Container';
 
@@ -15,12 +17,13 @@ import { responsive } from '@/helpers/responsive';
 
 const QuestionSection = () => {
   const { isMobile } = responsive();
-
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <Container>
         <Title>
-          Питання <Span>&</Span> Відповіді
+          {t('question')} <Span>&</Span>
+          {t('answer')}
         </Title>
         <div>
           {temporaryData.map(({ question, answer }, index) => (
@@ -32,7 +35,7 @@ const QuestionSection = () => {
           ))}
         </div>
         <Feedback>
-          <FeedbackText>Залишились питання?</FeedbackText>
+          <FeedbackText>{t('feedbackText')}</FeedbackText>
           <Button
             onClick={() => {
               console.log('on btn click');
@@ -43,7 +46,7 @@ const QuestionSection = () => {
             $teal
           >
             <StyledMailSvg />
-            Написати нам
+            {t('mailSvg')}
           </Button>
         </Feedback>
       </Container>
