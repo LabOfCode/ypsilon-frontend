@@ -2,12 +2,23 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
-
-
-import { ButtonWrap, ChangeLangLogo, EnterButton, HeaderContent, HeaderWrap, HeaderWrapper, LinkHeader, LoginLink, LogoLink, LogoYP, LoveLogo, MenuHeaderWrap, UserLogo } from './Header.styled';
+import {
+  ButtonWrap,
+  ChangeLangLogo,
+  EnterButton,
+  HeaderContent,
+  HeaderWrap,
+  HeaderWrapper,
+  LinkHeader,
+  LoginLink,
+  LogoLink,
+  LogoYP,
+  LoveLogo,
+  MenuHeaderWrap,
+  UserLogo,
+} from './Header.styled';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
 import { routes } from '@/routes';
-
 
 const Logo: React.FC = React.memo(() => (
   <LogoLink
@@ -22,8 +33,7 @@ const Logo: React.FC = React.memo(() => (
 
 const Menu: React.FC = () => {
   const location = useLocation();
-    const { t } = useTranslation();
-
+  const { t } = useTranslation();
 
   return (
     <MenuHeaderWrap>
@@ -36,7 +46,8 @@ const Menu: React.FC = () => {
       <LinkHeader
         to={routes.VACANCIES}
         className={location.pathname === routes.VACANCIES ? 'active' : ''}
-      >{t('vacancies')}
+      >
+        {t('vacancies')}
       </LinkHeader>
       <LinkHeader
         to={routes.REVIEWS}
