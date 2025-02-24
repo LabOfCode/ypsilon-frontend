@@ -2,23 +2,12 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
-import {
-  ButtonWrap,
-  ChangeLangLogo,
-  EnterButton,
-  HeaderContent,
-  HeaderWrap,
-  HeaderWrapper,
-  LinkHeader,
-  LoginLink,
-  LogoLink,
-  LogoYP,
-  LoveLogo,
-  MenuHeaderWrap,
-  UserLogo,
-} from './Header.styled';
+
+
+import { ButtonWrap, ChangeLangLogo, EnterButton, HeaderContent, HeaderWrap, HeaderWrapper, LinkHeader, LoginLink, LogoLink, LogoYP, LoveLogo, MenuHeaderWrap, UserLogo } from './Header.styled';
 import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
 import { routes } from '@/routes';
+
 
 const Logo: React.FC = React.memo(() => (
   <LogoLink
@@ -33,6 +22,8 @@ const Logo: React.FC = React.memo(() => (
 
 const Menu: React.FC = () => {
   const location = useLocation();
+    const { t } = useTranslation();
+
 
   return (
     <MenuHeaderWrap>
@@ -40,25 +31,24 @@ const Menu: React.FC = () => {
         to={routes.HOME}
         className={location.pathname === routes.HOME ? 'active' : ''}
       >
-        Головна
+        {t('home')}
       </LinkHeader>
       <LinkHeader
         to={routes.VACANCIES}
         className={location.pathname === routes.VACANCIES ? 'active' : ''}
-      >
-        Вакансії
+      >{t('vacancies')}
       </LinkHeader>
       <LinkHeader
         to={routes.REVIEWS}
         className={location.pathname === routes.REVIEWS ? 'active' : ''}
       >
-        Відгуки
+        {t('reviews')}
       </LinkHeader>
       <LinkHeader
         to={routes.CONTACTS}
         className={location.pathname === routes.CONTACTS ? 'active' : ''}
       >
-        Контакти
+        {t('contacts')}
       </LinkHeader>
     </MenuHeaderWrap>
   );
@@ -77,7 +67,7 @@ const LanguageToggle: React.FC<{ language: 'ua' | 'cz'; onToggle: () => void }> 
 const UserButton: React.FC = React.memo(() => (
   <ButtonWrap>
     <LoginLink to="/login">
-      <EnterButton>Увійти</EnterButton>
+      <EnterButton>Log in</EnterButton>
       <UserLogo>
         <svg viewBox="0 0 32 32">
           <use href="#svg_sprite_user_main"></use>

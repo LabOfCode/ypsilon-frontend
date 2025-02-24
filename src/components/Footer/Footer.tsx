@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Flex from '../Flex/Flex';
 
 import {
@@ -21,6 +23,8 @@ import { routes } from '@/routes';
 
 export const Footer = () => {
   const { isMobile, isDesktop } = responsive();
+  const { t } = useTranslation();
+
   return (
     <FooterWrapper>
       <ContainerFooter>
@@ -35,10 +39,10 @@ export const Footer = () => {
           </LogoLink>
           <FooterWrap>
             <MenuFooterWrap>
-              <LinkFooter to={routes.HOME}>Головна</LinkFooter>
-              <LinkFooter to={routes.VACANCIES}>Вакансії</LinkFooter>
-              <LinkFooter to={routes.REVIEWS}>Відгуки</LinkFooter>
-              <LinkFooter to={routes.CONTACTS}>Контакти</LinkFooter>
+              <LinkFooter to={routes.HOME}>{t('home')}</LinkFooter>
+              <LinkFooter to={routes.VACANCIES}>{t('vacancies')}</LinkFooter>
+              <LinkFooter to={routes.REVIEWS}>{t('reviews')}</LinkFooter>
+              <LinkFooter to={routes.CONTACTS}>{t('contacts')}</LinkFooter>
             </MenuFooterWrap>
             <Line />
           </FooterWrap>
@@ -92,7 +96,7 @@ export const Footer = () => {
             rel="noopener noreferrer nofollow"
             href="https://www.twitter.com/"
           >
-            <p>© 2024 Команда</p>
+            <p>© 2024 LabOfCode</p>
           </a>
           <a
             target="_blank"
