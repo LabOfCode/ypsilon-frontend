@@ -2,15 +2,21 @@ import styled from 'styled-components';
 
 export const CardWrap = styled.div`
   position: relative;
+  height: 576px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   border: 4px solid ${({ theme }) => theme.colors.backgroundDarkTeal};
 
   @media ${({ theme }) => theme.media.tablet} {
     width: calc((100% - 1 * 16px) / 2);
+    height: 572px;
   }
 
   @media ${({ theme }) => theme.media.desktop} {
     width: calc((100% - 2 * 24px) / 3);
+    height: 624px;
   }
 `;
 
@@ -26,6 +32,15 @@ export const Title = styled.h3`
   }
 `;
 
+export const MainImage = styled.img`
+  height: 307px;
+  object-fit: cover;
+
+  @media ${({ theme }) => theme.media.tablet} {
+    height: 308px;
+  }
+`;
+
 export const TopImg = styled.img`
   position: absolute;
   top: 8px;
@@ -34,7 +49,7 @@ export const TopImg = styled.img`
 `;
 
 export const DescWrap = styled.div`
-  padding: 16px;
+  padding: 0 16px 16px 16px;
 `;
 
 export const ItemWrap = styled.div`

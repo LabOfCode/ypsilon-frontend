@@ -9,6 +9,7 @@ import {
   HeartIcon,
   ItemWrap,
   LocationText,
+  MainImage,
   PriceText,
   SvgIcon,
   Title,
@@ -26,7 +27,7 @@ export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => 
 
   return (
     <CardWrap>
-      <img
+      <MainImage
         src={img}
         alt={title}
       />
@@ -49,7 +50,7 @@ export const VacancyItem = ({ vacancy, onToggleFavorite }: VacancyItemProps) => 
           <SvgIcon>
             <use href="#svg_sprite_grommet-icons_money"></use>
           </SvgIcon>
-          <PriceText>{`${price} крон/год`}</PriceText>
+          <PriceText>{price}</PriceText>
         </ItemWrap>
         <ButtonWrap>
           <Button $tealForCard>Залишити заявку</Button>

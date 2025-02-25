@@ -10,7 +10,7 @@ export interface IVacancy {
   _id: string;
   title: string;
   place: string;
-  price: number;
+  price: string;
   img: string;
   isTop: boolean;
 }

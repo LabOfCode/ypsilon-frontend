@@ -1,10 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import config from '@/config';
 import type { IVacancy, VacanciesResponse } from '@/types';
+
+const API_URL = config.apiUrl;
 
 export const vacancyApi = createApi({
   reducerPath: 'vacancyApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://app.ypsilonwork.cz/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}/api` }),
   tagTypes: ['vacancies'],
   endpoints: builder => ({
     getVacancies: builder.query<VacanciesResponse, string>({
