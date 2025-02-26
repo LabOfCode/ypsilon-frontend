@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Answer,
   Details,
@@ -6,23 +8,25 @@ import {
   SvgMinusStyled,
   SvgPlusStyled,
 } from './QuestionItem.styled';
+import { Lang_Option } from '@/types';
 
 interface Props {
-  question: string;
-  answer: string;
+  question: Lang_Option;
+  answer: Lang_Option;
 }
 
 const QuestionItem = (props: Props) => {
   const { question, answer } = props;
+  const { i18n } = useTranslation();
 
   return (
     <Details>
       <QuestionBlock>
-        <Question>{question}</Question>
+        <Question>{question[i18n.languages[0] as keyof Lang_Option]}</Question>
         <SvgPlusStyled />
         <SvgMinusStyled />
       </QuestionBlock>
-      <Answer> {answer}</Answer>
+      <Answer> {answer[i18n.languages[0] as keyof Lang_Option]}</Answer>
     </Details>
   );
 };
