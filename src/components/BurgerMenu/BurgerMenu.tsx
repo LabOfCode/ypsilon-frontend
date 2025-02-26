@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { routes } from '@/routes';
+
 import {
-  BurgerButton,
   Burger,
+  BurgerButton,
   BurgerButtonWrapper,
-  MobileMenuWrapper,
+  ChangeLangBurgerLogo,
   CloseButton,
-  MenuBurgerWrap,
   LiBurger,
   LoveBurgerLogo,
-  ChangeLangBurgerLogo,
+  MenuBurgerWrap,
+  MobileMenuWrapper,
 } from './BurgerMenu.styled';
-import uaLogo from '@/assets/images/flag_us.png';
 import czLogo from '@/assets/images/flag_cz.png';
+import uaLogo from '@/assets/images/flag_us.png';
+import { routes } from '@/routes';
 
 interface BurgerMenuProps {
   language: 'ua' | 'cz';
@@ -22,6 +24,7 @@ interface BurgerMenuProps {
 
 export const BurgerMenu: React.FC<BurgerMenuProps> = ({ language, handleLanguageChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -41,17 +44,24 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ language, handleLanguage
           <CloseButton onClick={toggleMenu}>×</CloseButton>
           <MenuBurgerWrap>
             {[
-              { route: routes.HOME, label: 'Головна' },
-              { route: routes.VACANCIES, label: 'Вакансії' },
-              { route: routes.REVIEWS, label: 'Відгуки' },
-              { route: routes.CONTACTS, label: 'Контакти' },
+              { route: routes.HOME, label: t('home')},
+              { route: routes.VACANCIES, label: t('vacancies')},
+              { route: routes.REVIEWS, label: t('reviews')},
+              { route: routes.CONTACTS, label:t('contacts')},
             ].map(({ route, label }) => (
-              <LiBurger to={route} onClick={toggleMenu} key={route}>
+              <LiBurger
+                to={route}
+                onClick={toggleMenu}
+                key={route}
+              >
                 {label}
               </LiBurger>
             ))}
           </MenuBurgerWrap>
-          <Link to={routes.FAVORITES} onClick={toggleMenu}>
+          <Link
+            to={routes.FAVORITES}
+            onClick={toggleMenu}
+          >
             <LoveBurgerLogo>
               <use href="#svg_sprite_heart"></use>
             </LoveBurgerLogo>

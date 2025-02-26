@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   ContactContainter,
   ContainerStyled,
@@ -8,6 +9,7 @@ import {
 import map from '@/assets/images/mapToMain.png';
 
 export const MapOnMain = () => {
+    const { t } = useTranslation();
   return (
     <Wrapper>
       <ContainerStyled>
@@ -16,8 +18,8 @@ export const MapOnMain = () => {
           alt="Map"
         />
         <TextContainer>
-          <h3>Зроби це з нами</h3>
-          <p>Ми допоможемо з усіма процесами оформленням документів та контракту</p>
+          <h3>{ t('doIt')}</h3>
+          <p>{ t('help')}</p>
         </TextContainer>
         <ContactContainter>
           <h4>Czech Republic</h4>
