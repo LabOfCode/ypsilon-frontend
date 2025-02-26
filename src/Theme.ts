@@ -7,13 +7,15 @@ export const theme = {
     backgroundDarkTeal: '#01252A',
     backgroundGray: '#E8E8E6',
     backgroundOcean: 'linear-gradient(180deg, #01252A 0%, #0392A6 100%)',
-    backgroundHeader: 'linear-gradient(180deg, rgba(0, 80, 91, 0.80) 27%, rgba(0, 35, 40, 0.20) 88%)',
+    backgroundHeader:
+      'linear-gradient(180deg, rgba(0, 80, 91, 0.80) 27%, rgba(0, 35, 40, 0.20) 88%)',
 
     //text color
     colorBlack: '#0B0B0B',
     colorWhite: '#F9F9F9',
     colorYellow: '#FCC50D',
     colorTeal: '#0FB7D1',
+    colorDarkTeal: '#01252A',
     colorGray: '##A3A8A9',
     colorRed: '#FF4141',
   },

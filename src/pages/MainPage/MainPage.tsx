@@ -1,5 +1,6 @@
 import { AboutUs } from '@/components/AboutUs/AboutUs';
 import { HeroSection } from '@/components/HeroSection/HeroSection';
+import { MapOnMain } from '@/components/MapOnMain/MapOnMain';
 import PartnersReviews from '@/components/PartnersReviews/PartnersReviews';
 import QuestionSection from '@/components/QuestionsSection/QuestionSection';
 import { VacanciesSection } from '@/components/VacanciesSection/VacanciesSection';
@@ -15,6 +16,7 @@ export default function MainPage() {
       {data?.total !== 0 && <VacanciesSection top />}
       <PartnersReviews />
       <QuestionSection />
+      <MapOnMain />
     </div>
   );
 }
