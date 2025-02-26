@@ -27,7 +27,7 @@ export const SvgMinusStyled = styled(SvgMinus)`
 
 export const Details = styled.details`
   width: 100%;
-  display: flex;
+  display: block;
 
   &:hover,
   &:focus {
