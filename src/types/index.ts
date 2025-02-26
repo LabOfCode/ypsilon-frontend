@@ -1,3 +1,13 @@
+export enum LangTypes {
+  UA = 'ua',
+  CZ = 'cz',
+}
+
+export interface Lang_Option {
+  [LangTypes.UA]: string;
+  [LangTypes.CZ]: string;
+}
+
 export interface IUser {
   _id: string;
   email: string;

@@ -18,6 +18,7 @@ import { responsive } from '@/helpers/responsive';
 const QuestionSection = () => {
   const { isMobile } = responsive();
   const { t } = useTranslation();
+
   return (
     <Wrapper>
       <Container>
