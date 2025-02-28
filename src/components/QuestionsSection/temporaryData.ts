@@ -27,7 +27,7 @@ export const temporaryData = [
   {
     question: { ua: 'Після приїзду нас хтось зустріне?', cz: 'Potká nás někdo po příjezdu?' },
     answer: {
-      ua: 'На вокзалі Вас зустріне наш координатор, в разі потреби, та допоможе засилитися до вибраного житла',
+      ua: 'На вокзалі Вас зустріне наш  координатор, в разі потреби, та допоможе засилитися до вибраного житла',
       cz: 'Náš koordinátor se s vámi v případě potřeby setká na nádraží a pomůže vám dostat se do vámi vybraného ubytování.',
     },
   },
