@@ -28,6 +28,7 @@ export const SvgMinusStyled = styled(SvgMinus)`
 export const Details = styled.details`
   width: 100%;
   display: block;
+  border-bottom: 2px solid #0fb7d1;
 
   &:hover,
   &:focus {
@@ -50,7 +51,7 @@ export const Details = styled.details`
 export const QuestionBlock = styled.summary`
   display: flex;
   padding: 16px 0;
-  border-bottom: 2px solid #0fb7d1;
+  /* border-bottom: 2px solid #0fb7d1; */
   gap: 18px;
   align-items: center;
   justify-content: space-between;
