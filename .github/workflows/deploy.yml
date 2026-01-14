@@ -35,4 +35,4 @@ jobs:
 
       - name: Restart server
         run: |
-          ssh -o StrictHostKeyChecking=no root@80.211.203.90 "pm2 restart all"
+          ssh -o StrictHostKeyChecking=no root@37.60.243.91 "pm2 restart all"
