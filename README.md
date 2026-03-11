@@ -5,6 +5,7 @@
 
 ## Используемый стек технологий
 
+
 - [React.js](https://react.dev/)
 - [styled-components](https://styled-components.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/) - для создания локального стейта
